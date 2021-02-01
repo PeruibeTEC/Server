@@ -181,3 +181,15 @@ We try to enforce these rules for the following reasons:
 - Triggering build and publish processes;
 - Making it easier for people to contribute, by allowing them to explore a more structured commit history.
 
+## Submitting a pull request
+
+Before submitting a pull request, please make sure the following is done:
+
+- [Fork](https://help.github.com/en/articles/fork-a-repo) the repository and create your branch from `main`.
+  - Example: `feature/my-feature` or `fix/annoying-bug`;
+  - FYI: of descriptive names for your branch;
+- Run `yarn` in the repository root;
+- If you’ve fixed a bug or added code that should be tested, **add tests**;
+- Ensure the test suite passes;
+- Ensure your commit is validated;
+- Submit your Pull Request and wait for it to be reviewed and approved (:

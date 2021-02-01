@@ -5,7 +5,7 @@ on: ['push', 'pull_request']
 jobs:
   commit:
     name: Lint commit messages
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latests
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -21,4 +21,3 @@ jobs:
 
       - name: Check commit message
         uses: wagoid/commitlint-github-action@v1
-

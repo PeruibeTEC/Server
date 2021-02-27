@@ -8,17 +8,19 @@
     "strictPropertyInitialization": false,
     "baseUrl": "./src",
     "paths": {
-      "@modules/*": ["modules/*"],
-      "@config/*": ["config/*"],
-      "@shared/*": ["shared/*"]
+      "@tests/*": ["../__tests__/*"],
+      "@/*": ["*"]
     },
     "rootDirs": [
-      "./src"
+      "./src",
+      "./__tests__"
     ],
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "include": ["src", "__tests__"],
+  "exclude": []
 }

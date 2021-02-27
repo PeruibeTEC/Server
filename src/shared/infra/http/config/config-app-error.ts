@@ -12,7 +12,7 @@ export default (app: Express): void => {
       }
 
       // eslint-disable-next-line
-    console.error(err);
+      console.error(err);
 
       return response.status(500).json({
         status: 'error',

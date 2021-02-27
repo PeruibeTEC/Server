@@ -28,6 +28,7 @@
       "argsIgnorePattern": "_"
     }],
     "import/prefer-default-export": "off",
+    "import/no-unresolved": "off",
     "@typescript-eslint/naming-convention": [
       "error",
       {

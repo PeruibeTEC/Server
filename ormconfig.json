@@ -1,0 +1,18 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "",
+  "database": "peruibetec",
+  "synchronize": false,
+  "logging": false,
+  "entities": ["src/shared/infra/database/typeorm/entities/**/*.ts"],
+  "migrations": ["src/shared/infra/database/typeorm/migrations/**/*.ts"],
+  "subscribers": ["src/shared/infra/database/typeorm/subscribers/**/*.ts"],
+  "cli": {
+    "entitiesDir": "src/shared/infra/database/typeorm/entities",
+    "migrationsDir": "src/shared/infra/database/typeorm/migrations",
+    "subscribersDir": "src/shared/infra/database/typeorm/subscribers"
+  }
+}

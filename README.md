@@ -57,7 +57,7 @@ The main technologies used in this API are:
 - [TypeORM](https://typeorm.io/#/)
 - [JWT-token](https://jwt.io/)
 - [uuid-v4](https://github.com/thenativeweb/uuidv4/)
-- [MySQL](https://www.mysql.com/)
+- [PostgreSQL](https://www.postgresql.org/)
 - [Date-fns](https://date-fns.org/)
 - [Jest](https://jestjs.io/)
 - [SuperTest](https://github.com/visionmedia/supertest)
@@ -71,7 +71,7 @@ The main technologies used in this API are:
 
 - [Node.js](https://nodejs.org/en/)
 - [Yarn](https://classic.yarnpkg.com/) or [NPM](https://www.npmjs.com/)
-- One instance of [MySQL](https://www.mysql.com/)
+- One instance of [PostgreSQL](https://www.postgresql.org/)
 
 > Fyi.: I recommend using the docker
 
@@ -92,16 +92,12 @@ $ yarn install
 
 # Make a copy of '.env.example' to '.env'
 # and set with YOUR environment variables.
-# The aws variables do not need to be filled for dev environment
 $ cp .env.example .env
 
-# Create the instance of MySQL using docker
-$ docker run --name peruibeTec-mysql -e MYSQL_USER=docker \
-              -e MYSQL_DB=peruibeTec -e MYSQL_PASSWORD=docker \
-              -p 5432:5432 -d mysql
-
-# Create the instance of redis using docker
-$ docker run --name peruibeTec-redis -p 6379:6379 -d -t redis:alpine
+# Create the instance of PostgreSQL using docker
+$ docker run --name peruibeTec-postgres -e POSTGRES_USER=docker \
+              -e POSTGRES_DB=peruibeTec -e POSTGRES_PASSWORD=docker \
+              -p 5432:5432 -d postgres
 
 # Once the services are running, run the migrations
 $ yarn typeorm migration:run

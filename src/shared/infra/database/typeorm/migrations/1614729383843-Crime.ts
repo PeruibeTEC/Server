@@ -21,11 +21,11 @@ export class Crime1614729383843 implements MigrationInterface {
           {
             name: 'date',
             type: 'date',
-            isNullable: true,
           },
           {
             name: 'time',
             type: 'time',
+            isNullable: true,
           },
           {
             name: 'description',

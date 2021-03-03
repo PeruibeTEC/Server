@@ -1,15 +1,17 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CrimeType1614727818501 implements MigrationInterface {
+export class UserMigration1614624999063 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
+    await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`);
     await queryRunner.createTable(
       new Table({
-        name: 'tb_crime_type',
+        name: 'tb_user',
         columns: [
           {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            isGenerated: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
           },
@@ -17,6 +19,31 @@ export class CrimeType1614727818501 implements MigrationInterface {
             name: 'name',
             type: 'varchar',
             length: '45',
+          },
+          {
+            name: 'email',
+            type: 'varchar',
+            length: '45',
+            isUnique: true,
+          },
+          {
+            name: 'password',
+            type: 'varchar',
+          },
+          {
+            name: 'small_biography',
+            length: '160',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'photo',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
+            name: 'is_tourist',
+            type: 'boolean',
           },
           {
             name: 'created_at',
@@ -34,6 +61,6 @@ export class CrimeType1614727818501 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('tb_crime_type');
+    await queryRunner.dropTable('tb_user');
   }
 }

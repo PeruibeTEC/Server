@@ -64,6 +64,6 @@ export class CreateTouristMigration1614894905189 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('tb_tourist_housing', 'userId');
-    await queryRunner.dropTable('tb_user');
+    await queryRunner.dropTable('tb_tourist_housing');
   }
 }

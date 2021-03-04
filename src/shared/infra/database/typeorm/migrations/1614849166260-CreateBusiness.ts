@@ -26,12 +26,12 @@ export class CreateBusiness1614849166260 implements MigrationInterface {
           {
             name: 'email_login',
             type: 'varchar',
-            length: '45',
+            length: '255',
           },
           {
             name: 'password',
             type: 'varchar',
-            length: '25',
+            length: '3000',
           },
           {
             name: 'description',
@@ -44,7 +44,7 @@ export class CreateBusiness1614849166260 implements MigrationInterface {
             length: '3000',
           },
           {
-            name: 'operating_name',
+            name: 'operating_time',
             type: 'time',
           },
           {

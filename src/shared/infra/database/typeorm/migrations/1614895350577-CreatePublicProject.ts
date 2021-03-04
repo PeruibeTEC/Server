@@ -18,11 +18,13 @@ export class CreatePublicProject1614895350577 implements MigrationInterface {
             name: 'street',
             type: 'varchar',
             length: '150',
+            isNullable: true,
           },
           {
             name: 'district',
             type: 'varchar',
             length: '100',
+            isNullable: true,
           },
           {
             name: 'latitude',
@@ -46,7 +48,9 @@ export class CreatePublicProject1614895350577 implements MigrationInterface {
           },
           {
             name: 'price',
-            type: 'float',
+            type: 'decimal',
+            precision: 15,
+            scale: 7,
           },
         ],
       }),

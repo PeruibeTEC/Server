@@ -27,6 +27,7 @@ export class CreateBusinessContact1614866584828 implements MigrationInterface {
             name: 'cellphone',
             type: 'varchar',
             length: '11',
+            isNullable: true,
           },
           {
             name: 'tellphone',

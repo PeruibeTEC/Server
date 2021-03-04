@@ -31,7 +31,7 @@ export class CreateBusiness1614849166260 implements MigrationInterface {
           {
             name: 'password',
             type: 'varchar',
-            length: '3000',
+            length: '665',
           },
           {
             name: 'description',

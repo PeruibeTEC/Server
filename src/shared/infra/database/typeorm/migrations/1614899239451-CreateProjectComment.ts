@@ -43,8 +43,8 @@ export class CreateProjectComment1614899239451 implements MigrationInterface {
         columnNames: ['public_project_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'tb_public_project',
-        onDelete: 'SET NULL',
-        onUpdate: 'RESTRICT',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }),
     );
 
@@ -55,8 +55,8 @@ export class CreateProjectComment1614899239451 implements MigrationInterface {
         columnNames: ['user_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'tb_user',
-        onDelete: 'SET NULL',
-        onUpdate: 'RESTRICT',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       }),
     );
   }

@@ -45,6 +45,16 @@ export class CreateTouristMigration1614894905189 implements MigrationInterface {
             name: 'user_id',
             type: 'uuid',
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
       }),
     );

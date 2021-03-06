@@ -52,6 +52,16 @@ export class CreatePublicProject1614895350577 implements MigrationInterface {
             precision: 15,
             scale: 7,
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
       }),
     );

@@ -32,6 +32,16 @@ export class CreateComment1614908277822 implements MigrationInterface {
             name: 'user_id',
             type: 'uuid',
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
       }),
     );

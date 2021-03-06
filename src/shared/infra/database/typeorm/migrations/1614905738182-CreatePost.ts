@@ -23,11 +23,21 @@ export class CreatePost1614905738182 implements MigrationInterface {
             name: 'content',
             type: 'varchar',
             length: '200',
-            isNullable: true;
+            isNullable: true,
           },
           {
             name: 'user_id',
             type: 'uuid',
+          },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
           },
         ],
       }),

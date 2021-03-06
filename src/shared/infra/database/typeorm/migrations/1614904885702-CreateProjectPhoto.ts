@@ -28,6 +28,16 @@ export class CreateProjectPhoto1614904885702 implements MigrationInterface {
             name: 'comment_id',
             type: 'uuid',
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
       }),
     );

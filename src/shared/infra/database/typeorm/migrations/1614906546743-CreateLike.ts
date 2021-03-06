@@ -27,6 +27,16 @@ export class CreateLike1614906546743 implements MigrationInterface {
             name: 'post_id',
             type: 'uuid',
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
       }),
     );

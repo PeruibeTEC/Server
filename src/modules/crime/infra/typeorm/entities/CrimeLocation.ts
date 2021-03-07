@@ -18,6 +18,7 @@ export default class CrimeLocation {
 
   @Column({
     length: 10,
+    nullable: true,
   })
   number: string;
 

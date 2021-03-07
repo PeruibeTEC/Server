@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 @Entity('tb_crime_location')
-export default class User {
+export default class CrimeLocation {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

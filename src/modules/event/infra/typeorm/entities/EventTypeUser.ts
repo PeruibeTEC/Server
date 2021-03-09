@@ -1,0 +1,24 @@
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+  CreateDateColumn,
+} from 'typeorm';
+
+@Entity('tb_event_user')
+export default class EventTypeUser extends Event {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column({
+    length: 50,
+  })
+  name: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
+}

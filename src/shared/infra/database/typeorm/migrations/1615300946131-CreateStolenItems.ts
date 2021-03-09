@@ -24,7 +24,7 @@ export class CreateStolenItems1615300946131 implements MigrationInterface {
             length: '200',
           },
           {
-            name: 'quantidade',
+            name: 'amount',
             type: 'INT',
           },
           {

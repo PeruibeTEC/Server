@@ -18,6 +18,7 @@ export default class User {
 
   @Column({
     length: 45,
+    unique: true,
   })
   email: string;
 

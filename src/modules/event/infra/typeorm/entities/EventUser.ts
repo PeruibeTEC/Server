@@ -37,6 +37,7 @@ export default class EventUser extends User {
 
   @Column({
     length: 160,
+    nullable: true,
   })
   description: string;
 

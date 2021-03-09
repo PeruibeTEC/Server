@@ -8,25 +8,21 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import User from '@modules/user/infra/typeorm/entities/User';
+import ProjectComment from './ProjectComment';
 
-@Entity('tb_post')
-export default class Post extends User {
+@Entity('tb_project_photo')
+export default class ProjectPhoto extends ProjectComment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({
-    length: 200,
-    nullable: true,
+    length: 3000,
   })
-  content: string;
+  url: string;
 
-  @Column()
-  has_photo: boolean;
-
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'user_id' })
-  user_id: User;
+  @ManyToOne(() => ProjectComment)
+  @JoinColumn({ name: 'project_comment_id' })
+  comment_id: ProjectComment;
 
   @CreateDateColumn()
   created_at: Date;

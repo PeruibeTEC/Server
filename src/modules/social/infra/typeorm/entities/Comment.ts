@@ -19,7 +19,7 @@ export default class Comment extends Post {
   @Column({
     length: 160,
   })
-  contents: string;
+  content: string;
 
   @ManyToOne(() => Post)
   @JoinColumn({ name: 'post_id' })

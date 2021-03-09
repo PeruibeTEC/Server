@@ -17,11 +17,13 @@ export default class Tourist extends User {
 
   @Column({
     length: 2,
+    nullable: true,
   })
   state: string;
 
   @Column({
     length: 45,
+    nullable: true,
   })
   city: string;
 

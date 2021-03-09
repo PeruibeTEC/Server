@@ -5,6 +5,7 @@ import {
   UpdateDateColumn,
   CreateDateColumn,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
 import CrimeLocation from './CrimeLocation';
@@ -32,26 +33,18 @@ export default class Crime {
   })
   description: string;
 
-  /* ************************************************
-   * I am currently following the structure defined
-   * in the MER, however I think we should create a
-   * table just for the stolen_items. I already
-   * indicated this to the PeruíbeTec dev team
-   * ************************************************
-   */
-
   @Column({
     length: 160,
     nullable: true,
   })
   stolen_items: string;
 
-  @Column()
   @ManyToOne(() => CrimeType)
+  @JoinColumn({ name: 'crime_type_id' })
   crime_type_id: CrimeType;
 
-  @Column()
   @ManyToOne(() => CrimeLocation)
+  @JoinColumn({ name: 'crime_location_id' })
   crime_location_id: CrimeLocation;
 
   @CreateDateColumn()

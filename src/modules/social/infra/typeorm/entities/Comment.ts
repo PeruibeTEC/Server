@@ -4,35 +4,26 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   CreateDateColumn,
-  JoinColumn,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 
-import User from './User';
+import User from '@modules/user/infra/typeorm/entities/User';
+import Post from './Post';
 
-@Entity('tb_tourist')
-export default class Tourist extends User {
+@Entity('tb_comment')
+export default class Comment extends Post {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({
-    length: 2,
+    length: 160,
   })
-  state: string;
+  contents: string;
 
-  @Column({
-    length: 45,
-  })
-  city: string;
-
-  @Column()
-  is_foreigner: boolean;
-
-  @Column({
-    length: 25,
-    nullable: true,
-  })
-  country_foreigner: string;
+  @ManyToOne(() => Post)
+  @JoinColumn({ name: 'post_id' })
+  post_id: Post;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })

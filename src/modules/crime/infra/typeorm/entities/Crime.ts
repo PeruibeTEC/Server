@@ -33,12 +33,6 @@ export default class Crime {
   })
   description: string;
 
-  @Column({
-    length: 160,
-    nullable: true,
-  })
-  stolen_items: string;
-
   @ManyToOne(() => CrimeType)
   @JoinColumn({ name: 'crime_type_id' })
   crime_type_id: CrimeType;

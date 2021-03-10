@@ -11,7 +11,7 @@ import {
 import User from '@modules/user/infra/typeorm/entities/User';
 
 @Entity('tb_post')
-export default class Post extends User {
+export default class Post {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

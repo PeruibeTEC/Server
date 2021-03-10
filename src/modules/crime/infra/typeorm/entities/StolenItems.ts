@@ -4,40 +4,28 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   CreateDateColumn,
+  JoinColumn,
+  ManyToOne,
 } from 'typeorm';
 
-@Entity('tb_crime_location')
-export default class CrimeLocation {
+import Crime from './Crime';
+
+@Entity('tb_stolen_items')
+export default class StolenItems {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({
-    length: 150,
+    length: 200,
   })
   street: string;
 
-  @Column({
-    length: 10,
-    nullable: true,
-  })
-  number: string;
+  @Column()
+  amount: number;
 
-  @Column({
-    length: 100,
-  })
-  district: string;
-
-  @Column({
-    precision: 10,
-    scale: 7,
-  })
-  latitude: number;
-
-  @Column({
-    precision: 10,
-    scale: 7,
-  })
-  longitude: number;
+  @ManyToOne(() => Crime)
+  @JoinColumn({ name: 'crime_id' })
+  crime_id: Crime;
 
   @CreateDateColumn()
   created_at: Date;

@@ -28,6 +28,7 @@ export default class CrimeLocation {
   district: string;
 
   @Column({
+    type: 'decimal',
     precision: 10,
     scale: 7,
   })

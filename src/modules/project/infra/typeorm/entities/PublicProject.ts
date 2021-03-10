@@ -24,16 +24,18 @@ export default class PublicProject {
   district: string;
 
   @Column({
+    type: 'decimal',
     precision: 10,
     scale: 7,
   })
-  latitude: string;
+  latitude: number;
 
   @Column({
+    type: 'decimal',
     precision: 10,
     scale: 7,
   })
-  longitude: string;
+  longitude: number;
 
   @Column()
   starting_date: Date;
@@ -41,7 +43,11 @@ export default class PublicProject {
   @Column()
   ending_date: Date;
 
-  @Column()
+  @Column({
+    type: 'decimal',
+    precision: 10,
+    scale: 7,
+  })
   price: number;
 
   @CreateDateColumn()

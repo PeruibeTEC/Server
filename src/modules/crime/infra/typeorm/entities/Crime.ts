@@ -19,7 +19,9 @@ export default class Crime {
   @Column('timestamp with time zone')
   date: Date;
 
-  @Column('time')
+  @Column('time', {
+    nullable: true,
+  })
   time: Date;
 
   @Column({

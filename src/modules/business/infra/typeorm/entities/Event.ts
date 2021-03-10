@@ -24,10 +24,14 @@ export default class Event {
   @Column('timestamp with time zone')
   date: Date;
 
-  @Column('time')
+  @Column('time', {
+    nullable: true,
+  })
   start_time: Date;
 
-  @Column('time')
+  @Column('time', {
+    nullable: true,
+  })
   end_time: Date;
 
   @Column({

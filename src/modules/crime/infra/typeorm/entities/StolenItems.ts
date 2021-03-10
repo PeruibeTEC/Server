@@ -18,7 +18,7 @@ export default class StolenItems {
   @Column({
     length: 200,
   })
-  street: string;
+  items: string;
 
   @Column({
     type: 'int',

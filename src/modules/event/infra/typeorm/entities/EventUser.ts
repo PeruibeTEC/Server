@@ -6,7 +6,6 @@ import {
   CreateDateColumn,
   ManyToOne,
   JoinColumn,
-  Timestamp,
 } from 'typeorm';
 
 import User from '@modules/user/infra/typeorm/entities/User';
@@ -25,15 +24,15 @@ export default class EventUser extends User {
   @Column('timestamp with time zone')
   date: Date;
 
-  @Column({
+  @Column('time', {
     nullable: true,
   })
-  start_time: Timestamp;
+  start_time: Date;
 
-  @Column({
+  @Column('time', {
     nullable: true,
   })
-  end_time: Timestamp;
+  end_time: Date;
 
   @Column({
     length: 160,

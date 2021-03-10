@@ -11,7 +11,7 @@ import {
 import Post from './Post';
 
 @Entity('tb_photo_post')
-export default class PhotoPost extends Post {
+export default class PhotoPost {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

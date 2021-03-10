@@ -11,7 +11,7 @@ import {
 import User from './User';
 
 @Entity('tb_tourist')
-export default class Tourist extends User {
+export default class Tourist {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

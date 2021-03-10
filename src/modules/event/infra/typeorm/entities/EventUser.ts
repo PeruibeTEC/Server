@@ -22,7 +22,7 @@ export default class EventUser extends User {
   })
   name: string;
 
-  @Column()
+  @Column('timestamp with time zone')
   date: Date;
 
   @Column({

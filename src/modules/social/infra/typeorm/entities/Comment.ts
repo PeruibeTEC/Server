@@ -12,7 +12,7 @@ import User from '@modules/user/infra/typeorm/entities/User';
 import Post from './Post';
 
 @Entity('tb_comment')
-export default class Comment extends Post {
+export default class Comment {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

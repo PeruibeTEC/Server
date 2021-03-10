@@ -11,7 +11,7 @@ import {
 import ProjectComment from './ProjectComment';
 
 @Entity('tb_project_photo')
-export default class ProjectPhoto extends ProjectComment {
+export default class ProjectPhoto {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

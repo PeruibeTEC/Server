@@ -11,7 +11,7 @@ import User from '@modules/user/infra/typeorm/entities/User';
 import Post from './Post';
 
 @Entity('tb_like')
-export default class Like extends Post {
+export default class Like {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

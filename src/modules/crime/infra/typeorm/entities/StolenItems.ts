@@ -34,7 +34,6 @@ export default class CrimeLocation {
   latitude: number;
 
   @Column({
-    type: 'decimal',
     precision: 10,
     scale: 7,
   })

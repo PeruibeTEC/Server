@@ -20,7 +20,9 @@ export default class StolenItems {
   })
   street: string;
 
-  @Column()
+  @Column({
+    type: 'int',
+  })
   amount: number;
 
   @ManyToOne(() => Crime)

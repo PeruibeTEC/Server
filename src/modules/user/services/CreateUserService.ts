@@ -9,6 +9,7 @@ export interface IRequest {
   name: string;
   email: string;
   password: string;
+  is_tourist: boolean;
 }
 
 @injectable()
@@ -18,7 +19,12 @@ export default class CreateUserService {
     private usersRepository: IUserRepository,
   ) {}
 
-  public async execute({ name, email, password }: IRequest): Promise<User> {
+  public async execute({
+    name,
+    email,
+    password,
+    is_tourist,
+  }: IRequest): Promise<User> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
     if (checkUserExists) {
@@ -29,6 +35,7 @@ export default class CreateUserService {
       name,
       email,
       password,
+      is_tourist,
     });
 
     return user;

@@ -1,8 +1,7 @@
 module.exports = {
   roots: ['<rootDir>/__tests__'],
   collectCoverageFrom: [
-    '<rootDir>/src/**/*.ts',
-    '!<rootDir>/src/main/**'
+    '<rootDir>/src/modules/**/services/*.ts'
   ],
   coverageDirectory: 'coverage',
   coverageProvider: 'babel',
@@ -12,7 +11,8 @@ module.exports = {
     '.+\\.ts$': 'ts-jest'
   },
   moduleNameMapper: {
-    '@/__tests__/(.*)': '<rootDir>/__tests__/$1',
-    '@/(.*)': '<rootDir>/src/$1'
+    "@modules/(.*)": "<rootDir>/src/modules/$1",
+    "@shared/(.*)": "<rootDir>/src/shared/$1",
+    "@tests/(.*)": "<rootDir>/__tests__/$1"
   }
 }

@@ -17,6 +17,7 @@ export default class UsersController {
       is_tourist,
     });
 
+    // @ts-expect-error ⠀⠀⠀
     delete user.password;
 
     return response.json(user);

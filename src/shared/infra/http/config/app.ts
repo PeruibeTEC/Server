@@ -1,6 +1,8 @@
 import express from 'express';
 
 import 'reflect-metadata';
+import 'express-async-errors';
+
 import '@/shared/container';
 import '@/shared/infra/database/typeorm';
 
@@ -10,7 +12,7 @@ import setupRoutes from './routes';
 
 const app = express();
 setupMiddlewares(app);
-setupAppError(app);
 setupRoutes(app);
+setupAppError(app);
 
 export default app;

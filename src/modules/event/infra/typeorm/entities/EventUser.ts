@@ -12,7 +12,7 @@ import User from '@modules/user/infra/typeorm/entities/User';
 import EventTypeUser from './EventTypeUser';
 
 @Entity('tb_event_user')
-export default class EventUser extends User {
+export default class EventUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

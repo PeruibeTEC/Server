@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 @Entity('tb_event_user')
-export default class EventTypeUser extends Event {
+export default class EventTypeUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

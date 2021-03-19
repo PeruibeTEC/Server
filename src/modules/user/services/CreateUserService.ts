@@ -4,6 +4,7 @@ import AppError from '@shared/infra/http/errors/AppError';
 
 import User from '../infra/typeorm/entities/User';
 import IUserRepository from '../repositories/IUserRepository';
+import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 export interface IRequest {
   name: string;
@@ -17,6 +18,9 @@ export default class CreateUserService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUserRepository,
+
+    @inject('HashProvider')
+    private hashProvider: IHashProvider,
   ) {}
 
   public async execute({
@@ -31,10 +35,12 @@ export default class CreateUserService {
       throw new AppError('Email address already used.');
     }
 
+    const hashedPassword = await this.hashProvider.generateHash(password);
+
     const user = this.usersRepository.create({
       name,
       email,
-      password,
+      password: hashedPassword,
       is_tourist,
     });
 

@@ -36,15 +36,21 @@ class AuthenticateUserService {
     }
 
     const { secret, expiresIn } = auth.jwt;
-    const token = sign({}, secret, {
-      subject: user.id,
-      expiresIn,
-    });
 
-    return {
-      user,
-      token,
-    };
+    // veryfing if secret is undefined (otherwise the sign method won't work)
+    if (secret === undefined) {
+      throw new AppError('Invalid secret');
+    } else {
+      const token = sign({}, secret, {
+        subject: user.id,
+        expiresIn,
+      });
+
+      return {
+        user,
+        token,
+      };
+    }
   }
 }
 

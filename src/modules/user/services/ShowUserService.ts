@@ -4,7 +4,7 @@ import User from '../infra/typeorm/entities/User';
 import IUserRepository from '../repositories/IUserRepository';
 
 export interface IRequest {
-  id: string;
+  user_id: string;
 }
 
 @injectable()
@@ -14,8 +14,8 @@ export default class ShowUserService {
     private usersRepository: IUserRepository,
   ) {}
 
-  public async execute({ id }: IRequest): Promise<User> {
-    const userFrom = await this.usersRepository.findById(id);
+  public async execute({ user_id }: IRequest): Promise<User> {
+    const userFrom = await this.usersRepository.findById(user_id);
 
     if (!userFrom) {
       throw new AppError('User does not exists.', 404);

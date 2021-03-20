@@ -31,7 +31,9 @@ export default function ensureAuthenticated(
 
       const { sub } = decoded as ITokenPayload;
 
-      request.user = { id: sub };
+      request.user = {
+        id: sub,
+      };
 
       return next();
     }

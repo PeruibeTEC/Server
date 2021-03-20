@@ -27,22 +27,24 @@ export default class UsersController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
+    const user_id = request.user.id;
 
     const deleteUser = container.resolve(DeleteUserService);
 
-    await deleteUser.execute({ id });
+    await deleteUser.execute({ user_id });
 
-    return response.status(200).json({ message: `User ${id} deleted ` });
+    return response.status(200).json({ message: `User ${user_id} deleted ` });
   }
 
-  public async show(request: Request, response: Response): Promise<User> {
-    const { id } = request.params;
+  public async show(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
 
     const showUser = container.resolve(ShowUserService);
-    const users = await showUser.execute({ id });
+    const user = await showUser.execute({ user_id });
+    // @ts-expect-error ⠀⠀⠀
+    delete user.password;
 
-    return response.status(200).json(users);
+    return response.status(200).json(user);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {

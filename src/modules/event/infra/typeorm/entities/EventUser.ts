@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import User from '@modules/user/infra/typeorm/entities/User';
+import User from '../../../../user/infra/typeorm/entities/User';
 import EventTypeUser from './EventTypeUser';
 
 @Entity('tb_event_user')

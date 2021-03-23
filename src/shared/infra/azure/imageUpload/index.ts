@@ -1,5 +1,5 @@
-import * as azure from 'azure-storage';
-import * as crypto from 'crypto';
+import azure from 'azure-storage';
+import crypto from 'crypto';
 import dotenv from 'dotenv';
 
 dotenv.config();

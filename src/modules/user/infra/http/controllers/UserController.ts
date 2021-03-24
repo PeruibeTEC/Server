@@ -4,8 +4,9 @@ import { container } from 'tsyringe';
 
 import CreateUserService from '@modules/user/services/CreateUserService';
 import DeleteUserService from '@modules/user/services/DeleteUserService';
-import ShowUserService from '@modules/user/services/ShowUserService';
+import ShowProfileService from '@modules/user/services/ShowProfileService';
 import UpdateProfileService from '@modules/user/services/UpdateProfileService';
+import ListUserService from '@modules/user/services/ListUsersService';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -39,12 +40,24 @@ export default class UsersController {
   public async show(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
 
-    const showUser = container.resolve(ShowUserService);
+    const showUser = container.resolve(ShowProfileService);
     const user = await showUser.execute({ user_id });
     // @ts-expect-error ⠀⠀⠀
     delete user.password;
 
     return response.status(200).json(user);
+  }
+
+  public async index(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
+
+    const listUser = container.resolve(ListUserService);
+
+    const users = await listUser.execute({
+      user_id,
+    });
+
+    return response.status(200).json(users);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {

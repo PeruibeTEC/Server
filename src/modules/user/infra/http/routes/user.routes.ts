@@ -7,8 +7,7 @@ const usersRouter = Router();
 const usersController = new UsersController();
 
 usersRouter.post('/', usersController.create);
-usersRouter.delete('/', usersController.delete);
-usersRouter.get('/', usersController.show, ensureAuthenticate);
-usersRouter.put('/', usersController.update, ensureAuthenticate);
+usersRouter.delete('/', usersController.delete, ensureAuthenticate);
+usersRouter.get('/', usersController.index, ensureAuthenticate);
 
 export default usersRouter;

@@ -6,7 +6,10 @@ import ensureAuthenticate from '../middlewares/ensureAuthenticate';
 const profilesRouter = Router();
 const usersController = new UsersController();
 
-profilesRouter.get('/', usersController.show, ensureAuthenticate);
-profilesRouter.put('/', usersController.update, ensureAuthenticate);
+profilesRouter.use(ensureAuthenticate);
+
+profilesRouter.get('/', usersController.show);
+profilesRouter.put('/', usersController.update);
+profilesRouter.delete('/', usersController.delete);
 
 export default profilesRouter;

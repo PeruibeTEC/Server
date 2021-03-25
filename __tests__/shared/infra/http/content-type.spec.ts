@@ -1,4 +1,4 @@
-import app from '@/shared/infra/http/config/app';
+import app from '@shared/infra/http/config/app';
 
 import request from 'supertest';
 

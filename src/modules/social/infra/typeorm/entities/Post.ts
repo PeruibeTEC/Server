@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import User from '@modules/user/infra/typeorm/entities/User';
+import User from '../../../../user/infra/typeorm/entities/User';
 
 @Entity('tb_post')
 export default class Post {

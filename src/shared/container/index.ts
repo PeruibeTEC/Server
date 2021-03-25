@@ -4,8 +4,10 @@ import '@modules/user/providers';
 
 import UsersRepository from '@modules/user/infra/typeorm/repositories/UserRepository';
 import IUsersRepository from '@modules/user/repositories/IUserRepository';
-import IUserTokenRepository from '@modules/user/repositories/IUserTokenRepository';
 import UserTokensRepository from '@modules/user/infra/typeorm/repositories/UserTokenRepository';
+import IUserTokenRepository from '@modules/user/repositories/IUserTokenRepository';
+import IInfoRepository from '@modules/rawdata/repositories/IInfoRepository';
+import InfoRepository from '@modules/rawdata/infra/typeorm/repositories/InfoRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -16,3 +18,5 @@ container.registerSingleton<IUserTokenRepository>(
   'UserTokenRepository',
   UserTokensRepository,
 );
+
+container.registerSingleton<IInfoRepository>('InfoRepository', InfoRepository);

@@ -1,20 +1,23 @@
 import {
-  Entity,
   Column,
+  Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
   CreateDateColumn,
+  Generated,
+  UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('tb_event_user')
-export default class EventTypeUser {
+@Entity('tb_user_tokens')
+export default class UserToken {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({
-    length: 50,
-  })
-  name: string;
+  @Column()
+  @Generated('uuid')
+  token: string;
+
+  @Column()
+  user_id: string;
 
   @CreateDateColumn()
   created_at: Date;

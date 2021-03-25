@@ -11,6 +11,8 @@ export interface IRequest {
   email: string;
   password: string;
   is_tourist: boolean;
+  photo: string;
+  small_biography?: string;
 }
 
 @injectable()
@@ -28,6 +30,8 @@ export default class CreateUserService {
     email,
     password,
     is_tourist,
+    photo,
+    small_biography,
   }: IRequest): Promise<User> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
 
@@ -37,11 +41,18 @@ export default class CreateUserService {
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
+    if (!photo) {
+      photo =
+        'https://peruibetec.blob.core.windows.net/user-images/default.jpg';
+    }
+
     const user = this.usersRepository.create({
       name,
       email,
       password: hashedPassword,
       is_tourist,
+      photo,
+      small_biography,
     });
 
     return user;

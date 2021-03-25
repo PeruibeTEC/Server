@@ -2,6 +2,7 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/infra/http/errors/AppError';
 
+import { azureCreate } from '@shared/infra/azure/imageUpload';
 import User from '../infra/typeorm/entities/User';
 import IUserRepository from '../repositories/IUserRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
@@ -41,9 +42,11 @@ export default class CreateUserService {
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
-    if (!photo) {
+    if (photo === undefined) {
       photo =
         'https://peruibetec.blob.core.windows.net/user-images/default.jpg';
+    } else {
+      photo = azureCreate('user-images', photo);
     }
 
     const user = this.usersRepository.create({

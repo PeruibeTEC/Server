@@ -6,8 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('tb_info_type')
-export default class InfoType {
+@Entity('tb_interest_point')
+export default class InterestPointType {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

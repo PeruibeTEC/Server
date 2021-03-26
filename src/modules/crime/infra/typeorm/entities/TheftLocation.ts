@@ -1,13 +1,13 @@
 import {
-  Column,
-  CreateDateColumn,
   Entity,
+  Column,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  CreateDateColumn,
 } from 'typeorm';
 
-@Entity('tb_info_address')
-export default class InfoAddress {
+@Entity('tb_theft_location')
+export default class TheftLocation {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -18,6 +18,7 @@ export default class InfoAddress {
 
   @Column({
     length: 10,
+    nullable: true,
   })
   number: string;
 
@@ -25,6 +26,20 @@ export default class InfoAddress {
     length: 100,
   })
   district: string;
+
+  @Column({
+    type: 'decimal',
+    precision: 10,
+    scale: 7,
+  })
+  latitude: number;
+
+  @Column({
+    type: 'decimal',
+    precision: 10,
+    scale: 7,
+  })
+  longitude: number;
 
   @CreateDateColumn()
   created_at: Date;

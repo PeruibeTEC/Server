@@ -7,11 +7,15 @@ import DeleteInfoService from '@modules/rawdata/services/info/DeleteInfoService'
 
 export default class InfoController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { telephone } = request.body;
+    const { telephone, info_address_id, info_type_id } = request.body;
 
     const createInfo = container.resolve(CreateInfoService);
 
-    const info = await createInfo.execute({ telephone });
+    const info = await createInfo.execute({
+      telephone,
+      info_address_id,
+      info_type_id,
+    });
 
     return response.json(info);
   }

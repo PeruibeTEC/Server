@@ -5,7 +5,7 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateProjectPhoto1616791233647 implements MigrationInterface {
+export class CreateProjectPhoto1616791423647 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -25,7 +25,7 @@ export class CreateProjectPhoto1616791233647 implements MigrationInterface {
             length: '3000',
           },
           {
-            name: 'comment_id',
+            name: 'project_comment_id',
             type: 'uuid',
           },
           {
@@ -45,8 +45,8 @@ export class CreateProjectPhoto1616791233647 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'tb_project_photo',
       new TableForeignKey({
-        name: 'commentId',
-        columnNames: ['comment_id'],
+        name: 'ProjectCommentId',
+        columnNames: ['project_comment_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'tb_project_comment',
         onDelete: 'CASCADE',
@@ -56,7 +56,7 @@ export class CreateProjectPhoto1616791233647 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tb_project_photo', 'comment_id');
+    await queryRunner.dropForeignKey('tb_project_photo', 'ProjectCommentId');
     await queryRunner.dropTable('tb_project_photo');
   }
 }

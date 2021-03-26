@@ -6,12 +6,10 @@ import UsersRepository from '@modules/user/infra/typeorm/repositories/UserReposi
 import IUsersRepository from '@modules/user/repositories/IUserRepository';
 import UserTokensRepository from '@modules/user/infra/typeorm/repositories/UserTokenRepository';
 import IUserTokenRepository from '@modules/user/repositories/IUserTokenRepository';
-import IInfoRepository from '@modules/rawdata/repositories/IInfoRepository';
-import InfoRepository from '@modules/rawdata/infra/typeorm/repositories/InfoRepository';
-import IInfoAddressRepository from '@modules/rawdata/repositories/IInfoAddressRepository';
-import InfoAddressRepository from '@modules/rawdata/infra/typeorm/repositories/InfoAddressRepository';
-import IInfoTypeRepository from '@modules/rawdata/repositories/IInfoTypeRepository';
-import InfoTypeRepository from '@modules/rawdata/infra/typeorm/repositories/InfoTypeRepository';
+import IInterestPointRepository from '@modules/rawdata/repositories/IInterestPointRepository';
+import InterestPointRepository from '@modules/rawdata/infra/typeorm/repositories/InterestPointRepository';
+import IInterestPointTypeRepository from '@modules/rawdata/repositories/IInterestPointTypeRepository';
+import InterestPointTypeRepository from '@modules/rawdata/infra/typeorm/repositories/InterestPointTypeRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -23,14 +21,12 @@ container.registerSingleton<IUserTokenRepository>(
   UserTokensRepository,
 );
 
-container.registerSingleton<IInfoRepository>('InfoRepository', InfoRepository);
-
-container.registerSingleton<IInfoAddressRepository>(
-  'InfoAddressRepository',
-  InfoAddressRepository,
+container.registerSingleton<IInterestPointRepository>(
+  'InterestPointRepository',
+  InterestPointRepository,
 );
 
-container.registerSingleton<IInfoTypeRepository>(
-  'InfoTypeRepository',
-  InfoTypeRepository,
+container.registerSingleton<IInterestPointTypeRepository>(
+  'InterestPointTypeRepository',
+  InterestPointTypeRepository,
 );

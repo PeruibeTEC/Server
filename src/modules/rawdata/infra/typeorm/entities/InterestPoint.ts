@@ -41,8 +41,8 @@ export default class InterestPoint {
   district: string;
 
   @ManyToOne(() => InterestPointType)
-  @JoinColumn({ name: 'interest_point_id' })
-  interest_point_id: InterestPointType;
+  @JoinColumn({ name: 'interest_point_type_id' })
+  interest_point_type_id: InterestPointType;
 
   @CreateDateColumn()
   created_at: Date;

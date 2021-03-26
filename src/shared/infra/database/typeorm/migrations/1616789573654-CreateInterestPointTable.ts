@@ -45,7 +45,7 @@ export class CreateInterestPointTable1616789573654
             length: '100',
           },
           {
-            name: 'interest_point_id',
+            name: 'interest_point_type_id',
             type: 'uuid',
           },
           {
@@ -66,7 +66,7 @@ export class CreateInterestPointTable1616789573654
       'tb_interest_point',
       new TableForeignKey({
         name: 'InterestPointTypeId',
-        columnNames: ['interest_point_id'],
+        columnNames: ['interest_point_type_id'],
         referencedColumnNames: ['id'],
         referencedTableName: 'tb_interest_point_type',
         onDelete: 'CASCADE',

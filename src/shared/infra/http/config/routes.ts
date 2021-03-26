@@ -5,9 +5,8 @@ import profilesRouter from '@modules/user/infra/http/routes/profile.routes';
 import sessionsRouter from '@modules/user/infra/http/routes/session.routes';
 import passwordRouter from '@modules/user/infra/http/routes/password.routes';
 
-import infoRouter from '@modules/rawdata/infra/http/routes/info.routes';
-import infoAddressRouter from '@modules/rawdata/infra/http/routes/infoaddress.routes';
-import infoTypeRouter from '@modules/rawdata/infra/http/routes/infotype.routes';
+import interestPointRouter from '@modules/rawdata/infra/http/routes/interestpoint.routes';
+import interestPointTypeRouter from '@modules/rawdata/infra/http/routes/interestpointtype.routes';
 
 export default (app: Express): void => {
   const router = Router();
@@ -15,9 +14,8 @@ export default (app: Express): void => {
   router.use('/user/profile', profilesRouter);
   router.use('/session', sessionsRouter);
   router.use('/password', passwordRouter);
-  router.use('/info', infoRouter);
-  router.use('/infoaddress', infoAddressRouter);
-  router.use('/infotype', infoTypeRouter);
+  router.use('/interestPoint', interestPointRouter);
+  router.use('/interestPointtype', interestPointTypeRouter);
 
   app.use('/api', router);
 };

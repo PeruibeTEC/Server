@@ -1,11 +1,16 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
-export class CreateCrimeLocationTable1616788259803
+export class CreateInterestPointTable1616789573654
   implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_crime_location',
+        name: 'tb_interest_point',
         columns: [
           {
             name: 'id',
@@ -13,6 +18,16 @@ export class CreateCrimeLocationTable1616788259803
             isPrimary: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
+          },
+          {
+            name: 'name',
+            type: 'varchar',
+            length: '200',
+          },
+          {
+            name: 'telephone',
+            type: 'varchar',
+            length: '10',
           },
           {
             name: 'street',
@@ -23,7 +38,6 @@ export class CreateCrimeLocationTable1616788259803
             name: 'number',
             type: 'varchar',
             length: '10',
-            isNullable: true,
           },
           {
             name: 'district',
@@ -31,16 +45,8 @@ export class CreateCrimeLocationTable1616788259803
             length: '100',
           },
           {
-            name: 'latitude',
-            type: 'decimal',
-            precision: 10,
-            scale: 7,
-          },
-          {
-            name: 'longitude',
-            type: 'decimal',
-            precision: 10,
-            scale: 7,
+            name: 'interest_point_id',
+            type: 'uuid',
           },
           {
             name: 'created_at',
@@ -55,9 +61,22 @@ export class CreateCrimeLocationTable1616788259803
         ],
       }),
     );
+
+    await queryRunner.createForeignKey(
+      'tb_interest_point',
+      new TableForeignKey({
+        name: 'InterestPointTypeId',
+        columnNames: ['interest_point_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'tb_interest_point_type',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('tb_crime_location');
+    await queryRunner.dropForeignKey('tb_interest_point', 'InterestPointId');
+    await queryRunner.dropTable('tb_interest_point');
   }
 }

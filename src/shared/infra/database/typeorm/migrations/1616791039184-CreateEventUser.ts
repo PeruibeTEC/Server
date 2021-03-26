@@ -80,7 +80,7 @@ export class CreateEventUser1616791039184 implements MigrationInterface {
         name: 'EventTypeId',
         columnNames: ['event_type_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_event_user_type',
+        referencedTableName: 'tb_event_type_user',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
       }),

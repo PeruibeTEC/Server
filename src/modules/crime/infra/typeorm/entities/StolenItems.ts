@@ -8,7 +8,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 
-import Crime from './Crime';
+import Theft from './Theft';
 
 @Entity('tb_stolen_items')
 export default class StolenItems {
@@ -25,9 +25,9 @@ export default class StolenItems {
   })
   amount: number;
 
-  @ManyToOne(() => Crime)
-  @JoinColumn({ name: 'crime_id' })
-  crime_id: Crime;
+  @ManyToOne(() => Theft)
+  @JoinColumn({ name: 'theft_id' })
+  theft_id: Theft;
 
   @CreateDateColumn()
   created_at: Date;

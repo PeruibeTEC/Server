@@ -1,15 +1,24 @@
 import {
-  Entity,
   Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  CreateDateColumn,
 } from 'typeorm';
 
-@Entity('tb_crime_location')
-export default class CrimeLocation {
+import InterestPointType from './InterestPointType';
+
+@Entity('tb_interest_point')
+export default class InterestPoint {
   @PrimaryGeneratedColumn('uuid')
   id: string;
+
+  @Column({
+    length: 10,
+  })
+  telephone: string;
 
   @Column({
     length: 150,
@@ -18,7 +27,6 @@ export default class CrimeLocation {
 
   @Column({
     length: 10,
-    nullable: true,
   })
   number: string;
 
@@ -27,19 +35,9 @@ export default class CrimeLocation {
   })
   district: string;
 
-  @Column({
-    type: 'decimal',
-    precision: 10,
-    scale: 7,
-  })
-  latitude: number;
-
-  @Column({
-    type: 'decimal',
-    precision: 10,
-    scale: 7,
-  })
-  longitude: number;
+  @ManyToOne(() => InterestPointType)
+  @JoinColumn({ name: 'interest_point_id' })
+  interest_point_id: InterestPointType;
 
   @CreateDateColumn()
   created_at: Date;

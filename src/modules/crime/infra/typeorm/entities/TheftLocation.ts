@@ -1,25 +1,31 @@
 import {
-  Column,
-  CreateDateColumn,
   Entity,
+  Column,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  CreateDateColumn,
 } from 'typeorm';
 
-@Entity('tb_tourist_spot')
-export default class TouristSpot {
+@Entity('tb_theft_location')
+export default class TheftLocation {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({
-    length: 100,
+    length: 150,
   })
-  name: string;
+  street: string;
 
   @Column({
-    length: 3000,
+    length: 10,
+    nullable: true,
   })
-  description: string;
+  number: string;
+
+  @Column({
+    length: 100,
+  })
+  district: string;
 
   @Column({
     type: 'decimal',

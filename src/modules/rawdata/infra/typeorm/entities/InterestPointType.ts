@@ -6,13 +6,13 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('tb_tourist_spot')
-export default class TouristSpot {
+@Entity('tb_interest_point')
+export default class InterestPointType {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({
-    length: 100,
+    length: 45,
   })
   name: string;
 
@@ -20,20 +20,6 @@ export default class TouristSpot {
     length: 3000,
   })
   description: string;
-
-  @Column({
-    type: 'decimal',
-    precision: 10,
-    scale: 7,
-  })
-  latitude: number;
-
-  @Column({
-    type: 'decimal',
-    precision: 10,
-    scale: 7,
-  })
-  longitude: number;
 
   @CreateDateColumn()
   created_at: Date;

@@ -10,6 +10,8 @@ import IInfoRepository from '@modules/rawdata/repositories/IInfoRepository';
 import InfoRepository from '@modules/rawdata/infra/typeorm/repositories/InfoRepository';
 import IInfoAddressRepository from '@modules/rawdata/repositories/IInfoAddressRepository';
 import InfoAddressRepository from '@modules/rawdata/infra/typeorm/repositories/InfoAddressRepository';
+import IInfoTypeRepository from '@modules/rawdata/repositories/IInfoTypeRepository';
+import InfoTypeRepository from '@modules/rawdata/infra/typeorm/repositories/InfoTypeRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -26,4 +28,9 @@ container.registerSingleton<IInfoRepository>('InfoRepository', InfoRepository);
 container.registerSingleton<IInfoAddressRepository>(
   'InfoAddressRepository',
   InfoAddressRepository,
+);
+
+container.registerSingleton<IInfoTypeRepository>(
+  'InfoTypeRepository',
+  InfoTypeRepository,
 );

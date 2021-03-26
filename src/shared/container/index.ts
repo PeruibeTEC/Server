@@ -8,6 +8,8 @@ import UserTokensRepository from '@modules/user/infra/typeorm/repositories/UserT
 import IUserTokenRepository from '@modules/user/repositories/IUserTokenRepository';
 import IInfoRepository from '@modules/rawdata/repositories/IInfoRepository';
 import InfoRepository from '@modules/rawdata/infra/typeorm/repositories/InfoRepository';
+import IInfoAddressRepository from '@modules/rawdata/repositories/IInfoAddressRepository';
+import InfoAddressRepository from '@modules/rawdata/infra/typeorm/repositories/InfoAddressRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -20,3 +22,8 @@ container.registerSingleton<IUserTokenRepository>(
 );
 
 container.registerSingleton<IInfoRepository>('InfoRepository', InfoRepository);
+
+container.registerSingleton<IInfoAddressRepository>(
+  'InfoAddressRepository',
+  InfoAddressRepository,
+);

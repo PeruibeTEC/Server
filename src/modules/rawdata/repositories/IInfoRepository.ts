@@ -7,5 +7,5 @@ export default interface IInfoRepository {
   findByTel(telephone: string): Promise<Info | undefined>;
   create(data: ICreateInfoDTO): Promise<Info>;
   delete(id: string): Promise<string>;
-  save(user: ICreateInfoDTO): Promise<Info>;
+  save(info: ICreateInfoDTO): Promise<Info>;
 }

@@ -2,8 +2,8 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/infra/http/errors/AppError';
 
-import Info from '../infra/typeorm/entities/Info';
-import IInfoRepository from '../repositories/IInfoRepository';
+import Info from '../../infra/typeorm/entities/Info';
+import IInfoRepository from '../../repositories/IInfoRepository';
 
 export interface IRequest {
   telephone: string;

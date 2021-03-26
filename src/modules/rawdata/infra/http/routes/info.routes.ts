@@ -7,5 +7,6 @@ const infoController = new InfoController();
 
 infoRouter.post('/', infoController.create);
 infoRouter.delete('/', infoController.delete);
+infoRouter.get('/:id', infoController.show);
 
 export default infoRouter;

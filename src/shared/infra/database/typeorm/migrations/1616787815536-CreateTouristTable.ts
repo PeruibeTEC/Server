@@ -60,7 +60,7 @@ export class CreateTouristTable1616787815536 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'tb_tourist_housing',
+      'tb_tourist',
       new TableForeignKey({
         name: 'userId',
         columnNames: ['user_id'],

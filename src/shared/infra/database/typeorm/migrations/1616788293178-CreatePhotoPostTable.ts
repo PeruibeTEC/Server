@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreatePostTable1616788001266 implements MigrationInterface {
+export class CreatePhotoPostTable1616788293178 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_post',
+        name: 'tb_photo_post',
         columns: [
           {
             name: 'id',
@@ -20,17 +20,12 @@ export class CreatePostTable1616788001266 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'content',
+            name: 'url',
             type: 'varchar',
-            length: '200',
-            isNullable: true,
+            length: '3000',
           },
           {
-            name: 'has_photo',
-            type: 'boolean',
-          },
-          {
-            name: 'user_id',
+            name: 'post_id',
             type: 'uuid',
           },
           {
@@ -48,12 +43,12 @@ export class CreatePostTable1616788001266 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'tb_post',
+      'tb_photo_post',
       new TableForeignKey({
-        name: 'userId',
-        columnNames: ['user_id'],
+        name: 'postId',
+        columnNames: ['post_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_user',
+        referencedTableName: 'tb_post',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
@@ -61,7 +56,7 @@ export class CreatePostTable1616788001266 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tb_post', 'userId');
-    await queryRunner.dropTable('tb_post');
+    await queryRunner.dropForeignKey('tb_photo_post', 'postId');
+    await queryRunner.dropTable('tb_photo_post');
   }
 }

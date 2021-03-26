@@ -16,6 +16,11 @@ export default class InterestPoint {
   id: string;
 
   @Column({
+    length: 200,
+  })
+  name: string;
+
+  @Column({
     length: 10,
   })
   telephone: string;

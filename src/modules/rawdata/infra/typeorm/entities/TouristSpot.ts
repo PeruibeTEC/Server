@@ -12,6 +12,11 @@ export default class TouristSpot {
   id: string;
 
   @Column({
+    length: 100,
+  })
+  name: string;
+
+  @Column({
     length: 3000,
   })
   description: string;

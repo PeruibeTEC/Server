@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 
 import { container } from 'tsyringe';
 
-import CreateInfoService from '@modules/rawdata/services/CreateInfoService';
-import DeleteInfoService from '@modules/rawdata/services/DeleteInfoService';
+import CreateInfoService from '@modules/rawdata/services/info/CreateInfoService';
+import DeleteInfoService from '@modules/rawdata/services/info/DeleteInfoService';
 
 export default class InfoController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -23,6 +23,8 @@ export default class InfoController {
 
     await deleteInfo.execute({ telephone });
 
-    return response.status(200).json({ message: `Number ${telephone} deleted `})
+    return response
+      .status(200)
+      .json({ message: `Number ${telephone} deleted ` });
   }
 }

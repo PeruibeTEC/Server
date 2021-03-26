@@ -2,7 +2,7 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/infra/http/errors/AppError';
 
-import IInfoRepository from '../repositories/IInfoRepository';
+import IInfoRepository from '../../repositories/IInfoRepository';
 
 interface IRequest {
   telephone: string;

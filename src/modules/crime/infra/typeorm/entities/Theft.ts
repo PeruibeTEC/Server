@@ -8,11 +8,10 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import CrimeLocation from './CrimeLocation';
-import CrimeType from './CrimeType';
+import TheftLocation from './TheftLocation';
 
-@Entity('tb_crime')
-export default class Crime {
+@Entity('tb_theft')
+export default class Theft {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -35,13 +34,9 @@ export default class Crime {
   })
   description: string;
 
-  @ManyToOne(() => CrimeType)
-  @JoinColumn({ name: 'crime_type_id' })
-  crime_type_id: CrimeType;
-
-  @ManyToOne(() => CrimeLocation)
-  @JoinColumn({ name: 'crime_location_id' })
-  crime_location_id: CrimeLocation;
+  @ManyToOne(() => TheftLocation)
+  @JoinColumn({ name: 'theft_location_id' })
+  theft_location_id: TheftLocation;
 
   @CreateDateColumn()
   created_at: Date;

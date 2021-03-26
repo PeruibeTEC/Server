@@ -38,6 +38,10 @@ export class CreateTheftTable1616788682710 implements MigrationInterface {
             type: 'uuid',
           },
           {
+            name: 'user_id',
+            type: 'uuid',
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
@@ -62,10 +66,23 @@ export class CreateTheftTable1616788682710 implements MigrationInterface {
         onUpdate: 'CASCADE',
       }),
     );
+
+    await queryRunner.createForeignKey(
+      'tb_theft',
+      new TableForeignKey({
+        name: 'UserId',
+        columnNames: ['user_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'tb_user',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('tb_theft', 'TheftLocationId');
+    await queryRunner.dropForeignKey('tb_user', 'UserId');
     await queryRunner.dropTable('tb_theft');
   }
 }

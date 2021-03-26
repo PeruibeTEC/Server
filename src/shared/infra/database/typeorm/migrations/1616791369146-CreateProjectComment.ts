@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateTouristTable1616787815536 implements MigrationInterface {
+export class CreateProjectComment1616791369146 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_tourist',
+        name: 'tb_project_comment',
         columns: [
           {
             name: 'id',
@@ -20,26 +20,13 @@ export class CreateTouristTable1616787815536 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'state',
-            type: 'char',
-            length: '2',
-            isNullable: true,
-          },
-          {
-            name: 'city',
+            name: 'content',
             type: 'varchar',
-            length: '45',
-            isNullable: true,
+            length: '255',
           },
           {
-            name: 'is_foreigner',
-            type: 'boolean',
-          },
-          {
-            name: 'country_foreigner',
-            length: '25',
-            type: 'varchar',
-            isNullable: true,
+            name: 'public_project_id',
+            type: 'uuid',
           },
           {
             name: 'user_id',
@@ -60,7 +47,19 @@ export class CreateTouristTable1616787815536 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'tb_tourist',
+      'tb_project_comment',
+      new TableForeignKey({
+        name: 'projectId',
+        columnNames: ['public_project_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'tb_public_project',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      }),
+    );
+
+    await queryRunner.createForeignKey(
+      'tb_project_comment',
       new TableForeignKey({
         name: 'userId',
         columnNames: ['user_id'],
@@ -73,7 +72,8 @@ export class CreateTouristTable1616787815536 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tb_tourist', 'userId');
-    await queryRunner.dropTable('tb_tourist');
+    await queryRunner.dropForeignKey('tb_project_comment', 'projectId');
+    await queryRunner.dropForeignKey('tb_project_comment', 'userId');
+    await queryRunner.dropTable('tb_project_comment');
   }
 }

@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateTouristTable1616787815536 implements MigrationInterface {
+export class CreateProjectPhoto1616791233647 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_tourist',
+        name: 'tb_project_photo',
         columns: [
           {
             name: 'id',
@@ -20,29 +20,12 @@ export class CreateTouristTable1616787815536 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'state',
-            type: 'char',
-            length: '2',
-            isNullable: true,
-          },
-          {
-            name: 'city',
+            name: 'url',
             type: 'varchar',
-            length: '45',
-            isNullable: true,
+            length: '3000',
           },
           {
-            name: 'is_foreigner',
-            type: 'boolean',
-          },
-          {
-            name: 'country_foreigner',
-            length: '25',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'user_id',
+            name: 'comment_id',
             type: 'uuid',
           },
           {
@@ -60,12 +43,12 @@ export class CreateTouristTable1616787815536 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'tb_tourist',
+      'tb_project_photo',
       new TableForeignKey({
-        name: 'userId',
-        columnNames: ['user_id'],
+        name: 'commentId',
+        columnNames: ['comment_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_user',
+        referencedTableName: 'tb_project_comment',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
@@ -73,7 +56,7 @@ export class CreateTouristTable1616787815536 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tb_tourist', 'userId');
-    await queryRunner.dropTable('tb_tourist');
+    await queryRunner.dropForeignKey('tb_project_photo', 'comment_id');
+    await queryRunner.dropTable('tb_project_photo');
   }
 }

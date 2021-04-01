@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateBusinessContact1614866584828 implements MigrationInterface {
+export class CreateStolenItemsTable1617236781380 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_business_contact',
+        name: 'tb_stolen_items',
         columns: [
           {
             name: 'id',
@@ -19,23 +19,16 @@ export class CreateBusinessContact1614866584828 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'contact_email',
+            name: 'items',
             type: 'varchar',
-            length: '255',
+            length: '200',
           },
           {
-            name: 'cellphone',
-            type: 'varchar',
-            length: '11',
-            isNullable: true,
+            name: 'amount',
+            type: 'integer',
           },
           {
-            name: 'telephone',
-            type: 'varchar',
-            length: '11',
-          },
-          {
-            name: 'business_id',
+            name: 'theft_id',
             type: 'uuid',
           },
           {
@@ -53,20 +46,20 @@ export class CreateBusinessContact1614866584828 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'tb_business_contact',
+      'tb_stolen_items',
       new TableForeignKey({
-        name: 'BusinessId',
-        columnNames: ['business_id'],
+        name: 'TheftId',
+        columnNames: ['theft_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_business',
-        onDelete: 'SET NULL',
+        referencedTableName: 'tb_theft',
+        onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tb_business_contact', 'BusinessId');
-    await queryRunner.dropTable('tb_business_contact');
+    await queryRunner.dropForeignKey('tb_stolen_items', 'TheftId');
+    await queryRunner.dropTable('tb_stolen_items');
   }
 }

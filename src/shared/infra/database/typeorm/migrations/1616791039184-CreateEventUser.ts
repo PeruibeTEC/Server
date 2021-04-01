@@ -41,7 +41,7 @@ export class CreateEventUser1616791039184 implements MigrationInterface {
             length: '255',
           },
           {
-            name: 'business_id',
+            name: 'user_id',
             type: 'uuid',
           },
           {
@@ -65,10 +65,10 @@ export class CreateEventUser1616791039184 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'tb_event_user',
       new TableForeignKey({
-        name: 'BusinessId',
-        columnNames: ['business_id'],
+        name: 'UserId',
+        columnNames: ['user_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_business',
+        referencedTableName: 'tb_user',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
       }),

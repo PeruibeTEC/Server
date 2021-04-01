@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateBusinessContact1614866584828 implements MigrationInterface {
+export class CreateUserTokenTable1617236076842 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_business_contact',
+        name: 'tb_user_token',
         columns: [
           {
             name: 'id',
@@ -19,23 +19,13 @@ export class CreateBusinessContact1614866584828 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'contact_email',
-            type: 'varchar',
-            length: '255',
+            name: 'token',
+            type: 'uuid',
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
-            name: 'cellphone',
-            type: 'varchar',
-            length: '11',
-            isNullable: true,
-          },
-          {
-            name: 'telephone',
-            type: 'varchar',
-            length: '11',
-          },
-          {
-            name: 'business_id',
+            name: 'user_id',
             type: 'uuid',
           },
           {
@@ -53,20 +43,20 @@ export class CreateBusinessContact1614866584828 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'tb_business_contact',
+      'tb_user_token',
       new TableForeignKey({
-        name: 'BusinessId',
-        columnNames: ['business_id'],
+        name: 'UserTokenId',
+        columnNames: ['user_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_business',
-        onDelete: 'SET NULL',
+        referencedTableName: 'tb_user',
+        onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tb_business_contact', 'BusinessId');
-    await queryRunner.dropTable('tb_business_contact');
+    await queryRunner.dropForeignKey('tb_user_token', 'UserTokenId');
+    await queryRunner.dropTable('tb_user_token');
   }
 }

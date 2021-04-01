@@ -9,5 +9,5 @@ export default interface IInterestPointRepository {
   findByName(name: string): Promise<InterestPoint | undefined>;
   create(data: ICreateInterestPointDTO): Promise<InterestPoint>;
   delete(id: string): Promise<string>;
-  save(interest_point: ICreateInterestPointDTO): Promise<InterestPoint>;
+  save(interest_point: InterestPoint): Promise<InterestPoint>;
 }

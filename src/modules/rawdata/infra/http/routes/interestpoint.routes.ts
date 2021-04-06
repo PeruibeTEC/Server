@@ -8,5 +8,6 @@ const interestPointController = new InterestPointController();
 interestPointRouter.post('/', interestPointController.create);
 interestPointRouter.delete('/', interestPointController.delete);
 interestPointRouter.get('/:id', interestPointController.show);
+interestPointRouter.get('/', interestPointController.index);
 
 export default interestPointRouter;

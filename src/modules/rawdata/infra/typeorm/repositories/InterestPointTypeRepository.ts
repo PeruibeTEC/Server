@@ -30,20 +30,20 @@ export default class InterestPointTypeRepository
   }
 
   public async findAllInterestPointType(
-    expect_infoaddress_id?: string,
+    expect_interest_point_type_id?: string,
   ): Promise<InterestPointType[]> {
-    let interestPointType: InterestPointType[];
+    let info: InterestPointType[];
 
-    if (expect_infoaddress_id) {
-      interestPointType = await this.ormRepository.find({
+    if (expect_interest_point_type_id) {
+      info = await this.ormRepository.find({
         where: {
-          id: Not(expect_infoaddress_id),
+          id: Not(expect_interest_point_type_id),
         },
       });
     } else {
-      interestPointType = await this.ormRepository.find();
+      info = await this.ormRepository.find();
     }
-    return interestPointType;
+    return info;
   }
 
   public async create(

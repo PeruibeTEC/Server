@@ -15,7 +15,7 @@ export default (app: Express): void => {
   router.use('/session', sessionsRouter);
   router.use('/password', passwordRouter);
   router.use('/interestPoint', interestPointRouter);
-  router.use('/interestPointtype', interestPointTypeRouter);
+  router.use('/interestPointType', interestPointTypeRouter);
 
   app.use('/api', router);
 };

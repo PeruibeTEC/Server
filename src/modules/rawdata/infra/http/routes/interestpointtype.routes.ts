@@ -6,5 +6,6 @@ const interestPointTypeRouter = Router();
 const interestPointTypeController = new InterestPointTypeController();
 
 interestPointTypeRouter.post('/', interestPointTypeController.create);
+interestPointTypeRouter.get('/', interestPointTypeController.index);
 
 export default interestPointTypeRouter;

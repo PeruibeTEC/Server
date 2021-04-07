@@ -24,7 +24,7 @@ export default class ShowInterestPointService {
     );
 
     if (!checkInterestPointExists) {
-      throw new AppError('Name not found.', 404);
+      throw new AppError('Id not found.', 404);
     }
 
     return checkInterestPointExists;

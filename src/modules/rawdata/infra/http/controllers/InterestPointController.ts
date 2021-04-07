@@ -33,13 +33,15 @@ export default class InterestPointController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { name } = request.body;
+    const { interest_point_id } = request.body;
 
     const deleteInterestPoint = container.resolve(DeleteInterestPointService);
 
-    await deleteInterestPoint.execute({ name });
+    await deleteInterestPoint.execute({ interest_point_id });
 
-    return response.status(200).json({ message: `Number ${name} deleted ` });
+    return response
+      .status(200)
+      .json({ message: `Interest Point for id ${interest_point_id} deleted ` });
   }
 
   public async show(request: Request, response: Response): Promise<Response> {

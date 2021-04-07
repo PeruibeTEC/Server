@@ -5,7 +5,7 @@ import AppError from '@shared/infra/http/errors/AppError';
 import IInterestPointRepository from '../../repositories/IInterestPointRepository';
 
 interface IRequest {
-  name: string;
+  interest_point_id: string;
 }
 
 @injectable()
@@ -15,15 +15,15 @@ export default class DeleteInterestPointService {
     private interestPointRepository: IInterestPointRepository,
   ) {}
 
-  public async execute({ name }: IRequest): Promise<void> {
-    const checkInterestPointExists = await this.interestPointRepository.findByName(
-      name,
+  public async execute({ interest_point_id }: IRequest): Promise<void> {
+    const checkInterestPointExists = await this.interestPointRepository.findById(
+      interest_point_id,
     );
 
     if (!checkInterestPointExists) {
       throw new AppError('Interest point not found.', 404);
     }
 
-    await this.interestPointRepository.delete(name);
+    await this.interestPointRepository.delete(interest_point_id);
   }
 }

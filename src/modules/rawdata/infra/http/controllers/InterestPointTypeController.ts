@@ -5,6 +5,7 @@ import { container } from 'tsyringe';
 import CreateInterestPointTypeService from '@modules/rawdata/services/interestPointType/CreateInterestPointTypeService';
 import ListInterestPointTypeService from '@modules/rawdata/services/interestPointType/ListInterestPointTypeService';
 import ShowInterestPointTypeService from '@modules/rawdata/services/interestPointType/ShowInterestPointTypeService';
+import DeleteInterestPointTypeService from '@modules/rawdata/services/interestPointType/DeleteInterestPointTypeService';
 
 export default class InterestPointTypeController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -48,5 +49,19 @@ export default class InterestPointTypeController {
     });
 
     return response.status(200).json({ interestPoint });
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { interest_point_type_id } = request.body;
+
+    const deleteInterestPoint = container.resolve(
+      DeleteInterestPointTypeService,
+    );
+
+    await deleteInterestPoint.execute({ interest_point_type_id });
+
+    return response.status(200).json({
+      message: `Interest Point Type for id ${interest_point_type_id} deleted `,
+    });
   }
 }

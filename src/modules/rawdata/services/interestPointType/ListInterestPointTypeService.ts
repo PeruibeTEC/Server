@@ -7,7 +7,7 @@ interface IRequest {
 }
 
 @injectable()
-export default class ShowInterestPointService {
+export default class ListInterestPointTypeService {
   constructor(
     @inject('InterestPointTypeRepository')
     private interestPointTypeRepository: IInterestPointTypeRepository,

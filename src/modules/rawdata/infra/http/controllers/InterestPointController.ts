@@ -6,6 +6,7 @@ import CreateInterestPointService from '@modules/rawdata/services/interestPoint/
 import DeleteInterestPointService from '@modules/rawdata/services/interestPoint/DeleteInterestPointService';
 import ShowInterestPointService from '@modules/rawdata/services/interestPoint/ShowInterestPointService';
 import ListInterestPointService from '@modules/rawdata/services/interestPoint/ListInterestPointService';
+import UpdateInterestPointService from '@modules/rawdata/services/interestPoint/UpdateInterestPointService';
 
 export default class InterestPointController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -66,5 +67,31 @@ export default class InterestPointController {
     });
 
     return response.status(200).json(interestPoints);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const {
+      interest_point_id,
+      interest_point_type_id,
+      name,
+      street,
+      district,
+      number,
+      telephone,
+    } = request.body;
+
+    const updateInterestPoint = container.resolve(UpdateInterestPointService);
+
+    const interestPoint = await updateInterestPoint.execute({
+      interest_point_id,
+      interest_point_type_id,
+      name,
+      street,
+      district,
+      number,
+      telephone,
+    });
+
+    return response.json(interestPoint);
   }
 }

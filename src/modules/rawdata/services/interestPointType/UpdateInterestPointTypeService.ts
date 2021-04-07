@@ -31,13 +31,13 @@ export default class UpdateInterestPointTypeService {
       throw new AppError('Point Type not found.', 404);
     }
 
-    const interestTypeWithUpdatedEmail = await this.interestPointType.findByName(
+    const interestTypeWithUpdatedName = await this.interestPointType.findByName(
       name,
     );
 
     if (
-      interestTypeWithUpdatedEmail &&
-      interestTypeWithUpdatedEmail.id !== interest_point_type_id
+      interestTypeWithUpdatedName &&
+      interestTypeWithUpdatedName.id !== interest_point_type_id
     ) {
       throw new AppError('Name already in use.', 409);
     }

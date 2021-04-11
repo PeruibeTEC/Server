@@ -10,6 +10,8 @@ import IInterestPointRepository from '@modules/rawdata/repositories/IInterestPoi
 import InterestPointRepository from '@modules/rawdata/infra/typeorm/repositories/InterestPointRepository';
 import IInterestPointTypeRepository from '@modules/rawdata/repositories/IInterestPointTypeRepository';
 import InterestPointTypeRepository from '@modules/rawdata/infra/typeorm/repositories/InterestPointTypeRepository';
+import ITouristSpotRepository from '@modules/rawdata/repositories/ITouristSpotRepository';
+import TouristSpotRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -29,4 +31,9 @@ container.registerSingleton<IInterestPointRepository>(
 container.registerSingleton<IInterestPointTypeRepository>(
   'InterestPointTypeRepository',
   InterestPointTypeRepository,
+);
+
+container.registerSingleton<ITouristSpotRepository>(
+  'TouristSpotRepository',
+  TouristSpotRepository,
 );

@@ -7,6 +7,7 @@ import passwordRouter from '@modules/user/infra/http/routes/password.routes';
 
 import interestPointRouter from '@modules/rawdata/infra/http/routes/interestpoint.routes';
 import interestPointTypeRouter from '@modules/rawdata/infra/http/routes/interestpointtype.routes';
+import touristSpotRouter from '@modules/rawdata/infra/http/routes/touristspot.routes';
 
 export default (app: Express): void => {
   const router = Router();
@@ -14,8 +15,10 @@ export default (app: Express): void => {
   router.use('/user/profile', profilesRouter);
   router.use('/session', sessionsRouter);
   router.use('/password', passwordRouter);
+
   router.use('/interestPoint', interestPointRouter);
   router.use('/interestPointType', interestPointTypeRouter);
+  router.use('/touristSpot', touristSpotRouter);
 
   app.use('/api', router);
 };

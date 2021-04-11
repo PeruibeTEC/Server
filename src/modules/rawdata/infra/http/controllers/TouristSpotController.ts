@@ -6,6 +6,7 @@ import CreateTouristSpotService from '@modules/rawdata/services/touristSpot/Crea
 import ShowTouristSpotService from '@modules/rawdata/services/touristSpot/ShowTouristSpotService';
 import DeleteTouristSpotService from '@modules/rawdata/services/touristSpot/DeleteTouristSpotService';
 import IndexTouristSpotService from '@modules/rawdata/services/touristSpot/IndexTouristSpotService';
+import UpdateTouristSpotService from '@modules/rawdata/services/touristSpot/UpdateTouristSpotService';
 
 export default class TouristSpotController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -55,5 +56,27 @@ export default class TouristSpotController {
     const touristSpots = await indexTouristSpot.execute();
 
     return response.status(200).json(touristSpots);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const {
+      tourist_spot_id,
+      name,
+      description,
+      latitude,
+      longitude,
+    } = request.body;
+
+    const updateTouristSpot = container.resolve(UpdateTouristSpotService);
+
+    const touristSpot = await updateTouristSpot.execute({
+      tourist_spot_id,
+      name,
+      description,
+      latitude,
+      longitude,
+    });
+
+    return response.json(touristSpot);
   }
 }

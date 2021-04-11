@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 
 import CreateTouristSpotService from '@modules/rawdata/services/touristSpot/CreateTouristSpotService';
 import ShowTouristSpotService from '@modules/rawdata/services/touristSpot/ShowTouristSpotService';
+import DeleteTouristSpotService from '@modules/rawdata/services/touristSpot/DeleteTouristSpotService';
 
 export default class TouristSpotController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -33,5 +34,17 @@ export default class TouristSpotController {
     });
 
     return response.status(200).json({ touristSpot });
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { tourist_spot_id } = request.body;
+
+    const deleteTouristSpot = container.resolve(DeleteTouristSpotService);
+
+    await deleteTouristSpot.execute({ tourist_spot_id });
+
+    return response
+      .status(200)
+      .json({ message: `Tourist Spot for id ${tourist_spot_id} deleted ` });
   }
 }

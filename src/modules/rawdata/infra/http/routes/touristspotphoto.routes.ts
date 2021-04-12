@@ -7,6 +7,6 @@ const touristSpotPhotoController = new TouristSpotPhotoController();
 
 touristSpotPhotoRouter.post('/', touristSpotPhotoController.create);
 touristSpotPhotoRouter.delete('/', touristSpotPhotoController.delete);
-// touristSpotPhotoRouter.get('/', touristSpotPhotoController.index);
+touristSpotPhotoRouter.get('/', touristSpotPhotoController.show);
 
 export default touristSpotPhotoRouter;

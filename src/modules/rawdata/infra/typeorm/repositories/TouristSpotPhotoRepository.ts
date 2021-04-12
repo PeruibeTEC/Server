@@ -13,11 +13,11 @@ export default class TouristSpotPhotoRepository
     this.ormRepository = getRepository(TouristSpotPhoto);
   }
 
-  public async findByInterestPoint(
-    interestPointId: string,
-  ): Promise<TouristSpotPhoto | undefined> {
-    const touristSpotPhoto = await this.ormRepository.findOne({
-      where: { tourist_spot_id: interestPointId },
+  public async findByTouristSpot(
+    tourist_spot_id: string,
+  ): Promise<TouristSpotPhoto[] | undefined> {
+    const touristSpotPhoto = await this.ormRepository.find({
+      where: tourist_spot_id,
     });
 
     return touristSpotPhoto;

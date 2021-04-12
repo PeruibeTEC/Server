@@ -2,7 +2,7 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/infra/http/errors/AppError';
 
-import { azureCreate } from '@shared/infra/azure/imageUpload';
+import { azureCreate } from '@shared/infra/azure/imageStorage/imageUpload';
 
 import ITouristSpotPhotoDTO from '@modules/rawdata/dtos/ITouristSpotPhotoDTO';
 import TouristSpotPhoto from '../../infra/typeorm/entities/TouristSpotPhoto';

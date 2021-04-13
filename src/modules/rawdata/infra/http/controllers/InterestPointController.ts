@@ -58,13 +58,9 @@ export default class InterestPointController {
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
-    const interest_point_id: string = (request.params as unknown) as string;
-
     const listInterestPoint = container.resolve(IndexInterestPointService);
 
-    const interestPoints = await listInterestPoint.execute({
-      interest_point_id,
-    });
+    const interestPoints = await listInterestPoint.execute();
 
     return response.status(200).json(interestPoints);
   }

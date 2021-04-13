@@ -24,7 +24,7 @@ export default class CreateTouristSpotService {
     );
 
     if (checkTouristSpotExists) {
-      throw new AppError('Name already used.');
+      throw new AppError('Name already used.', 409);
     }
 
     const touristSpot = this.touristSpotRepository.create({

@@ -1,5 +1,5 @@
 import InterestPoint from '../infra/typeorm/entities/InterestPoint';
-import ICreateInterestPointDTO from '../dtos/ICreateInterestPointDTO';
+import IInterestPointDTO from '../dtos/IInterestPointDTO';
 
 export default interface IInterestPointRepository {
   findAllInterestPoint(
@@ -7,7 +7,7 @@ export default interface IInterestPointRepository {
   ): Promise<InterestPoint[]>;
   findById(id: string): Promise<InterestPoint | undefined>;
   findByName(name: string): Promise<InterestPoint | undefined>;
-  create(data: ICreateInterestPointDTO): Promise<InterestPoint>;
+  create(data: IInterestPointDTO): Promise<InterestPoint>;
   delete(id: string): Promise<string>;
   save(interest_point: InterestPoint): Promise<InterestPoint>;
 }

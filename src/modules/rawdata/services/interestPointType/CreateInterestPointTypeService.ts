@@ -25,7 +25,7 @@ export default class CreateInterestPointTypeService {
       name,
     );
     if (checkNameExists) {
-      throw new AppError('Interest point type already exists', 403);
+      throw new AppError('Interest point type already exists', 409);
     }
 
     const interestPointType = await this.interestPointTypeRepository.create({

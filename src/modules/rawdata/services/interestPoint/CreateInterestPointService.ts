@@ -2,7 +2,7 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/infra/http/errors/AppError';
 
-import ICreateInterestPointDTO from '@modules/rawdata/dtos/ICreateInterestPointDTO';
+import IInterestPointDTO from '@modules/rawdata/dtos/IInterestPointDTO';
 import InterestPoint from '../../infra/typeorm/entities/InterestPoint';
 import IInterestPointRepository from '../../repositories/IInterestPointRepository';
 
@@ -20,13 +20,13 @@ export default class CreateInterestPointService {
     number,
     district,
     interest_point_type_id,
-  }: ICreateInterestPointDTO): Promise<InterestPoint> {
+  }: IInterestPointDTO): Promise<InterestPoint> {
     const checkInterestPointExists = await this.interestPointRepository.findByName(
       name,
     );
 
     if (checkInterestPointExists) {
-      throw new AppError('Name already used.');
+      throw new AppError('Name already used.', 409);
     }
 
     const interestPoint = this.interestPointRepository.create({

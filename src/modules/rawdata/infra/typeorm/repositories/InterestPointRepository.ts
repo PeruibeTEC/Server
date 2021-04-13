@@ -1,7 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
 import IInterestPointRepository from '@modules/rawdata/repositories/IInterestPointRepository';
-import ICreateInterestPointDTO from '@modules/rawdata/dtos/ICreateInterestPointDTO';
+import IInterestPointDTO from '@modules/rawdata/dtos/IInterestPointDTO';
 
 import InterestPoint from '../entities/InterestPoint';
 
@@ -35,7 +35,7 @@ export default class InterestPointRepository
   }
 
   public async create(
-    interestPointData: ICreateInterestPointDTO,
+    interestPointData: IInterestPointDTO,
   ): Promise<InterestPoint> {
     const info = this.ormRepository.create(interestPointData);
 

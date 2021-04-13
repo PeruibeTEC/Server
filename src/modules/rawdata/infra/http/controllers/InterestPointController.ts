@@ -5,7 +5,7 @@ import { container } from 'tsyringe';
 import CreateInterestPointService from '@modules/rawdata/services/interestPoint/CreateInterestPointService';
 import DeleteInterestPointService from '@modules/rawdata/services/interestPoint/DeleteInterestPointService';
 import ShowInterestPointService from '@modules/rawdata/services/interestPoint/ShowInterestPointService';
-import ListInterestPointService from '@modules/rawdata/services/interestPoint/ListInterestPointService';
+import IndexInterestPointService from '@modules/rawdata/services/interestPoint/IndexInterestPointService';
 import UpdateInterestPointService from '@modules/rawdata/services/interestPoint/UpdateInterestPointService';
 
 export default class InterestPointController {
@@ -60,7 +60,7 @@ export default class InterestPointController {
   public async index(request: Request, response: Response): Promise<Response> {
     const interest_point_id: string = (request.params as unknown) as string;
 
-    const listInterestPoint = container.resolve(ListInterestPointService);
+    const listInterestPoint = container.resolve(IndexInterestPointService);
 
     const interestPoints = await listInterestPoint.execute({
       interest_point_id,

@@ -1,4 +1,4 @@
-import { getRepository, Repository, Not } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 
 import IInterestPointRepository from '@modules/rawdata/repositories/IInterestPointRepository';
 import ICreateInterestPointDTO from '@modules/rawdata/dtos/ICreateInterestPointDTO';
@@ -25,20 +25,12 @@ export default class InterestPointRepository
     return info;
   }
 
-  public async findAllInterestPoint(
-    expect_interest_point_id?: string,
-  ): Promise<InterestPoint[]> {
+  public async findAllInterestPoint(): Promise<InterestPoint[]> {
     let info: InterestPoint[];
 
-    if (expect_interest_point_id) {
-      info = await this.ormRepository.find({
-        where: {
-          id: Not(expect_interest_point_id),
-        },
-      });
-    } else {
-      info = await this.ormRepository.find();
-    }
+    // eslint-disable-next-line prefer-const
+    info = await this.ormRepository.find();
+
     return info;
   }
 

@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateInterestPointTypeService from '@modules/rawdata/services/interestPointType/CreateInterestPointTypeService';
-import ListInterestPointTypeService from '@modules/rawdata/services/interestPointType/ListInterestPointTypeService';
+import IndexInterestPointTypeService from '@modules/rawdata/services/interestPointType/IndexInterestPointTypeService';
 import ShowInterestPointTypeService from '@modules/rawdata/services/interestPointType/ShowInterestPointTypeService';
 import DeleteInterestPointTypeService from '@modules/rawdata/services/interestPointType/DeleteInterestPointTypeService';
 import UpdateInterestPointTypeService from '@modules/rawdata/services/interestPointType/UpdateInterestPointTypeService';
@@ -28,7 +28,7 @@ export default class InterestPointTypeController {
     const interest_point_type_id: string = (request.params as unknown) as string;
 
     const listInterestPointType = container.resolve(
-      ListInterestPointTypeService,
+      IndexInterestPointTypeService,
     );
 
     const interestPointTypes = await listInterestPointType.execute({

@@ -5,12 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateInterestPointTable1616789573654
-  implements MigrationInterface {
+export class CreateUserTokenTable1617236076842 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_interest_point',
+        name: 'tb_user_token',
         columns: [
           {
             name: 'id',
@@ -20,32 +19,13 @@ export class CreateInterestPointTable1616789573654
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'name',
-            type: 'varchar',
-            length: '200',
+            name: 'token',
+            type: 'uuid',
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
-            name: 'telephone',
-            type: 'varchar',
-            length: '10',
-          },
-          {
-            name: 'street',
-            type: 'varchar',
-            length: '150',
-          },
-          {
-            name: 'number',
-            type: 'varchar',
-            length: '10',
-          },
-          {
-            name: 'district',
-            type: 'varchar',
-            length: '100',
-          },
-          {
-            name: 'interest_point_type_id',
+            name: 'user_id',
             type: 'uuid',
           },
           {
@@ -63,12 +43,12 @@ export class CreateInterestPointTable1616789573654
     );
 
     await queryRunner.createForeignKey(
-      'tb_interest_point',
+      'tb_user_token',
       new TableForeignKey({
-        name: 'InterestPointTypeId',
-        columnNames: ['interest_point_type_id'],
+        name: 'UserTokenId',
+        columnNames: ['user_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_interest_point_type',
+        referencedTableName: 'tb_user',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
@@ -76,7 +56,7 @@ export class CreateInterestPointTable1616789573654
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tb_interest_point', 'InterestPointId');
-    await queryRunner.dropTable('tb_interest_point');
+    await queryRunner.dropForeignKey('tb_user_token', 'UserTokenId');
+    await queryRunner.dropTable('tb_user_token');
   }
 }

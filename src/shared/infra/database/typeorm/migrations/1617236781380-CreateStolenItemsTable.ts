@@ -5,12 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateInterestPointTable1616789573654
-  implements MigrationInterface {
+export class CreateStolenItemsTable1617236781380 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_interest_point',
+        name: 'tb_stolen_items',
         columns: [
           {
             name: 'id',
@@ -20,32 +19,16 @@ export class CreateInterestPointTable1616789573654
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'name',
+            name: 'items',
             type: 'varchar',
             length: '200',
           },
           {
-            name: 'telephone',
-            type: 'varchar',
-            length: '10',
+            name: 'amount',
+            type: 'integer',
           },
           {
-            name: 'street',
-            type: 'varchar',
-            length: '150',
-          },
-          {
-            name: 'number',
-            type: 'varchar',
-            length: '10',
-          },
-          {
-            name: 'district',
-            type: 'varchar',
-            length: '100',
-          },
-          {
-            name: 'interest_point_type_id',
+            name: 'theft_id',
             type: 'uuid',
           },
           {
@@ -63,12 +46,12 @@ export class CreateInterestPointTable1616789573654
     );
 
     await queryRunner.createForeignKey(
-      'tb_interest_point',
+      'tb_stolen_items',
       new TableForeignKey({
-        name: 'InterestPointTypeId',
-        columnNames: ['interest_point_type_id'],
+        name: 'TheftId',
+        columnNames: ['theft_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_interest_point_type',
+        referencedTableName: 'tb_theft',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
@@ -76,7 +59,7 @@ export class CreateInterestPointTable1616789573654
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tb_interest_point', 'InterestPointId');
-    await queryRunner.dropTable('tb_interest_point');
+    await queryRunner.dropForeignKey('tb_stolen_items', 'TheftId');
+    await queryRunner.dropTable('tb_stolen_items');
   }
 }

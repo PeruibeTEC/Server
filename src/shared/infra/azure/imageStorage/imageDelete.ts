@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import AppError from '@shared/infra/http/errors/AppError';
 import { BlobServiceClient } from '@azure/storage-blob';
 
 dotenv.config();
@@ -14,8 +15,12 @@ export async function deleteImage(
   const containerClient = blobServiceClient.getContainerClient(blobContainer);
   const blockBlobClient = containerClient.getBlockBlobClient(image[1]);
 
-  await blockBlobClient.download(0);
-  blockBlobClient.delete();
+  try {
+    await blockBlobClient.download(0);
+    blockBlobClient.delete();
+  } catch (err) {
+    throw new AppError('An error occurred while deleting the image, try again');
+  }
 
   return true;
 }

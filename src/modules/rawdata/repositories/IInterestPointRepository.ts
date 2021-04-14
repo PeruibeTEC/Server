@@ -2,9 +2,7 @@ import InterestPoint from '../infra/typeorm/entities/InterestPoint';
 import IInterestPointDTO from '../dtos/IInterestPointDTO';
 
 export default interface IInterestPointRepository {
-  findAllInterestPoint(
-    expect_interest_point_id?: string,
-  ): Promise<InterestPoint[]>;
+  findAllInterestPoint(): Promise<InterestPoint[]>;
   findById(id: string): Promise<InterestPoint | undefined>;
   findByName(name: string): Promise<InterestPoint | undefined>;
   create(data: IInterestPointDTO): Promise<InterestPoint>;

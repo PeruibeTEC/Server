@@ -9,9 +9,9 @@ import {
 } from 'typeorm';
 
 import Business from './Business';
-import EventType from './EventType';
+import EventTypeBusiness from './EventTypeBusiness';
 
-@Entity('tb_event')
+@Entity('tb_event_business')
 export default class Event {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -49,9 +49,9 @@ export default class Event {
   @JoinColumn({ name: 'business_id' })
   business_id: Business;
 
-  @ManyToOne(() => EventType)
-  @JoinColumn({ name: 'event_type_id' })
-  event_type_id: EventType;
+  @ManyToOne(() => EventTypeBusiness)
+  @JoinColumn({ name: 'event_type_business_id' })
+  event_type_id: EventTypeBusiness;
 
   @CreateDateColumn()
   created_at: Date;

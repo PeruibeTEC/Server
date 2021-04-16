@@ -14,6 +14,8 @@ import ITouristSpotRepository from '@modules/rawdata/repositories/ITouristSpotRe
 import TouristSpotRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotRepository';
 import ITouristSpotPhotoRepository from '@modules/rawdata/repositories/ITouristSpotPhotoRepository';
 import TouristSpotPhotoRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotPhotoRepository';
+import PostRepository from '@modules/social/infra/typeorm/repositories/PostRepository';
+import IPostRepository from '@modules/social/repositories/IPostRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -44,3 +46,5 @@ container.registerSingleton<ITouristSpotPhotoRepository>(
   'TouristSpotPhotoRepository',
   TouristSpotPhotoRepository,
 );
+
+container.registerSingleton<IPostRepository>('PostRepository', PostRepository);

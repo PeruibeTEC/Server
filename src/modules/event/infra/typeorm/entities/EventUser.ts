@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import User from '../../../../user/infra/typeorm/entities/User';
+import User from '@modules/user/infra/typeorm/entities/User';
 import EventTypeUser from './EventTypeUser';
 
 @Entity('tb_event_user')
@@ -46,7 +46,7 @@ export default class EventUser {
 
   @ManyToOne(() => EventTypeUser)
   @JoinColumn({ name: 'event_type_id' })
-  event_type_id: User;
+  event_type_id: EventTypeUser;
 
   @CreateDateColumn()
   created_at: Date;

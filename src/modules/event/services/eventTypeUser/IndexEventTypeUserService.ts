@@ -3,7 +3,7 @@ import EventTypeUser from '../../infra/typeorm/entities/EventTypeUser';
 import IEventTypeUserRepository from '../../repositories/IEventTypeUserRepository';
 
 @injectable()
-export default class EventTypeUserServices {
+export default class IndexEventTypeUserService {
   constructor(
     @inject('EventTypeUserRepository')
     private eventTypeUserRepository: IEventTypeUserRepository,

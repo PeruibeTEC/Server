@@ -2,6 +2,7 @@ import { getRepository, Repository } from 'typeorm';
 
 import IEventTypeUserRepository from '@modules/event/repositories/IEventTypeUserRepository';
 
+import IEventTypeUserDTO from '@modules/event/dtos/IEventTypeUserDTO';
 import EventTypeUser from '../entities/EventTypeUser';
 
 export default class EventTypeUserRepository
@@ -14,6 +15,16 @@ export default class EventTypeUserRepository
 
   public async findAllEventTypeUser(): Promise<EventTypeUser[]> {
     const eventTypeUser = await this.ormRepository.find();
+
+    return eventTypeUser;
+  }
+
+  public async create(
+    eventTypeUserData: IEventTypeUserDTO,
+  ): Promise<EventTypeUser> {
+    const eventTypeUser = this.ormRepository.create(eventTypeUserData);
+
+    await this.ormRepository.save(eventTypeUser);
 
     return eventTypeUser;
   }

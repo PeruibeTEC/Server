@@ -5,6 +5,7 @@ import IndexEventTypeUserService from '@modules/event/services/eventTypeUser/Ind
 import CreateEventTypeUserService from '@modules/event/services/eventTypeUser/CreateEventTypeUserService';
 import ShowEventTypeUserService from '@modules/event/services/eventTypeUser/ShowEventTypeUserService';
 import DeleteEventTypeUserService from '@modules/event/services/eventTypeUser/DeleteEventTypeUserService';
+import UpdateEventTypeUserService from '@modules/event/services/eventTypeUser/UpdateEventTypeUserService';
 
 export default class EventTypeUserController {
   public async index(_: Request, response: Response): Promise<Response> {
@@ -35,6 +36,20 @@ export default class EventTypeUserController {
     const eventTypeUser = await createEventTypeUser.execute({ name });
 
     return response.json(eventTypeUser);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { event_type_id } = request.params;
+    const { name } = request.body;
+
+    const updateEventTypeUser = container.resolve(UpdateEventTypeUserService);
+
+    const eventTypeUser = await updateEventTypeUser.execute({
+      eventTypeUser_id: event_type_id,
+      name,
+    });
+
+    return response.status(200).json(eventTypeUser);
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {

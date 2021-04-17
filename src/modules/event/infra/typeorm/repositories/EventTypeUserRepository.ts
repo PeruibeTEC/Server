@@ -35,6 +35,12 @@ export default class EventTypeUserRepository
     return eventTypeUser;
   }
 
+  public async save(
+    eventTypeUserData: IEventTypeUserDTO,
+  ): Promise<EventTypeUser> {
+    return this.ormRepository.save(eventTypeUserData);
+  }
+
   public async delete(id: string): Promise<string> {
     await this.ormRepository.delete(id);
 

@@ -30,7 +30,7 @@ export default class ProjectComment {
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
-  user_id: PublicProject;
+  user_id: User;
 
   @CreateDateColumn()
   created_at: Date;

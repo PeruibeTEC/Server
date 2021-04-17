@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 import IndexEventTypeUserService from '@modules/event/services/eventTypeUser/IndexEventTypeUserService';
 import CreateEventTypeUserService from '@modules/event/services/eventTypeUser/CreateEventTypeUserService';
 import ShowEventTypeUserService from '@modules/event/services/eventTypeUser/ShowEventTypeUserService';
+import DeleteEventTypeUserService from '@modules/event/services/eventTypeUser/DeleteEventTypeUserService';
 
 export default class EventTypeUserController {
   public async index(_: Request, response: Response): Promise<Response> {
@@ -34,5 +35,17 @@ export default class EventTypeUserController {
     const eventTypeUser = await createEventTypeUser.execute({ name });
 
     return response.json(eventTypeUser);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { event_type_id } = request.params;
+
+    const deleteEventTypeUser = container.resolve(DeleteEventTypeUserService);
+
+    const eventTypeUser = await deleteEventTypeUser.execute({
+      eventTypeUser_id: event_type_id,
+    });
+
+    return response.status(200).json(eventTypeUser);
   }
 }

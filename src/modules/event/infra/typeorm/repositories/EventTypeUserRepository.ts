@@ -34,4 +34,10 @@ export default class EventTypeUserRepository
 
     return eventTypeUser;
   }
+
+  public async delete(id: string): Promise<string> {
+    await this.ormRepository.delete(id);
+
+    return `Event-Type-User-id: ${id} deleted`;
+  }
 }

@@ -6,5 +6,5 @@ export default interface IPhotoProjectRepository {
   findById(id: string): Promise<PhotoProject | undefined>;
   create(data: IPhotoProjectDTO): Promise<PhotoProject>;
   delete(id: string): Promise<string>;
-  save(photo_project: IPhotoProjectDTO): Promise<PhotoProject>;
+  save(photo_project: PhotoProject): Promise<PhotoProject>;
 }

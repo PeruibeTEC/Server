@@ -3,10 +3,10 @@ import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/infra/http/errors/AppError';
 
 // import { azureCreate } from '@shared/infra/azure/imageStorage/imageUpload';
+import IHashProvider from '@shared/providers/HashProvider/models/IHashProvider';
 import Business from '../../infra/typeorm/entities/Business';
 import BusinessType from '../../infra/typeorm/entities/BusinessType';
 import IBusinessRepository from '../../repositories/IBusinessRepository';
-import IHashProvider from '../../providers/HashProvider/models/IHashProvider';
 
 export interface IRequest {
   name: string;

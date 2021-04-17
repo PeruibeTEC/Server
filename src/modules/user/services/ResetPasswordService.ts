@@ -4,7 +4,7 @@ import { isAfter, addHours } from 'date-fns';
 import AppError from '@shared/infra/http/errors/AppError';
 import IUserRepository from '../repositories/IUserRepository';
 import IUserTokenRepository from '../repositories/IUserTokenRepository';
-import IHashProvider from '../providers/HashProvider/models/IHashProvider';
+import IHashProvider from '../../../shared/providers/HashProvider/models/IHashProvider';
 
 interface IRequest {
   new_password: string;

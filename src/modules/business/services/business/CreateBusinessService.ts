@@ -6,7 +6,6 @@ import AppError from '@shared/infra/http/errors/AppError';
 import Business from '../../infra/typeorm/entities/Business';
 import BusinessType from '../../infra/typeorm/entities/BusinessType';
 import IBusinessRepository from '../../repositories/IBusinessRepository';
-import IBusinessTypeRepository from '../../repositories/IBusinessTypeRepository';
 import IHashProvider from '../../providers/HashProvider/models/IHashProvider';
 
 export interface IRequest {
@@ -27,9 +26,6 @@ export default class CreateBusinessService {
   constructor(
     @inject('BusinessRepository')
     private businessRepository: IBusinessRepository,
-
-    @inject('BusinessTypeRepository')
-    private businessTypeRepository: IBusinessTypeRepository,
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,

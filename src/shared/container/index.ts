@@ -17,6 +17,8 @@ import TouristSpotPhotoRepository from '@modules/rawdata/infra/typeorm/repositor
 
 import EventTypeUserRepository from '@modules/event/infra/typeorm/repositories/EventTypeUserRepository';
 import IEventTypeUserRepository from '@modules/event/repositories/IEventTypeUserRepository';
+import IEventUserRepository from '@modules/event/repositories/IEventUserRepository';
+import EventUserRepository from '@modules/event/infra/typeorm/repositories/EventUserRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -51,4 +53,9 @@ container.registerSingleton<ITouristSpotPhotoRepository>(
 container.registerSingleton<IEventTypeUserRepository>(
   'EventTypeUserRepository',
   EventTypeUserRepository,
+);
+
+container.registerSingleton<IEventUserRepository>(
+  'EventUserRepository',
+  EventUserRepository,
 );

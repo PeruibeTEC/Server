@@ -11,6 +11,7 @@ import touristSpotRouter from '@modules/rawdata/infra/http/routes/touristspot.ro
 import touristSpotPhotoRouter from '@modules/rawdata/infra/http/routes/touristspotphoto.routes';
 
 import eventTypeUserRouter from '@modules/event/infra/http/routes/eventTypeUser.routes';
+import eventUserRouter from '@modules/event/infra/http/routes/eventUser.routes';
 
 export default (app: Express): void => {
   const router = Router();
@@ -25,6 +26,7 @@ export default (app: Express): void => {
   router.use('/touristSpotPhoto', touristSpotPhotoRouter);
 
   router.use('/eventTypeUser', eventTypeUserRouter);
+  router.use('/eventUser', eventUserRouter);
 
   app.use('/api', router);
 };

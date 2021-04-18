@@ -20,6 +20,7 @@ export default class UpdateInterestPointService {
   ) {}
 
   public async execute({ post_id, user_id, content }: IRequest): Promise<Post> {
+    // TODO: check the number of characters
     const post = await this.postRepository.findById(post_id);
 
     if (!post) {

@@ -12,10 +12,16 @@ export default class CommentRepository implements ICommentRepository {
     this.ormRepository = getRepository(Comment);
   }
 
-  public async findAllByPost(): Promise<Comment[]> {
-    const comentsPost = await this.ormRepository.find();
+  public async findAllByPost(post_id: string): Promise<Comment[]> {
+    const comentsPost = await this.ormRepository.find({ where: post_id });
 
     return comentsPost;
+  }
+
+  public async findById(id: string): Promise<Comment | undefined> {
+    const comment = await this.ormRepository.findOne(id);
+
+    return comment;
   }
 
   public async create(infoData: ICommentDTO): Promise<Comment> {

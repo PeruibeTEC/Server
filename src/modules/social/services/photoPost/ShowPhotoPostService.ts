@@ -6,7 +6,7 @@ import PhotoPost from '@modules/social/infra/typeorm/entities/PhotoPost';
 import IPhotoPostRepository from '../../repositories/IPhotoPostRepository';
 
 interface IRequest {
-  photo_post_id: string;
+  post_id: string;
 }
 
 @injectable()
@@ -17,11 +17,9 @@ export default class DeletePhotoPostService {
   ) {}
 
   public async execute({
-    photo_post_id,
+    post_id,
   }: IRequest): Promise<PhotoPost[] | undefined> {
-    const photoPost = await this.photoPostRepository.findAllByPost(
-      photo_post_id,
-    );
+    const photoPost = await this.photoPostRepository.findAllByPost(post_id);
 
     if (!photoPost) {
       throw new AppError('Post not found.', 404);

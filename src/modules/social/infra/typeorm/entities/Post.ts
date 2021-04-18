@@ -24,9 +24,12 @@ export default class Post {
   @Column()
   has_photo: boolean;
 
+  @Column({ nullable: true })
+  user_id: string;
+
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
-  user_id: User;
+  user: User;
 
   @CreateDateColumn()
   created_at: Date;

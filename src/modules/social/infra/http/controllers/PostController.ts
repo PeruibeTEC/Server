@@ -7,12 +7,10 @@ import DeletePostService from '@modules/social/services/post/DeletePostService';
 import IndexPostService from '@modules/social/services/post/IndexPostService';
 import UpdatePostService from '@modules/social/services/post/UpdatePostService';
 
-import User from '@modules/user/infra/typeorm/entities/User';
-
 export default class PostController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { content, has_photo } = request.body;
-    const user_id = (request.user.id as unknown) as User;
+    const user_id = request.user.id;
 
     const createPostService = container.resolve(CreatePostService);
 
@@ -27,7 +25,7 @@ export default class PostController {
 
   public async delete(request: Request, response: Response): Promise<Response> {
     const { post_id } = request.body;
-    const user_id = (request.user.id as unknown) as User;
+    const user_id = request.user.id;
 
     const deletePostService = container.resolve(DeletePostService);
 
@@ -48,7 +46,7 @@ export default class PostController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const { post_id, content } = request.body;
-    const user_id = (request.user.id as unknown) as User;
+    const user_id = request.user.id;
 
     const updatePostService = container.resolve(UpdatePostService);
 

@@ -18,8 +18,10 @@ export default class LikeRepository implements ILikeRepository {
     return like;
   }
 
-  public async findAllByPost(): Promise<Like[]> {
-    const likesPost = await this.ormRepository.find();
+  public async findAllByPost(post_id: string): Promise<Like[] | undefined> {
+    const likesPost = await this.ormRepository.find({
+      where: { post_id },
+    });
 
     return likesPost;
   }

@@ -2,14 +2,13 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/infra/http/errors/AppError';
 
-import User from '@modules/user/infra/typeorm/entities/User';
 import IPostRepository from '@modules/social/repositories/IPostRepository';
 import ICommentRepository from '../../repositories/ICommentRepository';
 
 interface IRequest {
   post_id: string;
   comment_id: string;
-  user_id: User;
+  user_id: string;
 }
 
 @injectable()
@@ -33,9 +32,6 @@ export default class DeleteCommentService {
     if (!post || !comment) {
       throw new AppError('Post or Comment not found.', 404);
     }
-
-    console.log(post.user_id);
-    console.log(comment.post_id);
 
     if (comment.user_id !== user_id) {
       throw new AppError(

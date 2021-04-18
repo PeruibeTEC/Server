@@ -18,6 +18,8 @@ import PostRepository from '@modules/social/infra/typeorm/repositories/PostRepos
 import IPostRepository from '@modules/social/repositories/IPostRepository';
 import CommentRepository from '@modules/social/infra/typeorm/repositories/CommentRepository';
 import ICommentRepository from '@modules/social/repositories/ICommentRepository';
+import ILikeRepository from '@modules/social/repositories/ILikeRepository';
+import LikeRepository from '@modules/social/infra/typeorm/repositories/LikeRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -55,3 +57,5 @@ container.registerSingleton<ICommentRepository>(
   'CommentRepository',
   CommentRepository,
 );
+
+container.registerSingleton<ILikeRepository>('LikeRepository', LikeRepository);

@@ -18,8 +18,12 @@ export default class PhotoPostRepository implements IPhotoPostRepository {
     return photoPost;
   }
 
-  public async findAllByPost(): Promise<PhotoPost[]> {
-    const photosPost = await this.ormRepository.find();
+  public async findAllByPost(
+    post_id: string,
+  ): Promise<PhotoPost[] | undefined> {
+    const photosPost = await this.ormRepository.find({
+      where: { post_id },
+    });
 
     return photosPost;
   }

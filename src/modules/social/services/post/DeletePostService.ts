@@ -2,12 +2,11 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/infra/http/errors/AppError';
 
-import User from '@modules/user/infra/typeorm/entities/User';
 import IPostRepository from '../../repositories/IPostRepository';
 
 interface IRequest {
   post_id: string;
-  user_id: User;
+  user_id: string;
 }
 
 @injectable()

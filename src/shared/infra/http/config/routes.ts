@@ -11,6 +11,7 @@ import touristSpotRouter from '@modules/rawdata/infra/http/routes/touristspot.ro
 import touristSpotPhotoRouter from '@modules/rawdata/infra/http/routes/touristspotphoto.routes';
 
 import postRouter from '@modules/social/infra/http/routes/post.routes';
+import commentRouter from '@modules/social/infra/http/routes/comment.routes';
 
 export default (app: Express): void => {
   const router = Router();
@@ -25,6 +26,7 @@ export default (app: Express): void => {
   router.use('/touristSpotPhoto', touristSpotPhotoRouter);
 
   router.use('/social/post', postRouter);
+  router.use('/social/comment', commentRouter);
 
   app.use('/api', router);
 };

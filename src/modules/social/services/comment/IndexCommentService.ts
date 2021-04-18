@@ -14,7 +14,7 @@ export default class IndexCommentService {
     private commentRepository: ICommentRepository,
   ) {}
 
-  public async execute({ post_id }: IRequest): Promise<Comment[]> {
+  public async execute({ post_id }: IRequest): Promise<Comment[] | undefined> {
     const posts = await this.commentRepository.findAllByPost(post_id);
 
     return posts;

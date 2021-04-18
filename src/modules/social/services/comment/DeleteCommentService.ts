@@ -34,6 +34,9 @@ export default class DeleteCommentService {
       throw new AppError('Post or Comment not found.', 404);
     }
 
+    console.log(post.user_id);
+    console.log(comment.post_id);
+
     if (comment.user_id !== user_id) {
       throw new AppError(
         'User does not have permission to delete this comment',

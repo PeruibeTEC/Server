@@ -6,5 +6,6 @@ const eventUserRouter = Router();
 const eventUserController = new EventUserController();
 
 eventUserRouter.get('/', eventUserController.index);
+eventUserRouter.get('/:event_id', eventUserController.show);
 
 export default eventUserRouter;

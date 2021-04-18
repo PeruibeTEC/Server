@@ -14,4 +14,10 @@ export default class EventUserRepository implements IEventUserRepository {
 
     return eventUser;
   }
+
+  public async findById(id: string): Promise<EventUser | undefined> {
+    const eventUser = await this.ormRepository.findOne(id);
+
+    return eventUser;
+  }
 }

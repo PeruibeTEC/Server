@@ -15,6 +15,11 @@ export class CreatePublicProject1616791338114 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
+            name: 'name',
+            type: 'varchar',
+            length: '100',
+          },
+          {
             name: 'street',
             type: 'varchar',
             length: '150',

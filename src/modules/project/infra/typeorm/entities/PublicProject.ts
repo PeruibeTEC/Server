@@ -12,6 +12,11 @@ export default class PublicProject {
   id: string;
 
   @Column({
+    length: 100,
+  })
+  name: string;
+
+  @Column({
     length: 150,
     nullable: true,
   })

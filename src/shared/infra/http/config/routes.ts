@@ -10,6 +10,8 @@ import interestPointTypeRouter from '@modules/rawdata/infra/http/routes/interest
 import touristSpotRouter from '@modules/rawdata/infra/http/routes/touristspot.routes';
 import touristSpotPhotoRouter from '@modules/rawdata/infra/http/routes/touristspotphoto.routes';
 
+import postRouter from '@modules/social/infra/http/routes/post.routes';
+
 export default (app: Express): void => {
   const router = Router();
   router.use('/user', usersRouter);
@@ -21,6 +23,8 @@ export default (app: Express): void => {
   router.use('/interestPointType', interestPointTypeRouter);
   router.use('/touristSpot', touristSpotRouter);
   router.use('/touristSpotPhoto', touristSpotPhotoRouter);
+
+  router.use('/social/post', postRouter);
 
   app.use('/api', router);
 };

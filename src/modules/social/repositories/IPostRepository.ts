@@ -5,6 +5,6 @@ export default interface IPostRepository {
   findAllPost(): Promise<Post[]>;
   findById(id: string): Promise<Post | undefined>;
   create(data: IPostDTO): Promise<Post>;
-  delete(id: string): Promise<void>;
+  delete(id: string): Promise<string>;
   save(interest_point: Post): Promise<Post>;
 }

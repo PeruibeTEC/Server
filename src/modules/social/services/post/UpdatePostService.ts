@@ -25,10 +25,11 @@ export default class UpdateInterestPointService {
     if (!post) {
       throw new AppError('Post not found.', 404);
     }
+    console.log(post.user_id);
 
     if (post.user_id !== user_id) {
       throw new AppError(
-        'User does not have permission to delete this post',
+        'User does not have permission to updated this post',
         401,
       );
     }

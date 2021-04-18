@@ -2,8 +2,13 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/infra/http/errors/AppError';
 
-import ILikeDTO from '@modules/social/dtos/ILikeDTO';
 import ILikeRepository from '../../repositories/ILikeRepository';
+
+interface IRequest {
+  user_id: string;
+  post_id: string;
+  like_id: string;
+}
 
 @injectable()
 export default class DeleteLikeService {
@@ -12,11 +17,11 @@ export default class DeleteLikeService {
     private likeRepository: ILikeRepository,
   ) {}
 
-  public async execute({ user_id, post_id }: ILikeDTO): Promise<void> {
+  public async execute({ user_id, post_id, like_id }: IRequest): Promise<void> {
     if (!user_id || !post_id) {
       throw new AppError('User or Post does not exist', 404);
     }
 
-    await this.likeRepository.delete(post_id);
+    await this.likeRepository.delete(like_id);
   }
 }

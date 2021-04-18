@@ -1,8 +1,11 @@
 import { injectable, inject } from 'tsyringe';
 
-import ILikeDTO from '@modules/social/dtos/ILikeDTO';
 import Like from '@modules/social/infra/typeorm/entities/Like';
 import ILikeRepository from '../../repositories/ILikeRepository';
+
+interface IRequest {
+  post_id: string;
+}
 
 @injectable()
 export default class IndexLikeService {
@@ -11,7 +14,7 @@ export default class IndexLikeService {
     private likeRepository: ILikeRepository,
   ) {}
 
-  public async execute({ post_id }: ILikeDTO): Promise<Like[] | undefined> {
+  public async execute({ post_id }: IRequest): Promise<Like[] | undefined> {
     const posts = await this.likeRepository.findAllByPost(post_id);
 
     return posts;

@@ -7,8 +7,6 @@ import DeleteCommentService from '@modules/social/services/comment/DeleteComment
 import IndexCommentService from '@modules/social/services/comment/IndexCommentService';
 import UpdateCommentService from '@modules/social/services/comment/UpdateCommentService';
 
-import User from '@modules/user/infra/typeorm/entities/User';
-
 export default class CommentController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { content, post_id } = request.body;
@@ -27,7 +25,7 @@ export default class CommentController {
 
   public async delete(request: Request, response: Response): Promise<Response> {
     const { post_id, comment_id } = request.body;
-    const user_id = (request.user.id as unknown) as User;
+    const user_id = request.user.id;
 
     const deleteCommentService = container.resolve(DeleteCommentService);
 

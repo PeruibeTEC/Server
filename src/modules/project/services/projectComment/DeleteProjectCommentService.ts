@@ -44,6 +44,6 @@ export default class DeleteProjectCommentService {
       );
     }
 
-    await this.projectCommentRepository.delete(public_project_id);
+    await this.projectCommentRepository.delete(comment_id);
   }
 }

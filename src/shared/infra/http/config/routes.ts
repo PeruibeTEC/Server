@@ -28,8 +28,8 @@ export default (app: Express): void => {
   router.use('/touristSpotPhoto', touristSpotPhotoRouter);
 
   router.use('/project', projectRouter);
-  router.use('/projectComment', projectCommentRouter);
-  router.use('/projectPhoto', projectPhotoRouter);
+  router.use('/project/comment', projectCommentRouter);
+  router.use('/project/photo', projectPhotoRouter);
 
   app.use('/api', router);
 };

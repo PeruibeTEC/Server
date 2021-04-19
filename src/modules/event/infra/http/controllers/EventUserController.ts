@@ -3,6 +3,7 @@ import IndexEventUserService from '@modules/event/services/eventUser/IndexEventU
 import ShowEventUserService from '@modules/event/services/eventUser/ShowEventUserService';
 import { container } from 'tsyringe';
 import CreateEventUserService from '@modules/event/services/eventUser/CreateEventUserService';
+import DeleteEventUserService from '@modules/event/services/eventUser/DeleteEventUserService';
 
 export default class EventUserController {
   public async index(_: Request, response: Response): Promise<Response> {
@@ -49,5 +50,17 @@ export default class EventUserController {
     });
 
     return response.json(eventUser);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { event_id } = request.params;
+
+    const deleteEventUser = container.resolve(DeleteEventUserService);
+
+    const eventUser = await deleteEventUser.execute({
+      eventUser_id: event_id,
+    });
+
+    return response.status(200).json(eventUser);
   }
 }

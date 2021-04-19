@@ -8,5 +8,6 @@ const eventUserController = new EventUserController();
 eventUserRouter.get('/', eventUserController.index);
 eventUserRouter.get('/:event_id', eventUserController.show);
 eventUserRouter.post('/', eventUserController.create);
+eventUserRouter.delete('/:event_id', eventUserController.delete);
 
 export default eventUserRouter;

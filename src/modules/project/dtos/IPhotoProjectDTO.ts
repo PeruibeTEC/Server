@@ -1,6 +1,6 @@
-import ProjectComment from '../infra/typeorm/entities/ProjectComment';
+import Project from '../infra/typeorm/entities/PublicProject';
 
 export default interface IPhotoProjectDTO {
   url: string;
-  project_comment_id: ProjectComment;
+  public_project_id: Project;
 }

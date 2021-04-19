@@ -12,10 +12,14 @@ export default class PhotoProjectRepository implements IPhotoProjectRepository {
     this.ormRepository = getRepository(PhotoProject);
   }
 
-  public async findAllByProject(): Promise<PhotoProject[]> {
-    const photosProject = await this.ormRepository.find();
+  public async findAllByProject(
+    public_project_id: string,
+  ): Promise<PhotoProject[] | undefined> {
+    const photoProject = await this.ormRepository.find({
+      where: { public_project_id },
+    });
 
-    return photosProject;
+    return photoProject;
   }
 
   public async findById(id: string): Promise<PhotoProject | undefined> {

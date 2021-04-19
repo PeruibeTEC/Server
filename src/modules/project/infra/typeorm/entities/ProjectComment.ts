@@ -22,15 +22,18 @@ export default class ProjectComment {
   content: string;
 
   @Column()
-  has_photo: boolean;
+  user_id: string;
+
+  @Column()
+  public_project_id: string;
 
   @ManyToOne(() => PublicProject)
   @JoinColumn({ name: 'public_project_id' })
-  public_project_id: PublicProject;
+  project: PublicProject;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
-  user_id: User;
+  user: User;
 
   @CreateDateColumn()
   created_at: Date;

@@ -52,6 +52,12 @@ export class CreatePublicProject1616791338114 implements MigrationInterface {
             type: 'date',
           },
           {
+            name: 'description',
+            type: 'varchar',
+            length: '3000',
+            isNullable: true,
+          },
+          {
             name: 'price',
             type: 'decimal',
             precision: 15,

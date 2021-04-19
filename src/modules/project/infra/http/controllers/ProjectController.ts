@@ -18,6 +18,7 @@ export default class ProjectController {
       longitude,
       starting_date,
       ending_date,
+      description,
       price,
     } = request.body;
 
@@ -31,6 +32,7 @@ export default class ProjectController {
       longitude,
       starting_date,
       ending_date,
+      description,
       price,
     });
 
@@ -79,6 +81,7 @@ export default class ProjectController {
       longitude,
       starting_date,
       ending_date,
+      description,
       price,
     } = request.body;
 
@@ -93,6 +96,7 @@ export default class ProjectController {
       longitude,
       starting_date,
       ending_date,
+      description,
       price,
     });
 

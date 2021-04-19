@@ -49,6 +49,12 @@ export default class PublicProject {
   ending_date: Date;
 
   @Column({
+    length: 3000,
+    nullable: true,
+  })
+  description: string;
+
+  @Column({
     type: 'decimal',
     precision: 15,
     scale: 7,

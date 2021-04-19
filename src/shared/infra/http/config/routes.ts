@@ -12,6 +12,7 @@ import touristSpotPhotoRouter from '@modules/rawdata/infra/http/routes/touristsp
 
 import projectRouter from '@modules/project/infra/http/routes/project.routes';
 import projectCommentRouter from '@modules/project/infra/http/routes/projectcomment.routes';
+import projectPhotoRouter from '@modules/project/infra/http/routes/projectphoto.routes';
 
 export default (app: Express): void => {
   const router = Router();
@@ -28,6 +29,7 @@ export default (app: Express): void => {
 
   router.use('/project', projectRouter);
   router.use('/projectComment', projectCommentRouter);
+  router.use('/projectPhoto', projectPhotoRouter);
 
   app.use('/api', router);
 };

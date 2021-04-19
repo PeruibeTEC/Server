@@ -21,6 +21,7 @@ export default class CreateProjectService {
     longitude,
     starting_date,
     ending_date,
+    description,
     price,
   }: IProjectDTO): Promise<Project> {
     const checkProjectExists = await this.projectRepository.findByName(name);
@@ -37,6 +38,7 @@ export default class CreateProjectService {
       longitude,
       starting_date,
       ending_date,
+      description,
       price,
     });
 

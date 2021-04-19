@@ -14,6 +14,7 @@ interface IRequest {
   longitude: number;
   starting_date: Date;
   ending_date: Date;
+  description: string;
   price: number;
 }
 
@@ -33,6 +34,7 @@ export default class UpdateProjectService {
     longitude,
     starting_date,
     ending_date,
+    description,
     price,
   }: IRequest): Promise<Project> {
     const project = await this.projectRepository.findById(project_id);
@@ -57,6 +59,7 @@ export default class UpdateProjectService {
       longitude,
       starting_date,
       ending_date,
+      description,
       price,
     });
 

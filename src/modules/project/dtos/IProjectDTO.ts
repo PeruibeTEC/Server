@@ -6,5 +6,6 @@ export default interface IProjectDTO {
   longitude: number;
   starting_date: Date;
   ending_date: Date;
+  description?: string;
   price: number;
 }

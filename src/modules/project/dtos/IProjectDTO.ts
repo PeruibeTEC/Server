@@ -1,6 +1,7 @@
 export default interface IProjectDTO {
-  street: string;
-  district: string;
+  name: string;
+  street?: string;
+  district?: string;
   latitude: number;
   longitude: number;
   starting_date: Date;

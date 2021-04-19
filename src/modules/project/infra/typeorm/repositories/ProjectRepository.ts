@@ -23,6 +23,12 @@ export default class ProjectRepository implements IProjectRepository {
     return project;
   }
 
+  public async findByName(name: string): Promise<Project | undefined> {
+    const project = await this.ormRepository.findOne({ name });
+
+    return project;
+  }
+
   public async create(projectData: IProjectDTO): Promise<Project> {
     const project = this.ormRepository.create(projectData);
 

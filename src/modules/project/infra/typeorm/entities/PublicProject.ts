@@ -42,10 +42,10 @@ export default class PublicProject {
   })
   longitude: number;
 
-  @Column('timestamp with time zone')
+  @Column('timestamp')
   starting_date: Date;
 
-  @Column('timestamp with time zone')
+  @Column('timestamp')
   ending_date: Date;
 
   @Column({

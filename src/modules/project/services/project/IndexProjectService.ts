@@ -3,7 +3,7 @@ import Project from '@modules/project/infra/typeorm/entities/PublicProject';
 import IProjectRepository from '../../repositories/IProjectRepository';
 
 @injectable()
-export default class ShowProjectService {
+export default class IndexProjectService {
   constructor(
     @inject('ProjectRepository')
     private projectRepository: IProjectRepository,

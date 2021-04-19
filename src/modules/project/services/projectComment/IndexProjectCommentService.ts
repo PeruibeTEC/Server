@@ -7,7 +7,7 @@ interface IRequest {
 }
 
 @injectable()
-export default class IndexProjectService {
+export default class IndexProjectCommentService {
   constructor(
     @inject('ProjectCommentRepository')
     private projectCommentRepository: IProjectCommentRepository,

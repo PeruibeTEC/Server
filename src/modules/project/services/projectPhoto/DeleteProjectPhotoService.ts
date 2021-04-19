@@ -21,7 +21,7 @@ export default class DeleteProjectPhotoService {
     );
 
     if (!photoProject) {
-      throw new AppError('PProject Photo not found.', 404);
+      throw new AppError('Project Photo not found.', 404);
     }
 
     deleteImage('project-images', photoProject.url);

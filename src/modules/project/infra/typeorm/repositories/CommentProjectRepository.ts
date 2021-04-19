@@ -12,8 +12,12 @@ export default class CommentProjectRepository
     this.ormRepository = getRepository(CommentProject);
   }
 
-  public async findAllByProject(): Promise<CommentProject[]> {
-    const commentsProject = await this.ormRepository.find();
+  public async findAllByProject(
+    public_project_id: string,
+  ): Promise<CommentProject[] | undefined> {
+    const commentsProject = await this.ormRepository.find({
+      where: { public_project_id },
+    });
 
     return commentsProject;
   }

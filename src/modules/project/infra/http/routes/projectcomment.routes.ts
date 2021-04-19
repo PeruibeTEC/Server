@@ -1,14 +1,16 @@
 import { Router } from 'express';
 
-import ProjectController from '../controllers/ProjectController';
+import ensureAuthenticate from '@modules/user/infra/http/middlewares/ensureAuthenticate';
+import ProjectCommentController from '../controllers/ProjectCommentController';
 
-const projectRouter = Router();
-const projectController = new ProjectController();
+const projectCommentRouter = Router();
+const projectCommentController = new ProjectCommentController();
 
-projectRouter.post('/', projectController.create);
-projectRouter.delete('/', projectController.delete);
-projectRouter.get('/:id', projectController.show);
-projectRouter.get('/', projectController.index);
-projectRouter.put('/', projectController.update);
+projectCommentRouter.use(ensureAuthenticate);
 
-export default projectRouter;
+projectCommentRouter.post('/', projectCommentController.create);
+projectCommentRouter.delete('/', projectCommentController.delete);
+projectCommentRouter.get('/', projectCommentController.index);
+projectCommentRouter.put('/', projectCommentController.update);
+
+export default projectCommentRouter;

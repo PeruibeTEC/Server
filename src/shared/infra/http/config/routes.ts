@@ -11,6 +11,7 @@ import touristSpotRouter from '@modules/rawdata/infra/http/routes/touristspot.ro
 import touristSpotPhotoRouter from '@modules/rawdata/infra/http/routes/touristspotphoto.routes';
 
 import projectRouter from '@modules/project/infra/http/routes/project.routes';
+import projectCommentRouter from '@modules/project/infra/http/routes/projectcomment.routes';
 
 export default (app: Express): void => {
   const router = Router();
@@ -21,9 +22,12 @@ export default (app: Express): void => {
 
   router.use('/interestPoint', interestPointRouter);
   router.use('/interestPointType', interestPointTypeRouter);
+
   router.use('/touristSpot', touristSpotRouter);
   router.use('/touristSpotPhoto', touristSpotPhotoRouter);
+
   router.use('/project', projectRouter);
+  router.use('/projectComment', projectCommentRouter);
 
   app.use('/api', router);
 };

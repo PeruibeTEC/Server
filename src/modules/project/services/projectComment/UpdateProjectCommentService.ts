@@ -1,18 +1,18 @@
 import { injectable, inject } from 'tsyringe';
-
+import CommentProject from '@modules/project/infra/typeorm/entities/ProjectComment';
 import AppError from '@shared/infra/http/errors/AppError';
-
 import IProjectCommentRepository from '../../repositories/ICommentProjectRepository';
 import IProjectRepository from '../../repositories/IProjectRepository';
 
 interface IRequest {
+  content: string;
   comment_id: string;
-  project_id: string;
   user_id: string;
+  public_project_id: string;
 }
 
 @injectable()
-export default class DeleteProjectCommentService {
+export default class UpdateProjectCommentService {
   constructor(
     @inject('ProjectCommentRepository')
     private projectCommentRepository: IProjectCommentRepository,
@@ -22,15 +22,16 @@ export default class DeleteProjectCommentService {
   ) {}
 
   public async execute({
-    project_id,
+    content,
     comment_id,
+    public_project_id,
     user_id,
-  }: IRequest): Promise<void> {
+  }: IRequest): Promise<CommentProject> {
     const checkComment = await this.projectCommentRepository.findById(
       comment_id,
     );
     const checkProjectExists = await this.projectRepository.findById(
-      project_id,
+      public_project_id,
     );
 
     if (!checkProjectExists || !checkComment) {
@@ -44,6 +45,8 @@ export default class DeleteProjectCommentService {
       );
     }
 
-    await this.projectCommentRepository.delete(project_id);
+    Object.assign(checkComment, { content });
+
+    return this.projectCommentRepository.save(checkComment);
   }
 }

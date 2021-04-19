@@ -1,3 +1,4 @@
+import IEventUserDTO from '@modules/event/dtos/IEventUserDTO';
 import IEventUserRepository from '@modules/event/repositories/IEventUserRepository';
 import { getRepository, Repository } from 'typeorm';
 import EventUser from '../entities/EventUser';
@@ -17,6 +18,14 @@ export default class EventUserRepository implements IEventUserRepository {
 
   public async findById(id: string): Promise<EventUser | undefined> {
     const eventUser = await this.ormRepository.findOne(id);
+
+    return eventUser;
+  }
+
+  public async create(eventUserData: IEventUserDTO): Promise<EventUser> {
+    const eventUser = this.ormRepository.create(eventUserData);
+
+    await this.ormRepository.save(eventUser);
 
     return eventUser;
   }

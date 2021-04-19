@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import IndexEventUserService from '@modules/event/services/eventUser/IndexEventUserService';
 import ShowEventUserService from '@modules/event/services/eventUser/ShowEventUserService';
 import { container } from 'tsyringe';
+import CreateEventUserService from '@modules/event/services/eventUser/CreateEventUserService';
 
 export default class EventUserController {
   public async index(_: Request, response: Response): Promise<Response> {
@@ -22,5 +23,31 @@ export default class EventUserController {
     });
 
     return response.status(200).json(eventUser);
+  }
+
+  public async create(request: Request, response: Response): Promise<Response> {
+    const {
+      name,
+      date,
+      start_time,
+      end_time,
+      description,
+      event_type_id,
+      user_id,
+    } = request.body;
+
+    const createEventUser = container.resolve(CreateEventUserService);
+
+    const eventUser = await createEventUser.execute({
+      name,
+      date,
+      start_time,
+      end_time,
+      description,
+      event_type_id,
+      user_id,
+    });
+
+    return response.json(eventUser);
   }
 }

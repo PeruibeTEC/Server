@@ -6,7 +6,7 @@ import CreateUserService from '@modules/user/services/CreateUserService';
 import DeleteUserService from '@modules/user/services/DeleteUserService';
 import ShowProfileService from '@modules/user/services/ShowProfileService';
 import UpdateProfileService from '@modules/user/services/UpdateProfileService';
-import ListUserService from '@modules/user/services/ListUsersService';
+import ListUserService from '@modules/user/services/IndexUserService';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {

@@ -12,7 +12,7 @@ interface IRequest {
 }
 
 @injectable()
-export default class UpdateInterestPointService {
+export default class UpdatePostService {
   constructor(
     @inject('PostRepository')
     private postRepository: IPostRepository,

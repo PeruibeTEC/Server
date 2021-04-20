@@ -20,10 +20,10 @@ export default class DeletePhotoPostService {
     const photoPost = await this.photoPostRepository.findById(photo_post_id);
 
     if (!photoPost) {
-      throw new AppError('Tourist Spot Photo not found.', 404);
+      throw new AppError('Post Photo not found.', 404);
     }
 
-    deleteImage('tourist-spot-images', photoPost.url);
+    deleteImage('post-images-images', photoPost.url);
 
     await this.photoPostRepository.delete(photo_post_id);
   }

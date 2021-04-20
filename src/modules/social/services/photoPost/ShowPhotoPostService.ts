@@ -10,7 +10,7 @@ interface IRequest {
 }
 
 @injectable()
-export default class DeletePhotoPostService {
+export default class ShowPhotoPostService {
   constructor(
     @inject('PhotoPostRepository')
     private photoPostRepository: IPhotoPostRepository,

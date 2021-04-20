@@ -14,6 +14,14 @@ import ITouristSpotRepository from '@modules/rawdata/repositories/ITouristSpotRe
 import TouristSpotRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotRepository';
 import ITouristSpotPhotoRepository from '@modules/rawdata/repositories/ITouristSpotPhotoRepository';
 import TouristSpotPhotoRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotPhotoRepository';
+import PostRepository from '@modules/social/infra/typeorm/repositories/PostRepository';
+import IPostRepository from '@modules/social/repositories/IPostRepository';
+import CommentRepository from '@modules/social/infra/typeorm/repositories/CommentRepository';
+import ICommentRepository from '@modules/social/repositories/ICommentRepository';
+import ILikeRepository from '@modules/social/repositories/ILikeRepository';
+import LikeRepository from '@modules/social/infra/typeorm/repositories/LikeRepository';
+import PhotoPostRepository from '@modules/social/infra/typeorm/repositories/PhotoPostRepository';
+import IPhotoPostRepository from '@modules/social/repositories/IPhotoPostRepository';
 import IProjectRepository from '@modules/project/repositories/IProjectRepository';
 import ProjectRepository from '@modules/project/infra/typeorm/repositories/ProjectRepository';
 import IProjectCommentRepository from '@modules/project/repositories/ICommentProjectRepository';
@@ -50,6 +58,20 @@ container.registerSingleton<ITouristSpotPhotoRepository>(
   'TouristSpotPhotoRepository',
   TouristSpotPhotoRepository,
 );
+
+
+container.registerSingleton<IPostRepository>('PostRepository', PostRepository);
+
+container.registerSingleton<ICommentRepository>(
+  'CommentRepository',
+  CommentRepository,
+);
+
+container.registerSingleton<ILikeRepository>('LikeRepository', LikeRepository);
+
+container.registerSingleton<IPhotoPostRepository>(
+  'PhotoPostRepository',
+  PhotoPostRepository,
 
 container.registerSingleton<IProjectRepository>(
   'ProjectRepository',

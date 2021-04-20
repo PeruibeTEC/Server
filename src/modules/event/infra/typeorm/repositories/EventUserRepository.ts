@@ -30,6 +30,10 @@ export default class EventUserRepository implements IEventUserRepository {
     return eventUser;
   }
 
+  public async save(eventUserData: IEventUserDTO): Promise<EventUser> {
+    return this.ormRepository.save(eventUserData);
+  }
+
   public async delete(id: string): Promise<string> {
     await this.ormRepository.delete(id);
 

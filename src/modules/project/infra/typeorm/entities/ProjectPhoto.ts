@@ -8,7 +8,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import ProjectComment from './ProjectComment';
+import Project from './PublicProject';
 
 @Entity('tb_project_photo')
 export default class ProjectPhoto {
@@ -20,9 +20,9 @@ export default class ProjectPhoto {
   })
   url: string;
 
-  @ManyToOne(() => ProjectComment)
-  @JoinColumn({ name: 'project_comment_id' })
-  comment_id: ProjectComment;
+  @ManyToOne(() => Project)
+  @JoinColumn({ name: 'public_project_id' })
+  project_id: Project;
 
   @CreateDateColumn()
   created_at: Date;

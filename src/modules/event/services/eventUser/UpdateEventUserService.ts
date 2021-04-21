@@ -6,7 +6,8 @@ import IDatefnsProvider from '@shared/providers/DatefnsProvider/models/IDatefnsP
 import IEventUserRepository from '../../repositories/IEventUserRepository';
 
 interface IRequest {
-  eventUser_id: string;
+  user_id: string;
+  event_id: string;
   name: string;
   date: string;
   start_time: Date;
@@ -26,7 +27,8 @@ export default class UpdateEventUserService {
   ) {}
 
   public async execute({
-    eventUser_id,
+    user_id,
+    event_id,
     name,
     description,
     date,
@@ -34,10 +36,14 @@ export default class UpdateEventUserService {
     start_time,
     event_type_id,
   }: IRequest): Promise<EventUser> {
-    const eventUser = await this.eventUserRepository.findById(eventUser_id);
+    const eventUser = await this.eventUserRepository.findById(event_id);
 
     if (!eventUser) {
       throw new AppError('Event Type does not exists.', 404);
+    }
+
+    if (user_id !== eventUser.user_id) {
+      throw new AppError('This event does not belong to this user.', 404);
     }
 
     const thisDateisAfter = await this.dateFnsProvider.thisDateIsAfter(date);

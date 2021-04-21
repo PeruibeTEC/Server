@@ -1,9 +1,18 @@
 import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/infra/http/errors/AppError';
 import EventUser from '@modules/event/infra/typeorm/entities/EventUser';
-import IEventUserDTO from '@modules/event/dtos/IEventUserDTO';
 import IDatefnsProvider from '@shared/providers/DatefnsProvider/models/IDatefnsProvider';
 import IEventUserRepository from '../../repositories/IEventUserRepository';
+
+interface IRequest {
+  name: string;
+  date: Date;
+  start_time: Date;
+  end_time: Date;
+  description: string;
+  event_type_id: string;
+  user_id: string;
+}
 
 @injectable()
 export default class CreateEventUserService {
@@ -23,7 +32,7 @@ export default class CreateEventUserService {
     description,
     event_type_id,
     user_id,
-  }: IEventUserDTO): Promise<EventUser> {
+  }: IRequest): Promise<EventUser> {
     const stringDate = String(date);
     const thisDateisAfter = await this.dateFnsProvider.thisDateIsAfter(
       stringDate,

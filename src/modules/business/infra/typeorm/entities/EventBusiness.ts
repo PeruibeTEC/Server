@@ -45,13 +45,19 @@ export default class Event {
   })
   description: string;
 
+  @Column({ nullable: true })
+  business_id: string;
+
+  @Column({ nullable: true })
+  event_type_business_id: string;
+
   @ManyToOne(() => Business)
   @JoinColumn({ name: 'business_id' })
-  business_id: Business;
+  business: Business;
 
   @ManyToOne(() => EventTypeBusiness)
   @JoinColumn({ name: 'event_type_business_id' })
-  event_type_id: EventTypeBusiness;
+  event_type_business: EventTypeBusiness;
 
   @CreateDateColumn()
   created_at: Date;

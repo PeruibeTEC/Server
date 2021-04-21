@@ -21,8 +21,8 @@ export default class BusinessLocationRepository
 
   public async findByDistrict(
     district: string,
-  ): Promise<BusinessLocation | undefined> {
-    const businessLocation = await this.ormRepository.findOne({
+  ): Promise<BusinessLocation[] | undefined> {
+    const businessLocation = await this.ormRepository.find({
       where: { district },
     });
 
@@ -30,10 +30,7 @@ export default class BusinessLocationRepository
   }
 
   public async findAllBusinessLocation(): Promise<BusinessLocation[]> {
-    let businessLocation: BusinessLocation[];
-
-    // eslint-disable-next-line prefer-const
-    businessLocation = await this.ormRepository.find();
+    const businessLocation = await this.ormRepository.find();
 
     return businessLocation;
   }
@@ -54,7 +51,6 @@ export default class BusinessLocationRepository
     return `BusinessLocation_id: ${id} deleted`;
   }
 
-  // todo: fix type error
   public async save(
     businessLocation: BusinessLocation,
   ): Promise<BusinessLocation> {

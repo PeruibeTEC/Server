@@ -27,10 +27,7 @@ export default class BusinessTypeRepository implements IBusinessTypeRepository {
   }
 
   public async findAllBusinessType(): Promise<BusinessType[]> {
-    let businessType: BusinessType[];
-
-    // eslint-disable-next-line prefer-const
-    businessType = await this.ormRepository.find();
+    const businessType = await this.ormRepository.find();
 
     return businessType;
   }

@@ -27,10 +27,7 @@ export default class BusinessRepository implements IBusinessRepository {
   }
 
   public async findAllBusiness(): Promise<Business[]> {
-    let business: Business[];
-
-    // eslint-disable-next-line prefer-const
-    business = await this.ormRepository.find();
+    const business = await this.ormRepository.find();
 
     return business;
   }

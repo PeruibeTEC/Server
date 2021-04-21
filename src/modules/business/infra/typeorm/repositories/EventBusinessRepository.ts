@@ -28,10 +28,7 @@ export default class EventBusinessRepository
   }
 
   public async findAllEventBusiness(): Promise<EventBusiness[]> {
-    let event_business: EventBusiness[];
-
-    // eslint-disable-next-line prefer-const
-    event_business = await this.ormRepository.find();
+    const event_business = await this.ormRepository.find();
 
     return event_business;
   }

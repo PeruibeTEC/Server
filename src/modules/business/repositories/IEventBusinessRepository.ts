@@ -7,5 +7,5 @@ export default interface IEventBusinessRepository {
   findByName(name: string): Promise<EventBusiness | undefined>;
   create(data: IEventBusinessDTO): Promise<EventBusiness>;
   delete(id: string): Promise<string>;
-  save(event_business: IEventBusinessDTO): Promise<EventBusiness>;
+  save(event_business: EventBusiness): Promise<EventBusiness>;
 }

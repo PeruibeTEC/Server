@@ -7,5 +7,5 @@ export default interface IBusinessProductRepository {
   findByName(name: string): Promise<BusinessProduct | undefined>;
   create(data: IBusinessProductDTO): Promise<BusinessProduct>;
   delete(id: string): Promise<string>;
-  save(business_product: IBusinessProductDTO): Promise<BusinessProduct>;
+  save(business_product: BusinessProduct): Promise<BusinessProduct>;
 }

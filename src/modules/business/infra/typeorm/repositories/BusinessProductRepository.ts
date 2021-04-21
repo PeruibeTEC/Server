@@ -28,10 +28,7 @@ export default class BusinessProductRepository
   }
 
   public async findAllBusinessProduct(): Promise<BusinessProduct[]> {
-    let businessProduct: BusinessProduct[];
-
-    // eslint-disable-next-line prefer-const
-    businessProduct = await this.ormRepository.find();
+    const businessProduct = await this.ormRepository.find();
 
     return businessProduct;
   }

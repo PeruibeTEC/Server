@@ -1,5 +1,3 @@
-import Business from '../infra/typeorm/entities/Business';
-
 export default interface IBusinessLocationDTO {
   street: string;
   number: string;
@@ -7,5 +5,5 @@ export default interface IBusinessLocationDTO {
   latitude: number;
   longitude: number;
   description: string;
-  business_id: Business;
+  business_id: string;
 }

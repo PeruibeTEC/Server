@@ -9,5 +9,5 @@ export default interface IBusinessContactRepository {
   ): Promise<BusinessContact | undefined>;
   create(data: IBusinessContactDTO): Promise<BusinessContact>;
   delete(id: string): Promise<string>;
-  save(business_contact: IBusinessContactDTO): Promise<BusinessContact>;
+  save(business_contact: BusinessContact): Promise<BusinessContact>;
 }

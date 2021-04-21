@@ -1,5 +1,3 @@
-import BusinessType from '../infra/typeorm/entities/BusinessType';
-
 export default interface IBusinessDTO {
   name: string;
   email_login: string;
@@ -10,5 +8,5 @@ export default interface IBusinessDTO {
   operating_time: Date;
   closing_time: Date;
   closing_day: string;
-  business_type_id: BusinessType;
+  business_type_id: string;
 }

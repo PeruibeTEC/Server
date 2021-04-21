@@ -30,10 +30,7 @@ export default class BusinessContactRepository
   }
 
   public async findAllBusinessContact(): Promise<BusinessContact[]> {
-    let businessContact: BusinessContact[];
-
-    // eslint-disable-next-line prefer-const
-    businessContact = await this.ormRepository.find();
+    const businessContact = await this.ormRepository.find();
 
     return businessContact;
   }

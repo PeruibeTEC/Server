@@ -28,6 +28,8 @@ import IProjectCommentRepository from '@modules/project/repositories/ICommentPro
 import ProjectCommentRepository from '@modules/project/infra/typeorm/repositories/CommentProjectRepository';
 import IProjectPhotoRepository from '@modules/project/repositories/IPhotoProjectRepository';
 import ProjectPhotoRepository from '@modules/project/infra/typeorm/repositories/PhotoProjectRepository';
+import BusinessTypeRepository from '@modules/business/infra/typeorm/repositories/BusinessTypeRepository';
+import IBusinessTypeRepository from '@modules/business/repositories/IBusinessTypeRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -86,4 +88,9 @@ container.registerSingleton<IProjectCommentRepository>(
 container.registerSingleton<IProjectPhotoRepository>(
   'ProjectPhotoRepository',
   ProjectPhotoRepository,
+);
+
+container.registerSingleton<IBusinessTypeRepository>(
+  'BusinessTypeRepository',
+  BusinessTypeRepository,
 );

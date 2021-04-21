@@ -9,9 +9,9 @@ export default class IndexEventUserService {
     private eventUserRepository: IEventUserRepository,
   ) {}
 
-  public async execute(): Promise<EventUser[]> {
-    const eventUser = await this.eventUserRepository.findAllEventUser();
+  public async execute(user_id: string): Promise<EventUser[]> {
+    const eventsUser = await this.eventUserRepository.findAllEventUser(user_id);
 
-    return eventUser;
+    return eventsUser;
   }
 }

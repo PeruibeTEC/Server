@@ -8,10 +8,14 @@ import UpdateEventUserService from '@modules/event/services/eventUser/UpdateEven
 import { container } from 'tsyringe';
 
 export default class EventUserController {
-  public async index(_: Request, response: Response): Promise<Response> {
+  public async index(request: Request, response: Response): Promise<Response> {
+    const { user_id = '' } = request.query;
+
+    const id = String(user_id);
+
     const indexEventUser = container.resolve(IndexEventUserService);
 
-    const eventUser = await indexEventUser.execute();
+    const eventUser = await indexEventUser.execute(id);
 
     return response.status(200).json(eventUser);
   }

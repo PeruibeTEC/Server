@@ -12,6 +12,11 @@ export default class PublicProject {
   id: string;
 
   @Column({
+    length: 100,
+  })
+  name: string;
+
+  @Column({
     length: 150,
     nullable: true,
   })
@@ -37,11 +42,17 @@ export default class PublicProject {
   })
   longitude: number;
 
-  @Column()
+  @Column('timestamp', { nullable: true })
   starting_date: Date;
 
-  @Column()
+  @Column('timestamp', { nullable: true })
   ending_date: Date;
+
+  @Column({
+    length: 3000,
+    nullable: true,
+  })
+  description: string;
 
   @Column({
     type: 'decimal',

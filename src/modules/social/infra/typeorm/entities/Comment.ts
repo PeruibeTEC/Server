@@ -21,13 +21,19 @@ export default class Comment {
   })
   content: string;
 
+  @Column({ nullable: true })
+  user_id: string;
+
+  @Column({ nullable: true })
+  post_id: string;
+
   @ManyToOne(() => Post)
   @JoinColumn({ name: 'post_id' })
-  post_id: Post;
+  post: Post;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
-  user_id: User;
+  user: User;
 
   @CreateDateColumn()
   created_at: Date;

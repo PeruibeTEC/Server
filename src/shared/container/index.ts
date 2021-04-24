@@ -1,6 +1,7 @@
 import { container } from 'tsyringe';
 
 import '@modules/user/providers';
+import './providers';
 
 import UsersRepository from '@modules/user/infra/typeorm/repositories/UserRepository';
 import IUsersRepository from '@modules/user/repositories/IUserRepository';
@@ -59,7 +60,6 @@ container.registerSingleton<ITouristSpotPhotoRepository>(
   TouristSpotPhotoRepository,
 );
 
-
 container.registerSingleton<IPostRepository>('PostRepository', PostRepository);
 
 container.registerSingleton<ICommentRepository>(
@@ -72,6 +72,7 @@ container.registerSingleton<ILikeRepository>('LikeRepository', LikeRepository);
 container.registerSingleton<IPhotoPostRepository>(
   'PhotoPostRepository',
   PhotoPostRepository,
+);
 
 container.registerSingleton<IProjectRepository>(
   'ProjectRepository',

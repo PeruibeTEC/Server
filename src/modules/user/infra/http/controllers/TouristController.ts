@@ -1,0 +1,82 @@
+import CreateTouristService from '@modules/user/services/Tourist/CreateTouristService';
+import DeleteTouristService from '@modules/user/services/Tourist/DeleteTouristService';
+import IndexTouristService from '@modules/user/services/Tourist/IndexTouristService';
+import ShowTouristService from '@modules/user/services/Tourist/ShowTouristService';
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+
+export default class TouristController {
+  public async create(request: Request, response: Response): Promise<Response> {
+    const { state, city, is_foreigner, country_foreigner } = request.body;
+    const user_id = request.user.id;
+
+    const createTourist = container.resolve(CreateTouristService);
+
+    const tourist = await createTourist.execute({
+      state,
+      city,
+      is_foreigner,
+      country_foreigner,
+      user_id,
+    });
+
+    return response.json(tourist);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const tourist_id = request.body;
+
+    const deleteTourist = container.resolve(DeleteTouristService);
+
+    await deleteTourist.execute({ tourist_id });
+
+    return response
+      .status(200)
+      .json({ message: `Tourist ${tourist_id} deleted ` });
+  }
+
+  public async show(request: Request, response: Response): Promise<Response> {
+    const tourist_id = request.body;
+
+    const showTourist = container.resolve(ShowTouristService);
+    const tourist = await showTourist.execute({ tourist_id });
+
+    return response.status(200).json(tourist);
+  }
+
+  public async index(request: Request, response: Response): Promise<Response> {
+    const indexTourist = container.resolve(IndexTouristService);
+
+    const tourists = await indexTourist.execute();
+
+    return response.status(200).json(tourists);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
+
+    const {
+      name,
+      email,
+      password,
+      old_password,
+      small_biography,
+    } = request.body;
+
+    const updateUser = container.resolve(UpdateProfileService);
+
+    const user = await updateUser.execute({
+      user_id,
+      name,
+      email,
+      password,
+      old_password,
+      small_biography,
+    });
+
+    // @ts-expect-error ⠀⠀⠀
+    delete user.password;
+
+    return response.json(user);
+  }
+}

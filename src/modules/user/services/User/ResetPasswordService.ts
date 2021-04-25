@@ -1,10 +1,9 @@
-import { injectable, inject } from 'tsyringe';
-import { isAfter, addHours } from 'date-fns';
-
 import AppError from '@shared/infra/http/errors/AppError';
-import IUserRepository from '../repositories/IUserRepository';
-import IUserTokenRepository from '../repositories/IUserTokenRepository';
-import IHashProvider from '../providers/HashProvider/models/IHashProvider';
+import { addHours, isAfter } from 'date-fns';
+import { inject, injectable } from 'tsyringe';
+import IHashProvider from '../../providers/HashProvider/models/IHashProvider';
+import IUserRepository from '../../repositories/IUserRepository';
+import IUserTokenRepository from '../../repositories/IUserTokenRepository';
 
 interface IRequest {
   new_password: string;

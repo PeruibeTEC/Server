@@ -1,8 +1,7 @@
-import { injectable, inject } from 'tsyringe';
-
 import AppError from '@shared/infra/http/errors/AppError';
-import IUserRepository from '../repositories/IUserRepository';
-import IUserTokenRepository from '../repositories/IUserTokenRepository';
+import { inject, injectable } from 'tsyringe';
+import IUserRepository from '../../repositories/IUserRepository';
+import IUserTokenRepository from '../../repositories/IUserTokenRepository';
 
 interface IRequest {
   email: string;
@@ -28,7 +27,7 @@ class SendForgotPasswordEmailService {
 
     // here the email should be sent with token (waiting for SendEmailService)
     // console.log(token) is a placeholder
-
+    // eslint-disable-next-line no-console
     console.log(token);
   }
 }

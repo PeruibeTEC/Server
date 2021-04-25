@@ -1,11 +1,10 @@
-import { compare } from 'bcryptjs';
-import { injectable, inject } from 'tsyringe';
-import { sign } from 'jsonwebtoken';
-
 import auth from '@shared/infra/http/config/auth';
 import AppError from '@shared/infra/http/errors/AppError';
-import User from '../infra/typeorm/entities/User';
-import IUserRepository from '../repositories/IUserRepository';
+import { compare } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
+import { inject, injectable } from 'tsyringe';
+import User from '../../infra/typeorm/entities/User';
+import IUserRepository from '../../repositories/IUserRepository';
 
 interface IRequest {
   email: string;

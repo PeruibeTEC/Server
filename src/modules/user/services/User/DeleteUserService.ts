@@ -1,6 +1,6 @@
-import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/infra/http/errors/AppError';
-import IUserRepository from '../repositories/IUserRepository';
+import { inject, injectable } from 'tsyringe';
+import IUserRepository from '../../repositories/IUserRepository';
 
 export interface IRequest {
   user_id: string;

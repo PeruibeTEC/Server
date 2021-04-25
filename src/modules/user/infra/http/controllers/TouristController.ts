@@ -25,7 +25,7 @@ export default class TouristController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const tourist_id = request.body;
+    const { tourist_id } = request.body;
 
     const deleteTourist = container.resolve(DeleteTouristService);
 
@@ -42,7 +42,7 @@ export default class TouristController {
     const showTourist = container.resolve(ShowTouristService);
     const tourist = await showTourist.execute({ tourist_id });
 
-    return response.status(200).json(tourist);
+    return response.status(200).json({ tourist });
   }
 
   public async index(request: Request, response: Response): Promise<Response> {

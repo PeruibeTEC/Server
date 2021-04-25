@@ -20,9 +20,11 @@ import ICommentRepository from '@modules/social/repositories/ICommentRepository'
 import ILikeRepository from '@modules/social/repositories/ILikeRepository';
 import IPhotoPostRepository from '@modules/social/repositories/IPhotoPostRepository';
 import IPostRepository from '@modules/social/repositories/IPostRepository';
+import TouristRepository from '@modules/user/infra/typeorm/repositories/TouristRepository';
 import UsersRepository from '@modules/user/infra/typeorm/repositories/UserRepository';
 import UserTokensRepository from '@modules/user/infra/typeorm/repositories/UserTokenRepository';
 import '@modules/user/providers';
+import ITouristRepository from '@modules/user/repositories/ITouristRepository';
 import IUsersRepository from '@modules/user/repositories/IUserRepository';
 import IUserTokenRepository from '@modules/user/repositories/IUserTokenRepository';
 import { container } from 'tsyringe';
@@ -84,4 +86,9 @@ container.registerSingleton<IProjectCommentRepository>(
 container.registerSingleton<IProjectPhotoRepository>(
   'ProjectPhotoRepository',
   ProjectPhotoRepository,
+);
+
+container.registerSingleton<ITouristRepository>(
+  'TouristRepository',
+  TouristRepository,
 );

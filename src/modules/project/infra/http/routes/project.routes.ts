@@ -1,6 +1,5 @@
-import { Router } from 'express';
-
 import ensureAuthenticate from '@modules/user/infra/http/middlewares/ensureAuthenticate';
+import { Router } from 'express';
 import ProjectController from '../controllers/ProjectController';
 
 const projectRouter = Router();

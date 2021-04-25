@@ -2,6 +2,7 @@ import CreateTouristService from '@modules/user/services/Tourist/CreateTouristSe
 import DeleteTouristService from '@modules/user/services/Tourist/DeleteTouristService';
 import IndexTouristService from '@modules/user/services/Tourist/IndexTouristService';
 import ShowTouristService from '@modules/user/services/Tourist/ShowTouristService';
+import UpdateTouristService from '@modules/user/services/Tourist/UpdateTouristService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
@@ -36,7 +37,7 @@ export default class TouristController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const tourist_id = request.body;
+    const tourist_id: string = (request.params as unknown) as string;
 
     const showTourist = container.resolve(ShowTouristService);
     const tourist = await showTourist.execute({ tourist_id });
@@ -53,30 +54,26 @@ export default class TouristController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
+    const {
+      tourist_id,
+      state,
+      city,
+      is_foreigner,
+      country_foreigner,
+    } = request.body;
     const user_id = request.user.id;
 
-    const {
-      name,
-      email,
-      password,
-      old_password,
-      small_biography,
-    } = request.body;
+    const updateTourist = container.resolve(UpdateTouristService);
 
-    const updateUser = container.resolve(UpdateProfileService);
-
-    const user = await updateUser.execute({
+    const tourist = await updateTourist.execute({
+      tourist_id,
+      state,
+      city,
+      is_foreigner,
+      country_foreigner,
       user_id,
-      name,
-      email,
-      password,
-      old_password,
-      small_biography,
     });
 
-    // @ts-expect-error ⠀⠀⠀
-    delete user.password;
-
-    return response.json(user);
+    return response.json(tourist);
   }
 }

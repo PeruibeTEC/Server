@@ -1,5 +1,5 @@
+import ICreateUserDTO from '../dtos/IUserDTO';
 import User from '../infra/typeorm/entities/User';
-import ICreateUserDTO from '../dtos/ICreateUserDTO';
 
 export default interface IUserRepository {
   findAllUsers(expect_user_id?: string): Promise<User[]>;

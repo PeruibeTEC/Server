@@ -45,7 +45,7 @@ class SendForgotPasswordEmailService {
         name: user.name,
         email: user.email,
       },
-      subject: '[PeruibeTec] Recuperação de Senha',
+      subject: '[PeruibeTec]: Recuperação de Senha',
       templateData: {
         file: forgotPasswordTemplate,
         variables: {

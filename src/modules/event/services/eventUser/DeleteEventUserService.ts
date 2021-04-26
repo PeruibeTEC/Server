@@ -22,7 +22,7 @@ export default class DeleteEventUserService {
     }
 
     if (user_id !== eventUser.user_id) {
-      throw new AppError('This event does not belong to this user.', 404);
+      throw new AppError('This event does not belong to this user.', 409);
     }
 
     await this.eventUserRepository.delete(eventUser.id);

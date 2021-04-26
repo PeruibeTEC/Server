@@ -39,7 +39,7 @@ export default class CreateEventUserService {
     );
 
     if (!thisDateisAfter) {
-      throw new AppError('The date provided is not valid', 400);
+      throw new AppError('The date provided is not valid', 412);
     }
 
     const eventUser = await this.eventUserRepository.create({

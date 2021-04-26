@@ -43,13 +43,13 @@ export default class UpdateEventUserService {
     }
 
     if (user_id !== eventUser.user_id) {
-      throw new AppError('This event does not belong to this user.', 404);
+      throw new AppError('This event does not belong to this user.', 409);
     }
 
     const thisDateisAfter = await this.dateFnsProvider.thisDateIsAfter(date);
 
     if (!thisDateisAfter) {
-      throw new AppError('The date provided is not valid', 400);
+      throw new AppError('The date provided is not valid', 412);
     }
 
     Object.assign(eventUser, {

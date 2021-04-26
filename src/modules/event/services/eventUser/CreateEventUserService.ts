@@ -33,9 +33,8 @@ export default class CreateEventUserService {
     event_type_id,
     user_id,
   }: IRequest): Promise<EventUser> {
-    const stringDate = String(date);
     const thisDateisAfter = await this.dateFnsProvider.thisDateIsAfter(
-      stringDate,
+      String(date),
     );
 
     if (!thisDateisAfter) {

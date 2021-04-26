@@ -73,7 +73,7 @@ container.registerSingleton<IEventTypeUserRepository>(
 container.registerSingleton<IEventUserRepository>(
   'EventUserRepository',
   EventUserRepository,
-=======
+);
 
 container.registerSingleton<IPostRepository>('PostRepository', PostRepository);
 
@@ -87,6 +87,7 @@ container.registerSingleton<ILikeRepository>('LikeRepository', LikeRepository);
 container.registerSingleton<IPhotoPostRepository>(
   'PhotoPostRepository',
   PhotoPostRepository,
+);
 
 container.registerSingleton<IProjectRepository>(
   'ProjectRepository',

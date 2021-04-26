@@ -25,7 +25,7 @@ export class CreateProjectPhoto1616791423647 implements MigrationInterface {
             length: '3000',
           },
           {
-            name: 'project_comment_id',
+            name: 'public_project_id',
             type: 'uuid',
           },
           {
@@ -45,10 +45,10 @@ export class CreateProjectPhoto1616791423647 implements MigrationInterface {
     await queryRunner.createForeignKey(
       'tb_project_photo',
       new TableForeignKey({
-        name: 'ProjectCommentId',
-        columnNames: ['project_comment_id'],
+        name: 'ProjectId',
+        columnNames: ['public_project_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_project_comment',
+        referencedTableName: 'tb_public_project',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
@@ -56,7 +56,7 @@ export class CreateProjectPhoto1616791423647 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tb_project_photo', 'ProjectCommentId');
+    await queryRunner.dropForeignKey('tb_project_photo', 'ProjectId');
     await queryRunner.dropTable('tb_project_photo');
   }
 }

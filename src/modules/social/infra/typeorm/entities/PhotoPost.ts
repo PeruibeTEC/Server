@@ -20,9 +20,12 @@ export default class PhotoPost {
   })
   url: string;
 
+  @Column({ nullable: true })
+  post_id: string;
+
   @ManyToOne(() => Post)
   @JoinColumn({ name: 'post_id' })
-  post_id: Post;
+  post: Post;
 
   @CreateDateColumn()
   created_at: Date;

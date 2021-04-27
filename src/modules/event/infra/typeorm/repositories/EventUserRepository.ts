@@ -10,20 +10,20 @@ export default class EventUserRepository implements IEventUserRepository {
     this.ormRepository = getRepository(EventUser);
   }
 
-  public async findAllEventUser(user_id?: string): Promise<EventUser[]> {
-    let eventsUser: EventUser[];
-
-    if (user_id) {
-      eventsUser = await this.ormRepository.find({
-        where: {
-          user_id,
-        },
-      });
-    } else {
-      eventsUser = await this.ormRepository.find();
-    }
+  public async findAllEventUser(): Promise<EventUser[]> {
+    const eventsUser = await this.ormRepository.find();
 
     return eventsUser;
+  }
+
+  public async findAllUserEvents(user_id: string): Promise<EventUser[]> {
+    const userEvents = await this.ormRepository.find({
+      where: {
+        user_id,
+      },
+    });
+
+    return userEvents;
   }
 
   public async findById(id: string): Promise<EventUser | undefined> {

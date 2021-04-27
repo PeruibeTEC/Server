@@ -6,18 +6,28 @@ import DeleteEventUserService from '@modules/event/services/eventUser/DeleteEven
 import UpdateEventUserService from '@modules/event/services/eventUser/UpdateEventUserService';
 
 import { container } from 'tsyringe';
+import FindAllUserEventsService from '@modules/event/services/eventUser/FindAllUserEventsService';
 
 export default class EventUserController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const { user_id = '' } = request.query;
-
-    const id = String(user_id);
-
     const indexEventUser = container.resolve(IndexEventUserService);
 
-    const eventUser = await indexEventUser.execute(id);
+    const eventUser = await indexEventUser.execute();
 
     return response.status(200).json(eventUser);
+  }
+
+  public async indexUserEvents(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { user_id = '' } = request.query;
+
+    const indexUserEvents = container.resolve(FindAllUserEventsService);
+
+    const userEvents = await indexUserEvents.execute(String(user_id));
+
+    return response.status(200).json(userEvents);
   }
 
   public async show(request: Request, response: Response): Promise<Response> {

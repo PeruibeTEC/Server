@@ -17,7 +17,7 @@ export default class EventTypeUserController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { event_type_id } = request.params;
+    const { event_type_id } = request.body;
 
     const showEventTypeUser = container.resolve(ShowEventTypeUserService);
 
@@ -39,8 +39,7 @@ export default class EventTypeUserController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { event_type_id } = request.params;
-    const { name } = request.body;
+    const { event_type_id, name } = request.body;
 
     const updateEventTypeUser = container.resolve(UpdateEventTypeUserService);
 
@@ -53,7 +52,7 @@ export default class EventTypeUserController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { event_type_id } = request.params;
+    const { event_type_id } = request.body;
 
     const deleteEventTypeUser = container.resolve(DeleteEventTypeUserService);
 

@@ -31,7 +31,7 @@ export default class EventUserController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { event_id } = request.params;
+    const { event_id } = request.body;
 
     const showEventUser = container.resolve(ShowEventUserService);
 
@@ -71,8 +71,8 @@ export default class EventUserController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
-    const { event_id } = request.params;
     const {
+      event_id,
       name,
       description,
       date,
@@ -99,7 +99,7 @@ export default class EventUserController {
 
   public async delete(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
-    const { event_id } = request.params;
+    const { event_id } = request.body;
 
     const deleteEventUser = container.resolve(DeleteEventUserService);
 

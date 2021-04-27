@@ -9,9 +9,9 @@ const eventTypeUserController = new EventTypeUserController();
 eventTypeUserRouter.use(ensureAuthenticate);
 
 eventTypeUserRouter.get('/', eventTypeUserController.index);
-eventTypeUserRouter.get('/:event_type_id', eventTypeUserController.show);
+eventTypeUserRouter.get('/', eventTypeUserController.show);
 eventTypeUserRouter.post('/', eventTypeUserController.create);
-eventTypeUserRouter.put('/:event_type_id', eventTypeUserController.update);
-eventTypeUserRouter.delete('/:event_type_id', eventTypeUserController.delete);
+eventTypeUserRouter.put('/', eventTypeUserController.update);
+eventTypeUserRouter.delete('/', eventTypeUserController.delete);
 
 export default eventTypeUserRouter;

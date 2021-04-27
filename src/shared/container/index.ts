@@ -2,6 +2,8 @@ import { container } from 'tsyringe';
 
 import '@modules/user/providers';
 import './providers';
+import '@shared/providers';
+
 
 import UsersRepository from '@modules/user/infra/typeorm/repositories/UserRepository';
 import IUsersRepository from '@modules/user/repositories/IUserRepository';
@@ -29,6 +31,11 @@ import IProjectCommentRepository from '@modules/project/repositories/ICommentPro
 import ProjectCommentRepository from '@modules/project/infra/typeorm/repositories/CommentProjectRepository';
 import IProjectPhotoRepository from '@modules/project/repositories/IPhotoProjectRepository';
 import ProjectPhotoRepository from '@modules/project/infra/typeorm/repositories/PhotoProjectRepository';
+
+import EventTypeUserRepository from '@modules/event/infra/typeorm/repositories/EventTypeUserRepository';
+import IEventTypeUserRepository from '@modules/event/repositories/IEventTypeUserRepository';
+import IEventUserRepository from '@modules/event/repositories/IEventUserRepository';
+import EventUserRepository from '@modules/event/infra/typeorm/repositories/EventUserRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -59,6 +66,18 @@ container.registerSingleton<ITouristSpotPhotoRepository>(
   'TouristSpotPhotoRepository',
   TouristSpotPhotoRepository,
 );
+
+
+container.registerSingleton<IEventTypeUserRepository>(
+  'EventTypeUserRepository',
+  EventTypeUserRepository,
+);
+
+container.registerSingleton<IEventUserRepository>(
+  'EventUserRepository',
+  EventUserRepository,
+);
+
 
 container.registerSingleton<IPostRepository>('PostRepository', PostRepository);
 

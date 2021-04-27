@@ -69,7 +69,7 @@ export class CreateEventBusiness1614869786281 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'tb_event',
+      'tb_event_business',
       new TableForeignKey({
         name: 'BusinessId',
         columnNames: ['business_id'],
@@ -81,7 +81,7 @@ export class CreateEventBusiness1614869786281 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'tb_event',
+      'tb_event_business',
       new TableForeignKey({
         name: 'EventTypeBusinessId',
         columnNames: ['event_type_business_id'],

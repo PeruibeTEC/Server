@@ -1,4 +1,3 @@
-import User from '@modules/user/infra/typeorm/entities/User';
 import {
   Entity,
   Column,
@@ -8,6 +7,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+import User from '../../../../user/infra/typeorm/entities/User';
 
 import Business from './Business';
 

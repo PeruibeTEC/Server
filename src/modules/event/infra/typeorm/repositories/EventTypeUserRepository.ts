@@ -25,6 +25,12 @@ export default class EventTypeUserRepository
     return eventTypeUser;
   }
 
+  public async findByName(name: string): Promise<EventTypeUser | undefined> {
+    const eventTypeUser = await this.ormRepository.findOne({ name });
+
+    return eventTypeUser;
+  }
+
   public async create(
     eventTypeUserData: IEventTypeUserDTO,
   ): Promise<EventTypeUser> {

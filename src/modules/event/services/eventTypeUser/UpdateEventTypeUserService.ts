@@ -23,8 +23,16 @@ export default class UpdateEventTypeUserService {
       eventTypeUser_id,
     );
 
+    const checkExistenceEventTypeUser = await this.eventTypeUserRepository.findByName(
+      name,
+    );
+
     if (!eventTypeUser) {
       throw new AppError('Event Type does not exists.', 404);
+    }
+
+    if (checkExistenceEventTypeUser) {
+      throw new AppError('An Event Type with this name already exists.');
     }
 
     eventTypeUser.name = name;

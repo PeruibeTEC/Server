@@ -2,10 +2,9 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/infra/http/errors/AppError';
 
-// import { azureCreate } from '@shared/infra/azure/imageStorage/imageUpload';
 import IHashProvider from '@shared/providers/HashProvider/models/IHashProvider';
+import { azureCreate } from '@shared/infra/azure/imageStorage/imageUpload';
 import Business from '../../infra/typeorm/entities/Business';
-import BusinessType from '../../infra/typeorm/entities/BusinessType';
 import IBusinessRepository from '../../repositories/IBusinessRepository';
 
 export interface IRequest {
@@ -18,7 +17,7 @@ export interface IRequest {
   operating_time: Date;
   closing_time: Date;
   closing_day: string;
-  business_type_id: BusinessType;
+  business_type_id: string;
 }
 
 @injectable()
@@ -51,14 +50,19 @@ export default class CreateBusinessService {
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
-    // todo: create business background and profile default photos
-    /* if (profile_photo === undefined) {
+    if (profile_photo === undefined) {
       profile_photo =
-        'https://peruibetec.blob.core.windows.net/user-images/default.jpg';
+        'https://peruibetec.blob.core.windows.net/business-images/default.jpg';
     } else {
-      profile_photo = azureCreate('user-images', profile_photo);
+      profile_photo = azureCreate('business-images', profile_photo);
     }
-    */
+
+    if (background_photo === undefined) {
+      background_photo =
+        'https://peruibetec.blob.core.windows.net/business-images/default.jpg';
+    } else {
+      background_photo = azureCreate('business-images', background_photo);
+    }
 
     const business = this.businessRepository.create({
       name,

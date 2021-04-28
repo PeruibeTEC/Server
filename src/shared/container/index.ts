@@ -1,7 +1,9 @@
 import { container } from 'tsyringe';
 
 import '@modules/user/providers';
+import './providers';
 import '@shared/providers';
+
 
 import UsersRepository from '@modules/user/infra/typeorm/repositories/UserRepository';
 import IUsersRepository from '@modules/user/repositories/IUserRepository';
@@ -65,6 +67,7 @@ container.registerSingleton<ITouristSpotPhotoRepository>(
   TouristSpotPhotoRepository,
 );
 
+
 container.registerSingleton<IEventTypeUserRepository>(
   'EventTypeUserRepository',
   EventTypeUserRepository,
@@ -74,6 +77,7 @@ container.registerSingleton<IEventUserRepository>(
   'EventUserRepository',
   EventUserRepository,
 );
+
 
 container.registerSingleton<IPostRepository>('PostRepository', PostRepository);
 

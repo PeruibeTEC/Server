@@ -3,10 +3,10 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import CreateBusinessService from '@modules/business/services/business/CreateBusinessService';
-// import DeleteBusinessService from '@modules/business/services/business/DeleteBusinessService';
-// import ShowBusinessService from '@modules/business/services/business/ShowBusinessService';
-// import UpdateBusinessService from '@modules/business/services/business/UpdateBusinessService';
-// import IndexBusinessService from '@modules/business/services/business/IndexBusinessService';
+import DeleteBusinessService from '@modules/business/services/business/DeleteBusinessService';
+import ShowBusinessService from '@modules/business/services/business/ShowBusinessService';
+import UpdateBusinessService from '@modules/business/services/business/UpdateBusinessService';
+import IndexBusinessService from '@modules/business/services/business/IndexBusinessService';
 
 export default class BusinessController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -44,12 +44,12 @@ export default class BusinessController {
     return response.json(business);
   }
 
-  /* public async delete(request: Request, response: Response): Promise<Response> {
-    const business_id = request.business.id;
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const { business_id } = request.body;
 
-    const deleteBusiness = container.resolve(DeleteBusinessService);
+    const deleteBusinessService = container.resolve(DeleteBusinessService);
 
-    await deleteBusiness.execute({ business_id });
+    await deleteBusinessService.execute({ business_id });
 
     return response
       .status(200)
@@ -57,7 +57,7 @@ export default class BusinessController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const business_id = request.business.id;
+    const { business_id } = request.params;
 
     const showBusiness = container.resolve(ShowBusinessService);
     const business = await showBusiness.execute({ business_id });
@@ -68,37 +68,44 @@ export default class BusinessController {
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
-    const business_id = request.business.id;
+    const indexBusinessService = container.resolve(IndexBusinessService);
 
-    const listBusiness = container.resolve(IndexBusinessService);
+    const business = await indexBusinessService.execute();
 
-    const businesss = await listBusiness.execute({
-      business_id,
-    });
-
-    return response.status(200).json(businesss);
+    return response.status(200).json(business);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const business_id = request.business.id;
-
     const {
       name,
-      email,
-      password,
+      email_login,
       old_password,
-      small_biography,
+      password,
+      description,
+      profile_photo,
+      background_photo,
+      operating_time,
+      closing_time,
+      closing_day,
+      business_type_id,
+      business_id,
     } = request.body;
 
-    const updateBusiness = container.resolve(UpdateBusinessService);
+    const updateBusinessService = container.resolve(UpdateBusinessService);
 
-    const business = await updateBusiness.execute({
-      business_id,
+    const business = await updateBusinessService.execute({
       name,
-      email,
-      password,
+      email_login,
       old_password,
-      small_biography,
+      password,
+      description,
+      profile_photo,
+      background_photo,
+      operating_time,
+      closing_time,
+      closing_day,
+      business_type_id,
+      business_id,
     });
 
     // @ts-expect-error ⠀⠀⠀
@@ -106,5 +113,4 @@ export default class BusinessController {
 
     return response.json(business);
   }
-  */
 }

@@ -18,7 +18,9 @@ import photoPostRouter from '@modules/social/infra/http/routes/photoPost.routes'
 import projectRouter from '@modules/project/infra/http/routes/project.routes';
 import projectCommentRouter from '@modules/project/infra/http/routes/projectcomment.routes';
 import projectPhotoRouter from '@modules/project/infra/http/routes/projectphoto.routes';
+
 import businessTypeRouter from '@modules/business/infra/http/routes/businesstype.routes';
+import businessRouter from '@modules/business/infra/http/routes/business.routes';
 
 export default (app: Express): void => {
   const router = Router();
@@ -42,6 +44,7 @@ export default (app: Express): void => {
   router.use('/project/comment', projectCommentRouter);
   router.use('/project/photo', projectPhotoRouter);
 
+  router.use('/business', businessRouter);
   router.use('/business/type', businessTypeRouter);
 
   app.use('/api', router);

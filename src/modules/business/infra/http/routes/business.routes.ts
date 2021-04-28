@@ -8,7 +8,7 @@ const businessController = new BusinessController();
 businessRouter.post('/', businessController.create);
 businessRouter.delete('/', businessController.delete);
 businessRouter.put('/', businessController.update);
-businessRouter.get('/', businessController.show);
+businessRouter.get('/:business_id', businessController.show);
 businessRouter.get('/', businessController.index);
 
 export default businessRouter;

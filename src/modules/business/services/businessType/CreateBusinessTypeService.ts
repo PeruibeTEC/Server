@@ -18,6 +18,13 @@ export default class CreateBusinessTypeService {
       throw new AppError('Content has exceeded the character limit', 413);
     }
 
+    const checkBusinessTypeExists = await this.businessTypeRepository.findByName(
+      name,
+    );
+    if (checkBusinessTypeExists) {
+      throw new AppError('Type already exists', 409);
+    }
+
     const businessType = this.businessTypeRepository.create({
       name,
     });

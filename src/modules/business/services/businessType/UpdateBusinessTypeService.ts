@@ -29,6 +29,10 @@ export default class UpdateBusinessTypeService {
       throw new AppError('Business Type not found.', 404);
     }
 
+    if (name.length > 200) {
+      throw new AppError('Content has exceeded the character limit', 413);
+    }
+
     Object.assign(businessType, { name });
 
     return this.businessTypeRepository.save(businessType);

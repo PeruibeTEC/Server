@@ -21,6 +21,7 @@ import projectPhotoRouter from '@modules/project/infra/http/routes/projectphoto.
 
 import businessTypeRouter from '@modules/business/infra/http/routes/businesstype.routes';
 import businessRouter from '@modules/business/infra/http/routes/business.routes';
+import businessContactRouter from '@modules/business/infra/http/routes/businesscontact.routes';
 
 export default (app: Express): void => {
   const router = Router();
@@ -45,6 +46,7 @@ export default (app: Express): void => {
   router.use('/project/photo', projectPhotoRouter);
 
   router.use('/business', businessRouter);
+  router.use('/business/contact', businessContactRouter);
   router.use('/business/type', businessTypeRouter);
 
   app.use('/api', router);

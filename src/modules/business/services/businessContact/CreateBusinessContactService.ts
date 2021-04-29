@@ -2,7 +2,6 @@ import { injectable, inject } from 'tsyringe';
 
 import AppError from '@shared/infra/http/errors/AppError';
 
-import Business from '../../infra/typeorm/entities/Business';
 import BusinessContact from '../../infra/typeorm/entities/BusinessContact';
 import IBusinessContactRepository from '../../repositories/IBusinessContactRepository';
 
@@ -10,7 +9,7 @@ export interface IRequest {
   contact_email: string;
   cellphone: string;
   tellphone: string;
-  business_id: Business;
+  business_id: string;
 }
 
 @injectable()

@@ -27,14 +27,41 @@ export default class UpdateBusinessService {
     private businessRepository: IBusinessRepository,
   ) {}
 
-  public async execute({ business_id, name }: IRequest): Promise<Business> {
+  public async execute({
+    name,
+    email_login,
+    old_password,
+    password,
+    description,
+    profile_photo,
+    background_photo,
+    operating_time,
+    closing_time,
+    closing_day,
+    business_type_id,
+    business_id,
+  }: IRequest): Promise<Business> {
     const business = await this.businessRepository.findById(business_id);
 
     if (!business) {
       throw new AppError('Business  not found.', 404);
     }
 
-    Object.assign(business, { name });
+    // todo: put all missing IRequest placeholdes
+    Object.assign(business, {
+      name,
+      email_login,
+      old_password,
+      password,
+      description,
+      profile_photo,
+      background_photo,
+      operating_time,
+      closing_time,
+      closing_day,
+      business_type_id,
+      business_id,
+    });
 
     return this.businessRepository.save(business);
   }

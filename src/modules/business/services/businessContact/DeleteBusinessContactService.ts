@@ -11,7 +11,7 @@ interface IRequest {
 @injectable()
 export default class DeleteBusinessContactService {
   constructor(
-    @inject('BusinessContacyRepository')
+    @inject('BusinessContactRepository')
     private businessContactRepository: IBusinessContactRepository,
   ) {}
 

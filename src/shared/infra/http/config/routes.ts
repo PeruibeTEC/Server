@@ -26,8 +26,12 @@ import businessLocationRouter from '@modules/business/infra/http/routes/business
 
 export default (app: Express): void => {
   const router = Router();
-  router.use('/user', usersRouter);
+
+  // always put especific routes first, and generic routes later
+  // e.g: '/a/b' needs to come first and '/a' later
+
   router.use('/user/profile', profilesRouter);
+  router.use('/user', usersRouter);
   router.use('/session', sessionsRouter);
   router.use('/password', passwordRouter);
 
@@ -42,14 +46,14 @@ export default (app: Express): void => {
   router.use('/social/comment', commentRouter);
   router.use('/social/like', likeRouter);
 
-  router.use('/project', projectRouter);
   router.use('/project/comment', projectCommentRouter);
   router.use('/project/photo', projectPhotoRouter);
+  router.use('/project', projectRouter);
 
-  router.use('/business', businessRouter);
   router.use('/business/contact', businessContactRouter);
   router.use('/business/type', businessTypeRouter);
   router.use('/business/location', businessLocationRouter);
+  router.use('/business', businessRouter);
 
   app.use('/api', router);
 };

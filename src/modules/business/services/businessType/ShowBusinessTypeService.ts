@@ -10,7 +10,7 @@ interface IRequest {
 }
 
 @injectable()
-export default class IndexBusinessTypeService {
+export default class ShowBusinessTypeService {
   constructor(
     @inject('BusinessTypeRepository')
     private businessTypeRepository: IBusinessTypeRepository,

@@ -44,6 +44,8 @@ import BusinessProductRepository from '@modules/business/infra/typeorm/repositor
 import IBusinessProductRepository from '@modules/business/repositories/IBusinessProductRepository';
 import EventTypeBusinessRepository from '@modules/business/infra/typeorm/repositories/EventTypeBusinessRepository';
 import IEventTypeBusinessRepository from '@modules/business/repositories/IEventTypeBusinessRepository';
+import EventBusinessRepository from '@modules/business/infra/typeorm/repositories/EventBusinessRepository';
+import IEventBusinessRepository from '@modules/business/repositories/IEventBusinessRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -132,4 +134,9 @@ container.registerSingleton<IBusinessProductRepository>(
 container.registerSingleton<IEventTypeBusinessRepository>(
   'EventTypeBusinessRepository',
   EventTypeBusinessRepository,
+);
+
+container.registerSingleton<IEventBusinessRepository>(
+  'EventBusinessRepository',
+  EventBusinessRepository,
 );

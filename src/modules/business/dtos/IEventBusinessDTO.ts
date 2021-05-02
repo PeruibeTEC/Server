@@ -6,5 +6,5 @@ export default interface IEventBusinessDTO {
   background_photo: string;
   description: string;
   business_id: string;
-  event_type_id: string;
+  event_type_business_id: string;
 }

@@ -25,6 +25,7 @@ import businessContactRouter from '@modules/business/infra/http/routes/businessc
 import businessLocationRouter from '@modules/business/infra/http/routes/businesslocation.routes';
 import businessProductRouter from '@modules/business/infra/http/routes/businessproduct.routes';
 import eventTypeBusinessRouter from '@modules/business/infra/http/routes/eventtypebusiness.routes';
+import eventBusinessRouter from '@modules/business/infra/http/routes/eventbusiness.routes';
 
 export default (app: Express): void => {
   const router = Router();
@@ -57,6 +58,7 @@ export default (app: Express): void => {
   router.use('/business/location', businessLocationRouter);
   router.use('/business/product', businessProductRouter);
   router.use('/business/eventtype', eventTypeBusinessRouter);
+  router.use('/business/event', eventBusinessRouter);
   router.use('/business', businessRouter);
 
   app.use('/api', router);

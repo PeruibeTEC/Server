@@ -23,6 +23,7 @@ import businessTypeRouter from '@modules/business/infra/http/routes/businesstype
 import businessRouter from '@modules/business/infra/http/routes/business.routes';
 import businessContactRouter from '@modules/business/infra/http/routes/businesscontact.routes';
 import businessLocationRouter from '@modules/business/infra/http/routes/businesslocation.routes';
+import businessProductRouter from '@modules/business/infra/http/routes/businessproduct.routes';
 
 export default (app: Express): void => {
   const router = Router();
@@ -53,6 +54,7 @@ export default (app: Express): void => {
   router.use('/business/contact', businessContactRouter);
   router.use('/business/type', businessTypeRouter);
   router.use('/business/location', businessLocationRouter);
+  router.use('/business/product', businessProductRouter);
   router.use('/business', businessRouter);
 
   app.use('/api', router);

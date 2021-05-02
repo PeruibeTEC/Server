@@ -40,6 +40,8 @@ import BusinessContactRepository from '@modules/business/infra/typeorm/repositor
 import IBusinessContactRepository from '@modules/business/repositories/IBusinessContactRepository';
 import BusinessLocationRepository from '@modules/business/infra/typeorm/repositories/BusinessLocationRepository';
 import IBusinessLocationRepository from '@modules/business/repositories/IBusinessLocationRepository';
+import BusinessProductRepository from '@modules/business/infra/typeorm/repositories/BusinessProductRepository';
+import IBusinessProductRepository from '@modules/business/repositories/IBusinessProductRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -118,4 +120,9 @@ container.registerSingleton<IBusinessContactRepository>(
 container.registerSingleton<IBusinessLocationRepository>(
   'BusinessLocationRepository',
   BusinessLocationRepository,
+);
+
+container.registerSingleton<IBusinessProductRepository>(
+  'BusinessProductRepository',
+  BusinessProductRepository,
 );

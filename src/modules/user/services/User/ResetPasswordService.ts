@@ -19,8 +19,8 @@ class ResetPasswordService {
     @inject('UserTokenRepository')
     private userTokenRepository: IUserTokenRepository,
 
-    @inject('HashProvider')
-    private hashProvider: IHashProvider,
+    @inject('HashCitizenProvider')
+    private hashCitizenProvider: IHashProvider,
   ) {}
 
   public async execute({ token, new_password }: IRequest): Promise<void> {
@@ -40,7 +40,7 @@ class ResetPasswordService {
       throw new AppError('Token expired', 401);
     }
 
-    user.password = await this.hashProvider.generateHash(new_password);
+    user.password = await this.hashCitizenProvider.generateHash(new_password);
 
     await this.usersRepository.save(user);
   }

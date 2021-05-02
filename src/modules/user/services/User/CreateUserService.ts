@@ -20,8 +20,8 @@ export default class CreateUserService {
     @inject('UsersRepository')
     private usersRepository: IUserRepository,
 
-    @inject('HashProvider')
-    private hashProvider: IHashProvider,
+    @inject('HashCitizenProvider')
+    private hashCitizenProvider: IHashProvider,
   ) {}
 
   public async execute({
@@ -38,7 +38,9 @@ export default class CreateUserService {
       throw new AppError('Email address already used.');
     }
 
-    const hashedPassword = await this.hashProvider.generateHash(password);
+    const hashedPassword = await this.hashCitizenProvider.generateHash(
+      password,
+    );
 
     if (photo === undefined) {
       photo =

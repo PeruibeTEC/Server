@@ -26,7 +26,7 @@ import UserTokensRepository from '@modules/user/infra/typeorm/repositories/UserT
 import '@modules/user/providers';
 import ITouristRepository from '@modules/user/repositories/ITouristRepository';
 import IUsersRepository from '@modules/user/repositories/IUserRepository';
-import IUserTokenRepository from '@modules/user/repositories/IUserTokenRepository';
+import ITokenRepository from '@modules/user/repositories/ITokenRepository';
 import { container } from 'tsyringe';
 
 container.registerSingleton<IUsersRepository>(
@@ -34,7 +34,7 @@ container.registerSingleton<IUsersRepository>(
   UsersRepository,
 );
 
-container.registerSingleton<IUserTokenRepository>(
+container.registerSingleton<ITokenRepository>(
   'UserTokenRepository',
   UserTokensRepository,
 );

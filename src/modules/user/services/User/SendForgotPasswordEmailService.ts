@@ -1,7 +1,7 @@
 import AppError from '@shared/infra/http/errors/AppError';
 import { inject, injectable } from 'tsyringe';
 import IUserRepository from '../../repositories/IUserRepository';
-import IUserTokenRepository from '../../repositories/IUserTokenRepository';
+import ITokenRepository from '../../repositories/ITokenRepository';
 
 interface IRequest {
   email: string;
@@ -14,7 +14,7 @@ class SendForgotPasswordEmailService {
     private usersRepository: IUserRepository,
 
     @inject('UserTokenRepository')
-    private userTokenRepository: IUserTokenRepository,
+    private userTokenRepository: ITokenRepository,
   ) {}
 
   public async execute({ email }: IRequest): Promise<void> {

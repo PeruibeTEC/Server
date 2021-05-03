@@ -13,7 +13,9 @@ import passwordRouter from '@modules/user/infra/http/routes/password.routes';
 import profilesRouter from '@modules/user/infra/http/routes/profile.routes';
 import sessionsRouter from '@modules/user/infra/http/routes/session.routes';
 import touristRouter from '@modules/user/infra/http/routes/tourist.routes';
+import touristsessionRouter from '@modules/user/infra/http/routes/touristsession.routes';
 import usersRouter from '@modules/user/infra/http/routes/user.routes';
+
 import { Express, Router } from 'express';
 
 export default (app: Express): void => {
@@ -28,6 +30,7 @@ export default (app: Express): void => {
   router.use('/interestPoint', interestPointRouter);
   router.use('/interestPointType', interestPointTypeRouter);
 
+  router.use('/touristSession', touristsessionRouter);
   router.use('/touristSpot', touristSpotRouter);
   router.use('/touristSpotPhoto', touristSpotPhotoRouter);
 

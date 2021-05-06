@@ -1,11 +1,9 @@
-import { injectable, inject } from 'tsyringe';
-
-import AppError from '@shared/infra/http/errors/AppError';
-
 import { azureCreate } from '@shared/infra/azure/imageStorage/imageUpload';
+import AppError from '@shared/infra/http/errors/AppError';
+import { inject, injectable } from 'tsyringe';
 import User from '../infra/typeorm/entities/User';
-import IUserRepository from '../repositories/IUserRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
+import IUserRepository from '../repositories/IUserRepository';
 
 export interface IRequest {
   name: string;
@@ -13,6 +11,7 @@ export interface IRequest {
   password: string;
   is_tourist: boolean;
   photo: string;
+  background_photo: string;
   small_biography?: string;
 }
 
@@ -32,6 +31,7 @@ export default class CreateUserService {
     password,
     is_tourist,
     photo,
+    background_photo,
     small_biography,
   }: IRequest): Promise<User> {
     const checkUserExists = await this.usersRepository.findByEmail(email);
@@ -55,6 +55,7 @@ export default class CreateUserService {
       password: hashedPassword,
       is_tourist,
       photo,
+      background_photo,
       small_biography,
     });
 

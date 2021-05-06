@@ -37,6 +37,12 @@ export class CreateUserTable1616786287024 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'background_photo',
+            type: 'varchar',
+            length: '3000',
+            isNullable: true,
+          },
+          {
             name: 'photo',
             type: 'varchar',
             isNullable: true,

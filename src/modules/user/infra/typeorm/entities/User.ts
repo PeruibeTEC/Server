@@ -1,9 +1,9 @@
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
   CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
 } from 'typeorm';
 
 @Entity('tb_user')
@@ -35,6 +35,12 @@ export default class User {
     nullable: true,
   })
   photo: string;
+
+  @Column({
+    length: 3000,
+    nullable: true,
+  })
+  background_photo: string;
 
   @Column()
   is_tourist: boolean;

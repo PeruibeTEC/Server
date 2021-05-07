@@ -24,6 +24,8 @@ import businessRouter from '@modules/business/infra/http/routes/business.routes'
 import businessContactRouter from '@modules/business/infra/http/routes/businesscontact.routes';
 import businessLocationRouter from '@modules/business/infra/http/routes/businesslocation.routes';
 import businessProductRouter from '@modules/business/infra/http/routes/businessproduct.routes';
+import businessRatingRouter from '@modules/business/infra/http/routes/businessrating.routes';
+import businessCommentRouter from '@modules/business/infra/http/routes/businesscomment.routes';
 import eventTypeBusinessRouter from '@modules/business/infra/http/routes/eventtypebusiness.routes';
 import eventBusinessRouter from '@modules/business/infra/http/routes/eventbusiness.routes';
 
@@ -57,6 +59,8 @@ export default (app: Express): void => {
   router.use('/business/type', businessTypeRouter);
   router.use('/business/location', businessLocationRouter);
   router.use('/business/product', businessProductRouter);
+  router.use('/business/rating', businessRatingRouter);
+  router.use('/business/comment', businessCommentRouter);
   router.use('/business/eventtype', eventTypeBusinessRouter);
   router.use('/business/event', eventBusinessRouter);
   router.use('/business', businessRouter);

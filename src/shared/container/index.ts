@@ -46,6 +46,10 @@ import EventTypeBusinessRepository from '@modules/business/infra/typeorm/reposit
 import IEventTypeBusinessRepository from '@modules/business/repositories/IEventTypeBusinessRepository';
 import EventBusinessRepository from '@modules/business/infra/typeorm/repositories/EventBusinessRepository';
 import IEventBusinessRepository from '@modules/business/repositories/IEventBusinessRepository';
+import BusinessCommentRepository from '@modules/business/infra/typeorm/repositories/BusinessCommentRepository';
+import IBusinessCommentRepository from '@modules/business/repositories/IBusinessCommentRepository';
+import BusinessRatingRepository from '@modules/business/infra/typeorm/repositories/BusinessRatingRepository';
+import IBusinessRatingRepository from '@modules/business/repositories/IBusinessRatingRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -139,4 +143,14 @@ container.registerSingleton<IEventTypeBusinessRepository>(
 container.registerSingleton<IEventBusinessRepository>(
   'EventBusinessRepository',
   EventBusinessRepository,
+);
+
+container.registerSingleton<IBusinessCommentRepository>(
+  'BusinessCommentRepository',
+  BusinessCommentRepository,
+);
+
+container.registerSingleton<IBusinessRatingRepository>(
+  'BusinessRatingRepository',
+  BusinessRatingRepository,
 );

@@ -31,7 +31,7 @@ export default class BusinessComment {
   @JoinColumn({ name: 'business_id' })
   business: Business;
 
-  @ManyToOne(() => Business)
+  @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
   user: User;
 

@@ -42,11 +42,12 @@ export default class CreateUserService {
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
-    if (photo === undefined) {
+    if (photo === undefined || background_photo === undefined) {
       photo =
         'https://peruibetec.blob.core.windows.net/user-images/default.jpg';
     } else {
       photo = azureCreate('user-images', photo);
+      background_photo = azureCreate('background-photo', background_photo);
     }
 
     const user = this.usersRepository.create({

@@ -47,8 +47,9 @@ export default class CreateUserService {
         'https://peruibetec.blob.core.windows.net/user-images/default.jpg';
     } else {
       photo = azureCreate('user-images', photo);
-      background_photo = azureCreate('background-photo', background_photo);
     }
+
+    background_photo = azureCreate('background-photo', background_photo);
 
     const user = this.usersRepository.create({
       name,

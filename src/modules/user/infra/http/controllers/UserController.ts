@@ -1,7 +1,7 @@
 import CreateUserService from '@modules/user/services/CreateUserService';
 import DeleteUserService from '@modules/user/services/DeleteUserService';
 import ListUserService from '@modules/user/services/IndexUserService';
-import ShowProfileService from '@modules/user/services/ShowProfileService';
+import ShowLoggedUserService from '@modules/user/services/ShowLoggedUserService';
 import UpdateProfileService from '@modules/user/services/UpdateProfileService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
@@ -49,7 +49,7 @@ export default class UsersController {
   public async show(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
 
-    const showUser = container.resolve(ShowProfileService);
+    const showUser = container.resolve(ShowLoggedUserService);
     const user = await showUser.execute({ user_id });
     // @ts-expect-error ⠀⠀⠀
     delete user.password;

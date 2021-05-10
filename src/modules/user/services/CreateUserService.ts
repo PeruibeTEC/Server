@@ -49,7 +49,12 @@ export default class CreateUserService {
       photo = azureCreate('user-images', photo);
     }
 
-    background_photo = azureCreate('background-photo', background_photo);
+    if (background_photo) {
+      background_photo = azureCreate('background-photo', background_photo);
+    } else {
+      // eslint-disable-next-line no-unused-expressions
+      background_photo === null;
+    }
 
     const user = this.usersRepository.create({
       name,

@@ -4,7 +4,7 @@ import BusinessComment from '../../infra/typeorm/entities/BusinessComment';
 import IBusinessCommentRepository from '../../repositories/IBusinessCommentRepository';
 
 interface IRequest {
-  business_comment_id: string;
+  user_id: string;
 }
 
 @injectable()
@@ -15,10 +15,10 @@ export default class ShowBusinessCommentService {
   ) {}
 
   public async execute({
-    business_comment_id,
+    user_id,
   }: IRequest): Promise<BusinessComment | undefined> {
-    const businessRating = await this.businessCommentRepository.findById(
-      business_comment_id,
+    const businessRating = await this.businessCommentRepository.findByUser(
+      user_id,
     );
 
     return businessRating;

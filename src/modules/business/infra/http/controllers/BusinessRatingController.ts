@@ -4,7 +4,9 @@ import { container } from 'tsyringe';
 
 import CreateBusinessRatingService from '@modules/business/services/businessRating/CreateBusinessRatingService';
 import DeleteBusinessRatingService from '@modules/business/services/businessRating/DeleteBusinessRatingService';
-import ShowBusinessRatingService from '@modules/business/services/businessRating/ShowBusinessRatingService';
+import ShowBusinessRatingByUserService from '@modules/business/services/businessRating/ShowBusinessRatingByUserService';
+import ShowBusinessRatingByBusinessService from '@modules/business/services/businessRating/ShowBusinessRatingByBusinessService';
+import ShowBusinessRatingAverageService from '@modules/business/services/businessRating/ShowBusinessRatingAverageService';
 import UpdateBusinessRatingService from '@modules/business/services/businessRating/UpdateBusinessRatingService';
 
 export default class BusinessRatingController {
@@ -36,12 +38,49 @@ export default class BusinessRatingController {
       .json({ message: `Rating ${business_rating_id} deleted ` });
   }
 
-  public async show(request: Request, response: Response): Promise<Response> {
-    const { business_rating_id } = request.body;
+  public async showUser(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { user_id } = request.body;
 
-    const showBusinessRating = container.resolve(ShowBusinessRatingService);
+    const showBusinessRating = container.resolve(
+      ShowBusinessRatingByUserService,
+    );
     const businessRating = await showBusinessRating.execute({
-      business_rating_id,
+      user_id,
+    });
+
+    return response.status(200).json(businessRating);
+  }
+
+  public async showBusiness(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { business_id } = request.body;
+
+    const showBusinessRating = container.resolve(
+      ShowBusinessRatingByBusinessService,
+    );
+    const businessRating = await showBusinessRating.execute({
+      business_id,
+    });
+
+    return response.status(200).json(businessRating);
+  }
+
+  public async showAverage(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { business_id } = request.body;
+
+    const showBusinessAverageRating = container.resolve(
+      ShowBusinessRatingAverageService,
+    );
+    const businessRating = await showBusinessAverageRating.execute({
+      business_id,
     });
 
     return response.status(200).json(businessRating);

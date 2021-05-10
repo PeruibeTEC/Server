@@ -12,7 +12,7 @@ import User from '../../../../user/infra/typeorm/entities/User';
 import Business from './Business';
 
 @Entity('tb_business_rating')
-export default class BusinessComment {
+export default class BusinessRating {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

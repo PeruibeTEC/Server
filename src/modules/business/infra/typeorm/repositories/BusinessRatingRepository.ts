@@ -29,8 +29,23 @@ export default class BusinessRatingRepository
     return businessRating;
   }
 
-  public async findAllValues(): Promise<BusinessRating[] | undefined> {
-    const businessRating = await this.ormRepository.find();
+  public async findByUser(
+    user_id: string,
+  ): Promise<BusinessRating | undefined> {
+    const businessRating = await this.ormRepository.findOne({
+      where: { user_id },
+    });
+
+    return businessRating;
+  }
+
+  public async findAllValues(
+    business_id: string,
+  ): Promise<BusinessRating[] | undefined> {
+    const businessRating = await this.ormRepository.find({
+      select: ['value'],
+      where: { business_id },
+    });
 
     return businessRating;
   }

@@ -6,7 +6,7 @@ import BusinessRating from '../../infra/typeorm/entities/BusinessRating';
 import IBusinessRatingRepository from '../../repositories/IBusinessRatingRepository';
 
 interface IRequest {
-  business_rating_id: string;
+  user_id: string;
 }
 
 @injectable()
@@ -17,14 +17,14 @@ export default class ShowBusinessRatingService {
   ) {}
 
   public async execute({
-    business_rating_id,
+    user_id,
   }: IRequest): Promise<BusinessRating | undefined> {
-    const businessRating = await this.businessRatingRepository.findById(
-      business_rating_id,
+    const businessRating = await this.businessRatingRepository.findByUser(
+      user_id,
     );
 
     if (!businessRating) {
-      throw new AppError('Rating not found.', 404);
+      throw new AppError('User not found.', 404);
     }
 
     return businessRating;

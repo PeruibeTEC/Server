@@ -5,12 +5,16 @@ export default function averageRating(
     return 'Value is undefined';
   }
 
+  const ratingValuesToNumber = ratingValues.map(x => Number(x));
+
   let sumRatingValues = 0;
-  for (let i = 0; i < ratingValues.length; i = 1 + i) {
-    sumRatingValues += ratingValues[i];
+  for (let i = 0; i < ratingValuesToNumber.length; i = 1 + i) {
+    sumRatingValues += ratingValuesToNumber[i];
   }
 
-  const averageRatingValues = (sumRatingValues / 5).toFixed(1);
+  const averageRatingValues = (
+    sumRatingValues / ratingValuesToNumber.length
+  ).toFixed(1);
 
   return averageRatingValues;
 }

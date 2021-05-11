@@ -42,7 +42,7 @@ export default class CreateUserService {
 
     const hashedPassword = await this.hashProvider.generateHash(password);
 
-    if (photo === undefined || background_photo === undefined) {
+    if (photo === undefined) {
       photo =
         'https://peruibetec.blob.core.windows.net/user-images/default.jpg';
     } else {

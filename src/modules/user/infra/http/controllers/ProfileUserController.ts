@@ -2,7 +2,7 @@ import ShowProfileUserService from '@modules/user/services/ShowProfileUserServic
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-export default class ProjectController {
+export default class ProfileUserController {
   public async show(request: Request, response: Response): Promise<Response> {
     const user_id: string = (request.params as unknown) as string;
 

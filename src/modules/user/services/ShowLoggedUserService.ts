@@ -1,5 +1,5 @@
-import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/infra/http/errors/AppError';
+import { inject, injectable } from 'tsyringe';
 import User from '../infra/typeorm/entities/User';
 import IUserRepository from '../repositories/IUserRepository';
 
@@ -8,7 +8,7 @@ export interface IRequest {
 }
 
 @injectable()
-export default class ShowProfileService {
+export default class ShowLoggedUserService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUserRepository,

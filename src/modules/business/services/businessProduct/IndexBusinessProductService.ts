@@ -10,8 +10,12 @@ export default class IndexBusinessProductService {
     private businessProductRepository: IBusinessProductRepository,
   ) {}
 
-  public async execute(): Promise<BusinessProduct[]> {
-    const businessProduct = await this.businessProductRepository.findAllBusinessProduct();
+  public async execute(
+    business_id: string,
+  ): Promise<BusinessProduct[] | undefined> {
+    const businessProduct = await this.businessProductRepository.findAllProductsByBusiness(
+      business_id,
+    );
 
     return businessProduct;
   }

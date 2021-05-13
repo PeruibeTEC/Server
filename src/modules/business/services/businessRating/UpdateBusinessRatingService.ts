@@ -26,7 +26,7 @@ export default class UpdateBusinessRatingService {
     );
 
     if (!businessRating) {
-      throw new AppError('Rating  not found.', 404);
+      throw new AppError('Rating not found.', 404);
     }
 
     const checkRatingSize = value;

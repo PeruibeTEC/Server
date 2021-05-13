@@ -6,7 +6,7 @@ import BusinessContact from '../../infra/typeorm/entities/BusinessContact';
 import IBusinessContactRepository from '../../repositories/IBusinessContactRepository';
 
 interface IRequest {
-  business_contact_id: string;
+  business_id: string;
 }
 
 @injectable()
@@ -17,10 +17,10 @@ export default class ShowBusinessContactService {
   ) {}
 
   public async execute({
-    business_contact_id,
+    business_id,
   }: IRequest): Promise<BusinessContact | undefined> {
-    const businessContact = await this.businessContactRepository.findById(
-      business_contact_id,
+    const businessContact = await this.businessContactRepository.findByBusiness(
+      business_id,
     );
 
     if (!businessContact) {

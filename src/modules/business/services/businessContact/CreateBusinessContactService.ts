@@ -33,6 +33,14 @@ export default class CreateBusinessContactService {
       throw new AppError('Email already in use.', 409);
     }
 
+    const businessExists = this.businessContactRepository.findByBusiness(
+      business_id,
+    );
+
+    if (businessExists) {
+      throw new AppError('This business already has a contact.', 409);
+    }
+
     const businessContact = this.businessContactRepository.create({
       contact_email,
       cellphone,

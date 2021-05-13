@@ -19,6 +19,14 @@ export default class BusinessContactRepository
     return businessContact;
   }
 
+  public async findByBusiness(
+    business_id: string,
+  ): Promise<BusinessContact | undefined> {
+    const businessContact = await this.ormRepository.findOne(business_id);
+
+    return businessContact;
+  }
+
   public async findByContactEmail(
     contact_email: string,
   ): Promise<BusinessContact | undefined> {

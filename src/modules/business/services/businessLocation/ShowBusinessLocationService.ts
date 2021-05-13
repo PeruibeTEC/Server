@@ -6,7 +6,7 @@ import BusinessLocation from '../../infra/typeorm/entities/BusinessLocation';
 import IBusinessLocationRepository from '../../repositories/IBusinessLocationRepository';
 
 interface IRequest {
-  business_location_id: string;
+  business_id: string;
 }
 
 @injectable()
@@ -17,10 +17,10 @@ export default class ShowBusinessLocationService {
   ) {}
 
   public async execute({
-    business_location_id,
+    business_id,
   }: IRequest): Promise<BusinessLocation | undefined> {
-    const businessLocation = await this.businessLocationRepository.findById(
-      business_location_id,
+    const businessLocation = await this.businessLocationRepository.findByBusiness(
+      business_id,
     );
 
     if (!businessLocation) {

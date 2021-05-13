@@ -40,7 +40,7 @@ export default class UpdateEventBusinessService {
     );
 
     if (!eventBusiness) {
-      throw new AppError('Business Type not found.', 404);
+      throw new AppError('Business Event not found.', 404);
     }
 
     Object.assign(eventBusiness, {

@@ -4,8 +4,7 @@ import { container } from 'tsyringe';
 
 import CreateBusinessCommentService from '@modules/business/services/businessComment/CreateBusinessCommentService';
 import DeleteBusinessCommentService from '@modules/business/services/businessComment/DeleteBusinessCommentService';
-import ShowBusinessCommentByUserService from '@modules/business/services/businessComment/ShowBusinessCommentByUserService';
-import ShowBusinessCommentByBusinessService from '@modules/business/services/businessComment/ShowBusinessCommentByBusinessService';
+import IndexBusinessCommentByBusinessService from '@modules/business/services/businessComment/IndexBusinessCommentByBusinessService';
 import UpdateBusinessCommentService from '@modules/business/services/businessComment/UpdateBusinessCommentService';
 
 export default class BusinessCommentController {
@@ -39,32 +38,16 @@ export default class BusinessCommentController {
       .json({ message: `Comment ${business_comment_id} deleted ` });
   }
 
-  public async showUser(
+  public async indexCommentByBusiness(
     request: Request,
     response: Response,
   ): Promise<Response> {
-    const { user_id } = request.body;
+    const { business_id } = request.params;
 
-    const showBusinessComment = container.resolve(
-      ShowBusinessCommentByUserService,
+    const indexBusinessComment = container.resolve(
+      IndexBusinessCommentByBusinessService,
     );
-    const businessComment = await showBusinessComment.execute({
-      user_id,
-    });
-
-    return response.status(200).json(businessComment);
-  }
-
-  public async showBusiness(
-    request: Request,
-    response: Response,
-  ): Promise<Response> {
-    const { business_id } = request.body;
-
-    const showBusinessComment = container.resolve(
-      ShowBusinessCommentByBusinessService,
-    );
-    const businessComment = await showBusinessComment.execute({
+    const businessComment = await indexBusinessComment.execute({
       business_id,
     });
 

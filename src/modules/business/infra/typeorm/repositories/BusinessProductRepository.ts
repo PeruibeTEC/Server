@@ -33,6 +33,16 @@ export default class BusinessProductRepository
     return businessProduct;
   }
 
+  public async findAllProductsByBusiness(
+    business_id: string,
+  ): Promise<BusinessProduct[] | undefined> {
+    const businessProduct = await this.ormRepository.find({
+      where: { business_id },
+    });
+
+    return businessProduct;
+  }
+
   public async create(
     businessProductData: IBusinessProductDTO,
   ): Promise<BusinessProduct> {

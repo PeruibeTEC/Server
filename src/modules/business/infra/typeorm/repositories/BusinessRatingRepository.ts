@@ -19,21 +19,22 @@ export default class BusinessRatingRepository
     return businessRating;
   }
 
-  public async findByBusiness(
-    business_id: string,
-  ): Promise<BusinessRating | undefined> {
-    const businessRating = await this.ormRepository.findOne({
-      where: { business_id },
-    });
-
-    return businessRating;
-  }
-
   public async findByUser(
     user_id: string,
   ): Promise<BusinessRating | undefined> {
     const businessRating = await this.ormRepository.findOne({
       where: { user_id },
+    });
+
+    return businessRating;
+  }
+
+  public async findByUserAndBusiness(
+    user_id: string,
+    business_id: string,
+  ): Promise<BusinessRating | undefined> {
+    const businessRating = await this.ormRepository.findOne({
+      where: { user_id, business_id },
     });
 
     return businessRating;

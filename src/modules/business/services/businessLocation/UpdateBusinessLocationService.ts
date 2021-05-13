@@ -38,7 +38,7 @@ export default class UpdateBusinessLocationService {
     );
 
     if (!businessLocation) {
-      throw new AppError('Business  not found.', 404);
+      throw new AppError('Business not found.', 404);
     }
 
     Object.assign(businessLocation, {

@@ -7,6 +7,7 @@ import IBusinessRatingRepository from '../../repositories/IBusinessRatingReposit
 
 interface IRequest {
   user_id: string;
+  business_id: string;
 }
 
 @injectable()
@@ -18,9 +19,11 @@ export default class ShowBusinessRatingService {
 
   public async execute({
     user_id,
+    business_id,
   }: IRequest): Promise<BusinessRating | undefined> {
-    const businessRating = await this.businessRatingRepository.findByUser(
+    const businessRating = await this.businessRatingRepository.findByUserAndBusiness(
       user_id,
+      business_id,
     );
 
     if (!businessRating) {

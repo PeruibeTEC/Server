@@ -8,10 +8,7 @@ const businessContactController = new BusinessContactController();
 businessContactRouter.post('/', businessContactController.create);
 businessContactRouter.delete('/', businessContactController.delete);
 businessContactRouter.put('/', businessContactController.update);
-businessContactRouter.get(
-  '/:business_contact_id',
-  businessContactController.show,
-);
+businessContactRouter.get('/:business_id', businessContactController.show);
 businessContactRouter.get('/', businessContactController.index);
 
 export default businessContactRouter;

@@ -41,10 +41,10 @@ export default class BusinessContactController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { business_contact_id } = request.body;
+    const { business_id } = request.body;
 
     const showBusinessContact = container.resolve(ShowBusinessContactService);
-    const business = await showBusinessContact.execute({ business_contact_id });
+    const business = await showBusinessContact.execute({ business_id });
 
     return response.status(200).json(business);
   }

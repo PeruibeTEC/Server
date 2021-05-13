@@ -35,6 +35,14 @@ export default class BusinessLocationRepository
     return businessLocation;
   }
 
+  public async findByBusiness(
+    business_id: string,
+  ): Promise<BusinessLocation | undefined> {
+    const businessLocation = await this.ormRepository.findOne(business_id);
+
+    return businessLocation;
+  }
+
   public async create(
     businessLocationData: IBusinessLocationDTO,
   ): Promise<BusinessLocation> {

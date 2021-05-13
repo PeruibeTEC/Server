@@ -21,7 +21,7 @@ export default class DeleteEventBusinessService {
     );
 
     if (!eventBusiness) {
-      throw new AppError('Event Type Business not found.', 404);
+      throw new AppError('Event not found.', 404);
     }
 
     await this.eventBusinessRepository.delete(event_business_id);

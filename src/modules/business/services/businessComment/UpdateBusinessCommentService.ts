@@ -26,7 +26,7 @@ export default class UpdateBusinessCommentService {
     );
 
     if (!businessComment) {
-      throw new AppError('Comment  not found.', 404);
+      throw new AppError('Comment not found.', 404);
     }
 
     Object.assign(businessComment, { content });

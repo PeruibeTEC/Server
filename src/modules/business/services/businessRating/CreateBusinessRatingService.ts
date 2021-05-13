@@ -29,6 +29,15 @@ export default class CreateBusinessRatingService {
       throw new AppError('Rating is above number limit', 413);
     }
 
+    const ratingExists = await this.businessRatingRepository.findByUserAndBusiness(
+      user_id,
+      business_id,
+    );
+
+    if (ratingExists) {
+      throw new AppError('A User can only give one rating.', 409);
+    }
+
     const businessRating = this.businessRatingRepository.create({
       value,
       user_id,

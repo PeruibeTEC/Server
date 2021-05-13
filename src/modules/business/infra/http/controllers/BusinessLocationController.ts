@@ -52,11 +52,11 @@ export default class BusinessLocationController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { business_location_id } = request.body;
+    const { business_id } = request.body;
 
     const showBusinessLocation = container.resolve(ShowBusinessLocationService);
     const businessLocation = await showBusinessLocation.execute({
-      business_location_id,
+      business_id,
     });
 
     return response.status(200).json(businessLocation);

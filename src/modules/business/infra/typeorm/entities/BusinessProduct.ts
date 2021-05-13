@@ -35,7 +35,7 @@ export default class BusinessProduct {
   @Column({
     length: 3000,
   })
-  url: string;
+  photo_product_url: string;
 
   @Column({ nullable: true })
   business_id: string;

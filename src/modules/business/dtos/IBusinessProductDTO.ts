@@ -2,6 +2,6 @@ export default interface IBusinessProductDTO {
   name: string;
   description: string;
   price: number;
-  url: string;
+  photo_product_url: string;
   business_id: string;
 }

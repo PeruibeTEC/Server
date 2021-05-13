@@ -27,6 +27,16 @@ export default class EventBusinessRepository
     return event_business;
   }
 
+  public async findEventByBusiness(
+    business_id: string,
+  ): Promise<EventBusiness[] | undefined> {
+    const event_business = await this.ormRepository.find({
+      where: { business_id },
+    });
+
+    return event_business;
+  }
+
   public async findAllEventBusiness(): Promise<EventBusiness[]> {
     const event_business = await this.ormRepository.find();
 

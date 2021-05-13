@@ -56,13 +56,7 @@ export default class CreateBusinessService {
     } else {
       profile_photo = azureCreate('business-images', profile_photo);
     }
-
-    if (background_photo === undefined) {
-      background_photo =
-        'https://peruibetec.blob.core.windows.net/business-images/default.jpg';
-    } else {
-      background_photo = azureCreate('business-images', background_photo);
-    }
+    background_photo = azureCreate('business-images', background_photo);
 
     const business = this.businessRepository.create({
       name,

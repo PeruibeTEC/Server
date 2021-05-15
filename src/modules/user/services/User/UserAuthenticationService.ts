@@ -1,8 +1,9 @@
-import auth from '@shared/infra/http/config/auth';
-import AppError from '@shared/infra/http/errors/AppError';
+import { inject, injectable } from 'tsyringe';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import { inject, injectable } from 'tsyringe';
+
+import auth from '@shared/infra/http/config/auth';
+import AppError from '@shared/infra/http/errors/AppError';
 import User from '../../infra/typeorm/entities/User';
 import IUserRepository from '../../repositories/IUserRepository';
 

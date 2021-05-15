@@ -1,6 +1,7 @@
-import Tourist from '@modules/user/infra/typeorm/entities/Tourist';
-import AppError from '@shared/infra/http/errors/AppError';
 import { inject, injectable } from 'tsyringe';
+import AppError from '@shared/infra/http/errors/AppError';
+
+import Tourist from '@modules/user/infra/typeorm/entities/Tourist';
 import ITouristRepository from '../../repositories/ITouristRepository';
 
 interface IRequest {
@@ -20,7 +21,7 @@ export default class ShowTouristService {
     );
 
     if (!checkTouristExists) {
-      throw new AppError('Id of the Tourist not found.', 404);
+      throw new AppError('Tourist not found.', 404);
     }
 
     return checkTouristExists;

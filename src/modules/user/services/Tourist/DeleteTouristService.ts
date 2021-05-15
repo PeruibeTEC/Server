@@ -1,5 +1,6 @@
-import AppError from '@shared/infra/http/errors/AppError';
 import { inject, injectable } from 'tsyringe';
+import AppError from '@shared/infra/http/errors/AppError';
+
 import ITouristRepository from '../../repositories/ITouristRepository';
 
 interface IRequest {

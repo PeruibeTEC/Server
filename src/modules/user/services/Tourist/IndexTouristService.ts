@@ -1,5 +1,6 @@
-import Tourist from '@modules/user/infra/typeorm/entities/Tourist';
 import { inject, injectable } from 'tsyringe';
+
+import Tourist from '@modules/user/infra/typeorm/entities/Tourist';
 import ITouristRepository from '../../repositories/ITouristRepository';
 
 @injectable()

@@ -1,5 +1,4 @@
 import { injectable, inject } from 'tsyringe';
-
 import AppError from '@shared/infra/http/errors/AppError';
 
 import IUsersRepository from '@modules/user/repositories/IUserRepository';

@@ -1,10 +1,11 @@
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+
 import CreateTouristService from '@modules/user/services/Tourist/CreateTouristService';
 import DeleteTouristService from '@modules/user/services/Tourist/DeleteTouristService';
 import IndexTouristService from '@modules/user/services/Tourist/IndexTouristService';
 import ShowTouristService from '@modules/user/services/Tourist/ShowTouristService';
 import UpdateTouristService from '@modules/user/services/Tourist/UpdateTouristService';
-import { Request, Response } from 'express';
-import { container } from 'tsyringe';
 
 export default class TouristController {
   public async create(request: Request, response: Response): Promise<Response> {

@@ -1,6 +1,7 @@
+import { inject, injectable } from 'tsyringe';
 import { azureCreate } from '@shared/infra/azure/imageStorage/imageUpload';
 import AppError from '@shared/infra/http/errors/AppError';
-import { inject, injectable } from 'tsyringe';
+
 import User from '../../infra/typeorm/entities/User';
 import IHashProvider from '../../providers/HashProvider/models/IHashProvider';
 import IUserRepository from '../../repositories/IUserRepository';

@@ -1,7 +1,8 @@
+import { inject, injectable } from 'tsyringe';
+import AppError from '@shared/infra/http/errors/AppError';
+
 import Tourist from '@modules/user/infra/typeorm/entities/Tourist';
 import ITouristRepository from '@modules/user/repositories/ITouristRepository';
-import AppError from '@shared/infra/http/errors/AppError';
-import { inject, injectable } from 'tsyringe';
 import IUserRepository from '../../repositories/IUserRepository';
 
 interface IRequest {
@@ -34,8 +35,12 @@ export default class UpdateTouristService {
     const checkTourist = await this.touristRepository.findById(tourist_id);
     const checkUserExists = await this.usersRepository.findById(user_id);
 
-    if (!checkTourist || !checkUserExists) {
-      throw new AppError('Tourist or User not found.', 404);
+    if (!checkTourist) {
+      throw new AppError('Tourist not found.', 404);
+    }
+
+    if (!checkUserExists) {
+      throw new AppError('User not found.', 404);
     }
 
     Object.assign(checkTourist, {

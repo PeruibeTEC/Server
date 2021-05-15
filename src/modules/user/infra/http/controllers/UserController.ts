@@ -1,10 +1,11 @@
-import CreateUserService from '@modules/user/services/User/CreateUserService';
-import DeleteUserService from '@modules/user/services/User/DeleteUserService';
-import ListUserService from '@modules/user/services/User/IndexUserService';
-import ShowProfileService from '@modules/user/services/User/ShowProfileService';
-import UpdateProfileService from '@modules/user/services/User/UpdateProfileService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+
+import CreateUserService from '@modules/user/services/User/CreateUserService';
+import DeleteUserService from '@modules/user/services/User/DeleteUserService';
+import IndexUserService from '@modules/user/services/User/IndexUserService';
+import ShowProfileService from '@modules/user/services/User/ShowProfileService';
+import UpdateProfileService from '@modules/user/services/User/UpdateProfileService';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -58,7 +59,7 @@ export default class UsersController {
   public async index(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
 
-    const listUser = container.resolve(ListUserService);
+    const listUser = container.resolve(IndexUserService);
 
     const users = await listUser.execute({
       user_id,

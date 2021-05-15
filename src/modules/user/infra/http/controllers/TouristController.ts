@@ -38,12 +38,12 @@ export default class TouristController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const tourist_id: string = (request.params as unknown) as string;
+    const { tourist_id } = request.params;
 
     const showTourist = container.resolve(ShowTouristService);
     const tourist = await showTourist.execute({ tourist_id });
 
-    return response.status(200).json({ tourist });
+    return response.status(200).json(tourist);
   }
 
   public async index(request: Request, response: Response): Promise<Response> {

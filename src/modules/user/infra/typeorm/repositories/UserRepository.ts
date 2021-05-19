@@ -1,6 +1,13 @@
+<<<<<<< HEAD
+import { getRepository, Not, Repository } from 'typeorm';
+
+import IUserDTO from '@modules/user/dtos/IUserDTO';
+import IUserRepository from '@modules/user/repositories/IUserRepository';
+=======
 import ICreateUserDTO from '@modules/user/dtos/IUserDTO';
 import IUserRepository from '@modules/user/repositories/IUserRepository';
 import { getRepository, Repository } from 'typeorm';
+>>>>>>> main
 import User from '../entities/User';
 
 export default class UserRepository implements IUserRepository {
@@ -30,7 +37,7 @@ export default class UserRepository implements IUserRepository {
     return users;
   }
 
-  public async create(userData: ICreateUserDTO): Promise<User> {
+  public async create(userData: IUserDTO): Promise<User> {
     const user = this.ormRepository.create(userData);
 
     await this.ormRepository.save(user);

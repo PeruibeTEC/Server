@@ -1,10 +1,10 @@
-import { injectable, inject } from 'tsyringe';
-import { isAfter, addHours } from 'date-fns';
-
+import { inject, injectable } from 'tsyringe';
+import { addHours, isAfter } from 'date-fns';
 import AppError from '@shared/infra/http/errors/AppError';
-import IUserRepository from '../repositories/IUserRepository';
-import IUserTokenRepository from '../repositories/IUserTokenRepository';
-import IHashProvider from '../providers/HashProvider/models/IHashProvider';
+
+import IHashProvider from '../../providers/HashProvider/models/IHashProvider';
+import IUserRepository from '../../repositories/IUserRepository';
+import ITokenRepository from '../../repositories/ITokenRepository';
 
 interface IRequest {
   new_password: string;
@@ -18,10 +18,10 @@ class ResetPasswordService {
     private usersRepository: IUserRepository,
 
     @inject('UserTokenRepository')
-    private userTokenRepository: IUserTokenRepository,
+    private userTokenRepository: ITokenRepository,
 
-    @inject('HashProvider')
-    private hashProvider: IHashProvider,
+    @inject('HashCitizenProvider')
+    private hashCitizenProvider: IHashProvider,
   ) {}
 
   public async execute({ token, new_password }: IRequest): Promise<void> {
@@ -41,7 +41,7 @@ class ResetPasswordService {
       throw new AppError('Token expired', 401);
     }
 
-    user.password = await this.hashProvider.generateHash(new_password);
+    user.password = await this.hashCitizenProvider.generateHash(new_password);
 
     await this.usersRepository.save(user);
   }

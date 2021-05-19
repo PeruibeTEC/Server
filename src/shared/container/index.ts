@@ -8,29 +8,36 @@ import '@shared/providers';
 import UsersRepository from '@modules/user/infra/typeorm/repositories/UserRepository';
 import IUsersRepository from '@modules/user/repositories/IUserRepository';
 import UserTokensRepository from '@modules/user/infra/typeorm/repositories/UserTokenRepository';
-import IUserTokenRepository from '@modules/user/repositories/IUserTokenRepository';
-import IInterestPointRepository from '@modules/rawdata/repositories/IInterestPointRepository';
-import InterestPointRepository from '@modules/rawdata/infra/typeorm/repositories/InterestPointRepository';
-import IInterestPointTypeRepository from '@modules/rawdata/repositories/IInterestPointTypeRepository';
+import IUserTokenRepository from '@modules/user/repositories/ITokenRepository';
+
+import TouristRepository from '@modules/user/infra/typeorm/repositories/TouristRepository';
+import ITouristRepository from '@modules/user/repositories/ITouristRepository';
+
 import InterestPointTypeRepository from '@modules/rawdata/infra/typeorm/repositories/InterestPointTypeRepository';
-import ITouristSpotRepository from '@modules/rawdata/repositories/ITouristSpotRepository';
-import TouristSpotRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotRepository';
-import ITouristSpotPhotoRepository from '@modules/rawdata/repositories/ITouristSpotPhotoRepository';
+import IInterestPointTypeRepository from '@modules/rawdata/repositories/IInterestPointTypeRepository';
+import InterestPointRepository from '@modules/rawdata/infra/typeorm/repositories/InterestPointRepository';
+import IInterestPointRepository from '@modules/rawdata/repositories/IInterestPointRepository';
+
 import TouristSpotPhotoRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotPhotoRepository';
+import ITouristSpotPhotoRepository from '@modules/rawdata/repositories/ITouristSpotPhotoRepository';
+import TouristSpotRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotRepository';
+import ITouristSpotRepository from '@modules/rawdata/repositories/ITouristSpotRepository';
+
 import PostRepository from '@modules/social/infra/typeorm/repositories/PostRepository';
 import IPostRepository from '@modules/social/repositories/IPostRepository';
 import CommentRepository from '@modules/social/infra/typeorm/repositories/CommentRepository';
 import ICommentRepository from '@modules/social/repositories/ICommentRepository';
-import ILikeRepository from '@modules/social/repositories/ILikeRepository';
 import LikeRepository from '@modules/social/infra/typeorm/repositories/LikeRepository';
+import ILikeRepository from '@modules/social/repositories/ILikeRepository';
 import PhotoPostRepository from '@modules/social/infra/typeorm/repositories/PhotoPostRepository';
 import IPhotoPostRepository from '@modules/social/repositories/IPhotoPostRepository';
-import IProjectRepository from '@modules/project/repositories/IProjectRepository';
+
+import ProjectCommentRepository from '@modules/project/infra/typeorm/repositories/CommentProjectRepository';
+import ProjectPhotoRepository from '@modules/project/infra/typeorm/repositories/PhotoProjectRepository';
 import ProjectRepository from '@modules/project/infra/typeorm/repositories/ProjectRepository';
 import IProjectCommentRepository from '@modules/project/repositories/ICommentProjectRepository';
-import ProjectCommentRepository from '@modules/project/infra/typeorm/repositories/CommentProjectRepository';
 import IProjectPhotoRepository from '@modules/project/repositories/IPhotoProjectRepository';
-import ProjectPhotoRepository from '@modules/project/infra/typeorm/repositories/PhotoProjectRepository';
+import IProjectRepository from '@modules/project/repositories/IProjectRepository';
 
 import EventTypeUserRepository from '@modules/event/infra/typeorm/repositories/EventTypeUserRepository';
 import IEventTypeUserRepository from '@modules/event/repositories/IEventTypeUserRepository';
@@ -67,6 +74,8 @@ container.registerSingleton<ITouristSpotPhotoRepository>(
   TouristSpotPhotoRepository,
 );
 
+<<<<<<< HEAD
+=======
 
 container.registerSingleton<IEventTypeUserRepository>(
   'EventTypeUserRepository',
@@ -79,6 +88,7 @@ container.registerSingleton<IEventUserRepository>(
 );
 
 
+>>>>>>> main
 container.registerSingleton<IPostRepository>('PostRepository', PostRepository);
 
 container.registerSingleton<ICommentRepository>(
@@ -106,4 +116,9 @@ container.registerSingleton<IProjectCommentRepository>(
 container.registerSingleton<IProjectPhotoRepository>(
   'ProjectPhotoRepository',
   ProjectPhotoRepository,
+);
+
+container.registerSingleton<ITouristRepository>(
+  'TouristRepository',
+  TouristRepository,
 );

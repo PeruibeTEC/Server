@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+import { Request, Response } from 'express';
+import { container } from 'tsyringe';
+
+import CreateUserService from '@modules/user/services/User/CreateUserService';
+import DeleteUserService from '@modules/user/services/User/DeleteUserService';
+import IndexUserService from '@modules/user/services/User/IndexUserService';
+import ShowProfileService from '@modules/user/services/User/ShowProfileService';
+import UpdateProfileService from '@modules/user/services/User/UpdateProfileService';
+=======
 import CreateUserService from '@modules/user/services/CreateUserService';
 import DeleteUserService from '@modules/user/services/DeleteUserService';
 import ListUserService from '@modules/user/services/IndexUserService';
@@ -5,6 +15,7 @@ import ShowLoggedUserService from '@modules/user/services/ShowLoggedUserService'
 import UpdateProfileService from '@modules/user/services/UpdateProfileService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+>>>>>>> main
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -58,7 +69,13 @@ export default class UsersController {
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
+<<<<<<< HEAD
+    const user_id = request.user.id;
+
+    const listUser = container.resolve(IndexUserService);
+=======
     const listUser = container.resolve(ListUserService);
+>>>>>>> main
 
     const users = await listUser.execute();
 

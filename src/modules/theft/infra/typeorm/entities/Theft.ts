@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 
 import TheftLocation from './TheftLocation';
+import User from '@modules/user/infra/typeorm/entities/User';
 
 @Entity('tb_theft')
 export default class Theft {
@@ -24,7 +25,8 @@ export default class Theft {
   time: Date;
 
   @Column({
-    length: 20,
+    length: 50,
+    nullable: true,
   })
   title: string;
 
@@ -33,6 +35,13 @@ export default class Theft {
     nullable: true,
   })
   description: string;
+
+  @Column({ nullable: true })
+  user_id: string;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @ManyToOne(() => TheftLocation)
   @JoinColumn({ name: 'theft_location_id' })

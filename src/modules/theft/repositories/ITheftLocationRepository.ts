@@ -2,6 +2,7 @@ import TheftLocation from '../infra/typeorm/entities/TheftLocation';
 import ITheftLocationDTO from '../dtos/ITheftLocationDTO';
 
 export default interface ITheftLocationRepository {
+  findAllTheftLocation(): Promise<TheftLocation[] | undefined>;
   findByDistrict(district: string): Promise<TheftLocation[] | undefined>;
   findById(id: string): Promise<TheftLocation | undefined>;
   create(data: ITheftLocationDTO): Promise<TheftLocation>;

@@ -10,8 +10,8 @@ import {
 
 import Theft from './Theft';
 
-@Entity('tb_stolen_items')
-export default class StolenItems {
+@Entity('tb_theft_items')
+export default class TheftItems {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

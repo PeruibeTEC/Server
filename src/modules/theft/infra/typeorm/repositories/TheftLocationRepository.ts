@@ -4,17 +4,26 @@ import ITheftLocationRepository from '@modules/theft/repositories/ITheftLocation
 import ITheftLocationDTO from '@modules/theft/dtos/ITheftLocationDTO';
 import TheftLocation from '../entities/TheftLocation';
 
-export default class TheftLocationRepository implements ITheftLocationRepository {
+export default class TheftLocationRepository
+  implements ITheftLocationRepository {
   private ormRepository: Repository<TheftLocation>;
 
   constructor() {
     this.ormRepository = getRepository(TheftLocation);
   }
 
-  public async findByDistrict(district: string): Promise<TheftLocation[] | undefined> {
+  public async findByDistrict(
+    district: string,
+  ): Promise<TheftLocation[] | undefined> {
     const theft_location = await this.ormRepository.find({
       where: { district },
-    })
+    });
+
+    return theft_location;
+  }
+
+  public async findAllTheftLocation(): Promise<TheftLocation[] | undefined> {
+    const theft_location = await this.ormRepository.find();
 
     return theft_location;
   }

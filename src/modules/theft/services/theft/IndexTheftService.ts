@@ -1,4 +1,5 @@
 import { injectable, inject } from 'tsyringe';
+
 import Theft from '@modules/theft/infra/typeorm/entities/Theft';
 import ITheftRepository from '../../repositories/ITheftRepository';
 

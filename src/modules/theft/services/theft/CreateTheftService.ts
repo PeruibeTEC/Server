@@ -4,11 +4,12 @@ import Theft from '../../infra/typeorm/entities/Theft';
 import ITheftRepository from '../../repositories/ITheftRepository';
 
 interface IRequest {
-  date: Date,
-  time: Date,
-  description: string,
-  theft_location_id: string,
-  user_id: string,
+  date: Date;
+  time: Date;
+  description: string;
+  title: string;
+  theft_location_id: string;
+  user_id: string;
 }
 
 @injectable()
@@ -22,6 +23,7 @@ export default class CreateTheftService {
     date,
     time,
     description,
+    title,
     theft_location_id,
     user_id,
   }: IRequest): Promise<Theft> {
@@ -29,6 +31,7 @@ export default class CreateTheftService {
       date,
       time,
       description,
+      title,
       theft_location_id,
       user_id,
     });

@@ -14,6 +14,7 @@ export default class TheftController {
       date,
       time,
       description,
+      title,
       theft_location_id,
       user_id,
     } = request.body;
@@ -24,6 +25,7 @@ export default class TheftController {
       date,
       time,
       description,
+      title,
       theft_location_id,
       user_id,
     });
@@ -32,11 +34,12 @@ export default class TheftController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
     const { theft_id } = request.body;
 
     const deleteTheft = container.resolve(DeleteTheftService);
 
-    await deleteTheft.execute({ theft_id });
+    await deleteTheft.execute({ theft_id, user_id });
 
     return response.status(200).json({
       message: `Theft id ${theft_id} deleted `,
@@ -64,11 +67,13 @@ export default class TheftController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
     const {
       theft_id,
       date,
       time,
       description,
+      title,
       theft_location_id,
     } = request.body;
 
@@ -79,7 +84,9 @@ export default class TheftController {
       date,
       time,
       description,
+      title,
       theft_location_id,
+      user_id
     });
 
     return response.json(theft);

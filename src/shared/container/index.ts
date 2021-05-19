@@ -4,7 +4,6 @@ import '@modules/user/providers';
 import './providers';
 import '@shared/providers';
 
-
 import UsersRepository from '@modules/user/infra/typeorm/repositories/UserRepository';
 import IUsersRepository from '@modules/user/repositories/IUserRepository';
 import UserTokensRepository from '@modules/user/infra/typeorm/repositories/UserTokenRepository';
@@ -37,6 +36,11 @@ import IEventTypeUserRepository from '@modules/event/repositories/IEventTypeUser
 import IEventUserRepository from '@modules/event/repositories/IEventUserRepository';
 import EventUserRepository from '@modules/event/infra/typeorm/repositories/EventUserRepository';
 
+import ITheftLocationRepository from '@modules/theft/repositories/ITheftLocationRepository';
+import TheftLocationRepository from '@modules/theft/infra/typeorm/repositories/TheftLocationRepository';
+import ITheftRepository from '@modules/theft/repositories/ITheftRepository';
+import TheftRepository from '@modules/theft/infra/typeorm/repositories/TheftRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -67,7 +71,6 @@ container.registerSingleton<ITouristSpotPhotoRepository>(
   TouristSpotPhotoRepository,
 );
 
-
 container.registerSingleton<IEventTypeUserRepository>(
   'EventTypeUserRepository',
   EventTypeUserRepository,
@@ -77,7 +80,6 @@ container.registerSingleton<IEventUserRepository>(
   'EventUserRepository',
   EventUserRepository,
 );
-
 
 container.registerSingleton<IPostRepository>('PostRepository', PostRepository);
 
@@ -106,4 +108,14 @@ container.registerSingleton<IProjectCommentRepository>(
 container.registerSingleton<IProjectPhotoRepository>(
   'ProjectPhotoRepository',
   ProjectPhotoRepository,
+);
+
+container.registerSingleton<ITheftLocationRepository>(
+  'TheftLocationRepository',
+  TheftLocationRepository,
+);
+
+container.registerSingleton<ITheftRepository>(
+  'TheftRepository',
+  TheftRepository,
 );

@@ -17,9 +17,7 @@ export default class ShowTheftService {
   ) {}
 
   public async execute({ theft_id }: IRequest): Promise<Theft> {
-    const checkTheftExists = await this.theftRepository.findById(
-      theft_id,
-    );
+    const checkTheftExists = await this.theftRepository.findById(theft_id);
 
     if (!checkTheftExists) {
       throw new AppError('Theft not found.', 404);

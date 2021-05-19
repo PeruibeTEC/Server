@@ -9,7 +9,8 @@ import UpdateBusinessCommentService from '@modules/business/services/businessCom
 
 export default class BusinessCommentController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { content, user_id, business_id } = request.body;
+    const user_id = request.user.id;
+    const { content, business_id } = request.body;
 
     const createBusinessComment = container.resolve(
       CreateBusinessCommentService,
@@ -25,13 +26,17 @@ export default class BusinessCommentController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
     const { business_comment_id } = request.body;
 
     const deleteBusinessCommentService = container.resolve(
       DeleteBusinessCommentService,
     );
 
-    await deleteBusinessCommentService.execute({ business_comment_id });
+    await deleteBusinessCommentService.execute({
+      business_comment_id,
+      user_id,
+    });
 
     return response
       .status(200)
@@ -55,6 +60,7 @@ export default class BusinessCommentController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
     const { content, business_comment_id } = request.body;
 
     const updateBusinessCommentService = container.resolve(
@@ -64,6 +70,7 @@ export default class BusinessCommentController {
     const business = await updateBusinessCommentService.execute({
       content,
       business_comment_id,
+      user_id,
     });
 
     return response.json(business);

@@ -26,6 +26,14 @@ export default class BusinessRepository implements IBusinessRepository {
     return business;
   }
 
+  public async findByEmail(email_login: string): Promise<Business | undefined> {
+    const business = await this.ormRepository.findOne({
+      where: { email_login },
+    });
+
+    return business;
+  }
+
   public async findAllBusiness(): Promise<Business[]> {
     const business = await this.ormRepository.find();
 

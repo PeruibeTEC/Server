@@ -14,7 +14,9 @@ export default class BusinessCommentRepository
   }
 
   public async findById(id: string): Promise<BusinessComment | undefined> {
-    const businessComment = await this.ormRepository.findOne(id);
+    const businessComment = await this.ormRepository.findOne({
+      where: { id },
+    });
 
     return businessComment;
   }

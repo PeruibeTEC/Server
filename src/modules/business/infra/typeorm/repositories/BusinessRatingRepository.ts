@@ -34,7 +34,7 @@ export default class BusinessRatingRepository
     business_id: string,
   ): Promise<BusinessRating | undefined> {
     const businessRating = await this.ormRepository.findOne({
-      where: { user_id, business_id },
+      where: [{ user_id }, { business_id }],
     });
 
     return businessRating;

@@ -44,7 +44,7 @@ export default class UpdateBusinessService {
     const business = await this.businessRepository.findById(business_id);
 
     if (!business) {
-      throw new AppError('Business  not found.', 404);
+      throw new AppError('Business not found.', 404);
     }
 
     // todo: put all missing IRequest placeholdes

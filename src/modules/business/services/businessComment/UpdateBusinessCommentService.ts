@@ -8,6 +8,7 @@ import IBusinessCommentRepository from '../../repositories/IBusinessCommentRepos
 export interface IRequest {
   content: string;
   business_comment_id: string;
+  user_id: string;
 }
 
 @injectable()
@@ -20,6 +21,7 @@ export default class UpdateBusinessCommentService {
   public async execute({
     content,
     business_comment_id,
+    user_id,
   }: IRequest): Promise<BusinessComment> {
     const businessComment = await this.businessCommentRepository.findById(
       business_comment_id,
@@ -27,6 +29,13 @@ export default class UpdateBusinessCommentService {
 
     if (!businessComment) {
       throw new AppError('Comment not found.', 404);
+    }
+
+    if (businessComment.user_id !== user_id) {
+      throw new AppError(
+        'User does not have permission to update this comment.',
+        403,
+      );
     }
 
     Object.assign(businessComment, { content });

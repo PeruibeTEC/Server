@@ -5,6 +5,7 @@ export default interface IBusinessRepository {
   findAllBusiness(): Promise<Business[]>;
   findById(id: string): Promise<Business | undefined>;
   findByName(name: string): Promise<Business | undefined>;
+  findByEmail(email_login: string): Promise<Business | undefined>;
   create(data: IBusinessDTO): Promise<Business>;
   delete(id: string): Promise<string>;
   save(business: Business): Promise<Business>;

@@ -45,7 +45,7 @@ export default class BusinessController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { business_id } = request.body;
+    const business_id = request.business.id;
 
     const deleteBusinessService = container.resolve(DeleteBusinessService);
 
@@ -76,6 +76,7 @@ export default class BusinessController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
+    const business_id = request.business.id;
     const {
       name,
       email_login,
@@ -88,7 +89,6 @@ export default class BusinessController {
       closing_time,
       closing_day,
       business_type_id,
-      business_id,
     } = request.body;
 
     const updateBusinessService = container.resolve(UpdateBusinessService);

@@ -9,7 +9,8 @@ import UpdateBusinessRatingService from '@modules/business/services/businessRati
 
 export default class BusinessRatingController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { value, user_id, business_id } = request.body;
+    const user_id = request.user.id;
+    const { value, business_id } = request.body;
 
     const createBusinessRating = container.resolve(CreateBusinessRatingService);
 
@@ -23,13 +24,14 @@ export default class BusinessRatingController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
     const { business_rating_id } = request.body;
 
     const deleteBusinessRatingService = container.resolve(
       DeleteBusinessRatingService,
     );
 
-    await deleteBusinessRatingService.execute({ business_rating_id });
+    await deleteBusinessRatingService.execute({ user_id, business_rating_id });
 
     return response
       .status(200)
@@ -37,7 +39,8 @@ export default class BusinessRatingController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { user_id, business_id } = request.body;
+    const user_id = request.user.id;
+    const { business_id } = request.body;
 
     const showBusinessRating = container.resolve(
       ShowBusinessRatingByUserService,
@@ -51,6 +54,7 @@ export default class BusinessRatingController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
     const { value, business_rating_id } = request.body;
 
     const updateBusinessRatingService = container.resolve(
@@ -59,6 +63,7 @@ export default class BusinessRatingController {
 
     const business = await updateBusinessRatingService.execute({
       value,
+      user_id,
       business_rating_id,
     });
 

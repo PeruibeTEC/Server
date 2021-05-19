@@ -21,6 +21,7 @@ import projectPhotoRouter from '@modules/project/infra/http/routes/projectphoto.
 
 import businessTypeRouter from '@modules/business/infra/http/routes/businesstype.routes';
 import businessRouter from '@modules/business/infra/http/routes/business.routes';
+import businessAuthenticateRouter from '@modules/business/infra/http/routes/businessauthenticate.routes';
 import businessContactRouter from '@modules/business/infra/http/routes/businesscontact.routes';
 import businessLocationRouter from '@modules/business/infra/http/routes/businesslocation.routes';
 import businessProductRouter from '@modules/business/infra/http/routes/businessproduct.routes';
@@ -28,6 +29,7 @@ import businessRatingRouter from '@modules/business/infra/http/routes/businessra
 import businessCommentRouter from '@modules/business/infra/http/routes/businesscomment.routes';
 import eventTypeBusinessRouter from '@modules/business/infra/http/routes/eventtypebusiness.routes';
 import eventBusinessRouter from '@modules/business/infra/http/routes/eventbusiness.routes';
+import sessionRouter from '@modules/business/infra/http/routes/session.routes';
 
 export default (app: Express): void => {
   const router = Router();
@@ -36,8 +38,8 @@ export default (app: Express): void => {
   // e.g: '/a/b' needs to come first and '/a' later
 
   router.use('/user/profile', profilesRouter);
+  router.use('/user/session', sessionsRouter);
   router.use('/user', usersRouter);
-  router.use('/session', sessionsRouter);
   router.use('/password', passwordRouter);
 
   router.use('/interestPoint', interestPointRouter);
@@ -63,7 +65,8 @@ export default (app: Express): void => {
   router.use('/business/comment', businessCommentRouter);
   router.use('/business/eventtype', eventTypeBusinessRouter);
   router.use('/business/event', eventBusinessRouter);
-  router.use('/business', businessRouter);
+  router.use('/business/session', sessionRouter);
+  router.use('/business', [businessRouter, businessAuthenticateRouter]);
 
   app.use('/api', router);
 };

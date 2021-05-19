@@ -1,10 +1,11 @@
 import { inject, injectable } from 'tsyringe';
+<<<<<<< HEAD:src/modules/user/services/User/IndexUserService.ts
 import User from '../../infra/typeorm/entities/User';
 import IUserRepository from '../../repositories/IUserRepository';
-
-export interface IRequest {
-  user_id: string;
-}
+=======
+import User from '../infra/typeorm/entities/User';
+import IUserRepository from '../repositories/IUserRepository';
+>>>>>>> main:src/modules/user/services/IndexUserService.ts
 
 @injectable()
 export default class ListUsersService {
@@ -13,8 +14,8 @@ export default class ListUsersService {
     private usersRepository: IUserRepository,
   ) {}
 
-  public async execute({ user_id }: IRequest): Promise<User[]> {
-    const users = await this.usersRepository.findAllUsers(user_id);
+  public async execute(): Promise<User[]> {
+    const users = await this.usersRepository.findAllUsers();
 
     return users;
   }

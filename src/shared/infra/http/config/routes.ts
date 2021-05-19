@@ -9,6 +9,14 @@ import interestPointTypeRouter from '@modules/rawdata/infra/http/routes/interest
 import touristSpotRouter from '@modules/rawdata/infra/http/routes/touristspot.routes';
 import touristSpotPhotoRouter from '@modules/rawdata/infra/http/routes/touristspotphoto.routes';
 
+<<<<<<< HEAD
+=======
+
+import eventTypeUserRouter from '@modules/event/infra/http/routes/eventTypeUser.routes';
+import eventUserRouter from '@modules/event/infra/http/routes/eventUser.routes';
+
+import postRouter from '@modules/social/infra/http/routes/post.routes';
+>>>>>>> main
 import commentRouter from '@modules/social/infra/http/routes/comment.routes';
 import likeRouter from '@modules/social/infra/http/routes/like.routes';
 import photoPostRouter from '@modules/social/infra/http/routes/photoPost.routes';
@@ -20,6 +28,7 @@ import sessionsRouter from '@modules/user/infra/http/routes/session.routes';
 import touristRouter from '@modules/user/infra/http/routes/tourist.routes';
 import touristsessionRouter from '@modules/user/infra/http/routes/touristsession.routes';
 import usersRouter from '@modules/user/infra/http/routes/user.routes';
+
 
 export default (app: Express): void => {
   const router = Router();
@@ -37,6 +46,10 @@ export default (app: Express): void => {
   router.use('/touristSpot', touristSpotRouter);
   router.use('/touristSpotPhoto', touristSpotPhotoRouter);
 
+
+  router.use('/eventTypeUser', eventTypeUserRouter);
+  router.use('/eventUser', eventUserRouter);
+
   router.use('/social/post', postRouter);
   router.use('/social/photoPost', photoPostRouter);
   router.use('/social/comment', commentRouter);
@@ -45,6 +58,7 @@ export default (app: Express): void => {
   router.use('/project', projectRouter);
   router.use('/project/comment', projectCommentRouter);
   router.use('/project/photo', projectPhotoRouter);
+
 
   app.use('/api', router);
 };

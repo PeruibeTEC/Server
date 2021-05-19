@@ -40,13 +40,19 @@ export default class EventUser {
   })
   description: string;
 
+  @Column({ nullable: true })
+  user_id: string;
+
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
-  user_id: User;
+  user: User;
+
+  @Column({ nullable: true })
+  event_type_id: string;
 
   @ManyToOne(() => EventTypeUser)
   @JoinColumn({ name: 'event_type_id' })
-  event_type_id: User;
+  eventType: EventTypeUser;
 
   @CreateDateColumn()
   created_at: Date;

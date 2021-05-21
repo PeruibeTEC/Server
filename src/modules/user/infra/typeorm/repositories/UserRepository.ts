@@ -1,13 +1,7 @@
-<<<<<<< HEAD
-import { getRepository, Not, Repository } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
 
 import IUserDTO from '@modules/user/dtos/IUserDTO';
 import IUserRepository from '@modules/user/repositories/IUserRepository';
-=======
-import ICreateUserDTO from '@modules/user/dtos/IUserDTO';
-import IUserRepository from '@modules/user/repositories/IUserRepository';
-import { getRepository, Repository } from 'typeorm';
->>>>>>> main
 import User from '../entities/User';
 
 export default class UserRepository implements IUserRepository {

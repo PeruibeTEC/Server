@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import ensureAuthenticate from '@modules/user/infra/http/middlewares/ensureAuthenticate';
+import ensureAuthenticate from '@shared/infra/http/middlewares/ensureAuthenticate';
 import TouristController from '../controllers/TouristController';
 
 const touristRouter = Router();

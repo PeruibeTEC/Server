@@ -1,15 +1,10 @@
 import { inject, injectable } from 'tsyringe';
 import AppError from '@shared/infra/http/errors/AppError';
+import path from 'path';
 
-<<<<<<< HEAD:src/modules/user/services/User/SendForgotPasswordEmailService.ts
+import IMailProvider from '@shared/container/providers/AmazonSESProvider/models/IMailProvider';
 import IUserRepository from '../../repositories/IUserRepository';
 import ITokenRepository from '../../repositories/ITokenRepository';
-=======
-import IMailProvider from '@shared/container/providers/AmazonSESProvider/models/IMailProvider';
-import path from 'path';
-import IUserRepository from '../repositories/IUserRepository';
-import IUserTokenRepository from '../repositories/IUserTokenRepository';
->>>>>>> main:src/modules/user/services/SendForgotPasswordEmailService.ts
 
 interface IRequest {
   email: string;
@@ -37,12 +32,11 @@ class SendForgotPasswordEmailService {
 
     const { token } = await this.userTokenRepository.generate(user.id);
 
-<<<<<<< HEAD:src/modules/user/services/User/SendForgotPasswordEmailService.ts
     // here the email should be sent with token (waiting for SendEmailService)
     // console.log(token) is a placeholder
     // eslint-disable-next-line no-console
     console.log(token);
-=======
+
     const forgotPasswordTemplate = path.resolve(
       __dirname,
       '..',
@@ -65,7 +59,6 @@ class SendForgotPasswordEmailService {
         },
       },
     });
->>>>>>> main:src/modules/user/services/SendForgotPasswordEmailService.ts
   }
 }
 

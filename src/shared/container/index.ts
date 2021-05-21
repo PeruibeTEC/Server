@@ -4,7 +4,6 @@ import '@modules/user/providers';
 import './providers';
 import '@shared/providers';
 
-
 import UsersRepository from '@modules/user/infra/typeorm/repositories/UserRepository';
 import IUsersRepository from '@modules/user/repositories/IUserRepository';
 import UserTokensRepository from '@modules/user/infra/typeorm/repositories/UserTokenRepository';
@@ -74,9 +73,6 @@ container.registerSingleton<ITouristSpotPhotoRepository>(
   TouristSpotPhotoRepository,
 );
 
-<<<<<<< HEAD
-=======
-
 container.registerSingleton<IEventTypeUserRepository>(
   'EventTypeUserRepository',
   EventTypeUserRepository,
@@ -87,8 +83,6 @@ container.registerSingleton<IEventUserRepository>(
   EventUserRepository,
 );
 
-
->>>>>>> main
 container.registerSingleton<IPostRepository>('PostRepository', PostRepository);
 
 container.registerSingleton<ICommentRepository>(

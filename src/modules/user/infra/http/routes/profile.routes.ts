@@ -1,5 +1,6 @@
-import ensureAuthenticate from '@shared/infra/http/middlewares/ensureAuthenticate';
 import { Router } from 'express';
+
+import ensureAuthenticate from '@shared/infra/http/middlewares/ensureAuthenticate';
 import UsersController from '../controllers/UserController';
 
 const profilesRouter = Router();

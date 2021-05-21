@@ -1,4 +1,3 @@
-<<<<<<< HEAD:src/modules/user/services/User/CreateUserService.ts
 import { inject, injectable } from 'tsyringe';
 import { azureCreate } from '@shared/infra/azure/imageStorage/imageUpload';
 import AppError from '@shared/infra/http/errors/AppError';
@@ -6,14 +5,6 @@ import AppError from '@shared/infra/http/errors/AppError';
 import User from '../../infra/typeorm/entities/User';
 import IHashProvider from '../../providers/HashProvider/models/IHashProvider';
 import IUserRepository from '../../repositories/IUserRepository';
-=======
-import { azureCreate } from '@shared/infra/azure/imageStorage/imageUpload';
-import AppError from '@shared/infra/http/errors/AppError';
-import { inject, injectable } from 'tsyringe';
-import User from '../infra/typeorm/entities/User';
-import IHashProvider from '../providers/HashProvider/models/IHashProvider';
-import IUserRepository from '../repositories/IUserRepository';
->>>>>>> main:src/modules/user/services/CreateUserService.ts
 
 export interface IRequest {
   name: string;

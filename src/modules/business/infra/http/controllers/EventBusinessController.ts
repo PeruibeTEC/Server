@@ -10,6 +10,7 @@ import UpdateEventBusinessService from '@modules/business/services/eventBusiness
 
 export default class EventBusinessController {
   public async create(request: Request, response: Response): Promise<Response> {
+    const business_id = request.business.id;
     const {
       name,
       date,
@@ -18,7 +19,6 @@ export default class EventBusinessController {
       background_photo,
       description,
       event_type_business_id,
-      business_id,
     } = request.body;
 
     const createEventBusinessService = container.resolve(
@@ -40,13 +40,17 @@ export default class EventBusinessController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
+    const business_id = request.business.id;
     const { event_business_id } = request.body;
 
     const deleteEventBusinessService = container.resolve(
       DeleteEventBusinessService,
     );
 
-    await deleteEventBusinessService.execute({ event_business_id });
+    await deleteEventBusinessService.execute({
+      business_id,
+      event_business_id,
+    });
 
     return response
       .status(200)
@@ -64,6 +68,7 @@ export default class EventBusinessController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
+    const business_id = request.business.id;
     const {
       name,
       date,
@@ -72,7 +77,6 @@ export default class EventBusinessController {
       background_photo,
       description,
       event_type_business_id,
-      business_id,
       event_business_id,
     } = request.body;
 

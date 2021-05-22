@@ -43,6 +43,13 @@ export default class UpdateEventBusinessService {
       throw new AppError('Business Event not found.', 404);
     }
 
+    if (eventBusiness.business_id !== business_id) {
+      throw new AppError(
+        'Business does not have permission to update this event.',
+        403,
+      );
+    }
+
     Object.assign(eventBusiness, {
       name,
       date,

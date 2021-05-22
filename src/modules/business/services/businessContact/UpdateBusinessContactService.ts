@@ -10,6 +10,7 @@ export interface IRequest {
   cellphone: string;
   tellphone: string;
   business_contact_id: string;
+  business_id: string;
 }
 
 @injectable()
@@ -20,6 +21,7 @@ export default class UpdateBusinessContactService {
   ) {}
 
   public async execute({
+    business_id,
     business_contact_id,
     contact_email,
     cellphone,
@@ -39,6 +41,13 @@ export default class UpdateBusinessContactService {
 
     if (checkbusinessContactEmailExists) {
       throw new AppError('Email already in use.', 409);
+    }
+
+    if (businessContact.business_id !== business_id) {
+      throw new AppError(
+        'Business does not have permission to update this contact.',
+        403,
+      );
     }
 
     Object.assign(businessContact, { contact_email, cellphone, tellphone });

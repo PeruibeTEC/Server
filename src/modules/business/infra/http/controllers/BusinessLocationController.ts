@@ -10,6 +10,7 @@ import IndexBusinessLocationService from '@modules/business/services/businessLoc
 
 export default class BusinessLocationController {
   public async create(request: Request, response: Response): Promise<Response> {
+    const business_id = request.business.id;
     const {
       street,
       number,
@@ -17,7 +18,6 @@ export default class BusinessLocationController {
       latitude,
       longitude,
       description,
-      business_id,
     } = request.body;
 
     const createBusinessLocation = container.resolve(
@@ -38,13 +38,17 @@ export default class BusinessLocationController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
+    const business_id = request.business.id;
     const { business_location_id } = request.body;
 
     const deleteBusinessLocationService = container.resolve(
       DeleteBusinessLocationService,
     );
 
-    await deleteBusinessLocationService.execute({ business_location_id });
+    await deleteBusinessLocationService.execute({
+      business_id,
+      business_location_id,
+    });
 
     return response
       .status(200)
@@ -52,7 +56,7 @@ export default class BusinessLocationController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { business_id } = request.body;
+    const { business_id } = request.params;
 
     const showBusinessLocation = container.resolve(ShowBusinessLocationService);
     const businessLocation = await showBusinessLocation.execute({
@@ -73,6 +77,7 @@ export default class BusinessLocationController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
+    const business_id = request.business.id;
     const {
       street,
       number,
@@ -80,7 +85,6 @@ export default class BusinessLocationController {
       latitude,
       longitude,
       description,
-      business_id,
       business_location_id,
     } = request.body;
 

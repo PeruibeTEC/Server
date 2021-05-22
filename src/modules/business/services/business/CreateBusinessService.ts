@@ -1,9 +1,10 @@
 import { injectable, inject } from 'tsyringe';
 
+import { azureCreate } from '@shared/infra/azure/imageStorage/imageUpload';
+
 import AppError from '@shared/infra/http/errors/AppError';
 
 import IHashProvider from '@shared/providers/HashProvider/models/IHashProvider';
-import { azureCreate } from '@shared/infra/azure/imageStorage/imageUpload';
 import Business from '../../infra/typeorm/entities/Business';
 import IBusinessRepository from '../../repositories/IBusinessRepository';
 

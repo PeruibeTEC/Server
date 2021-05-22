@@ -10,7 +10,8 @@ import IndexBusinessContactService from '@modules/business/services/businessCont
 
 export default class BusinessContactController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { contact_email, cellphone, tellphone, business_id } = request.body;
+    const business_id = request.business.id;
+    const { contact_email, cellphone, tellphone } = request.body;
 
     const createBusinessContact = container.resolve(
       CreateBusinessContactService,
@@ -27,13 +28,17 @@ export default class BusinessContactController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
+    const business_id = request.business.id;
     const { business_contact_id } = request.body;
 
     const deleteBusinessContactService = container.resolve(
       DeleteBusinessContactService,
     );
 
-    await deleteBusinessContactService.execute({ business_contact_id });
+    await deleteBusinessContactService.execute({
+      business_id,
+      business_contact_id,
+    });
 
     return response
       .status(200)
@@ -60,6 +65,7 @@ export default class BusinessContactController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
+    const business_id = request.business.id;
     const {
       contact_email,
       cellphone,
@@ -72,6 +78,7 @@ export default class BusinessContactController {
     );
 
     const business = await updateBusinessContactService.execute({
+      business_id,
       contact_email,
       cellphone,
       tellphone,

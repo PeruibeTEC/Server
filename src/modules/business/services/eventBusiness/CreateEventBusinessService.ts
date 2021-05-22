@@ -1,5 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
+import AppError from '@shared/infra/http/errors/AppError';
+
 import EventBusiness from '../../infra/typeorm/entities/EventBusiness';
 import IEventBusinessRepository from '../../repositories/IEventBusinessRepository';
 
@@ -31,7 +33,7 @@ export default class CreateEventBusinessService {
     event_type_business_id: string,
     business_id: string,
   ): Promise<EventBusiness> {
-    const eventBusiness = this.eventBusinessRepository.create({
+    const eventBusiness = await this.eventBusinessRepository.create({
       name,
       date,
       start_time,
@@ -41,6 +43,13 @@ export default class CreateEventBusinessService {
       event_type_business_id,
       business_id,
     });
+
+    if (eventBusiness.business_id !== business_id) {
+      throw new AppError(
+        'Business does not have permission to create this event.',
+        403,
+      );
+    }
 
     return eventBusiness;
   }

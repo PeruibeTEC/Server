@@ -23,9 +23,7 @@ export default class CreateBusinessRatingService {
     user_id,
     business_id,
   }: IRequest): Promise<BusinessRating> {
-    const checkRatingSize = value;
-
-    if (checkRatingSize > 5) {
+    if (value > 5) {
       throw new AppError('Rating is above number limit', 413);
     }
 

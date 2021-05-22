@@ -10,7 +10,8 @@ import IndexBusinessProductService from '@modules/business/services/businessProd
 
 export default class BusinessProductController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const { name, description, price, url, business_id } = request.body;
+    const business_id = request.business.id;
+    const { name, description, price, photo_product_url } = request.body;
 
     const createBusinessProduct = container.resolve(
       CreateBusinessProductService,
@@ -20,7 +21,7 @@ export default class BusinessProductController {
       name,
       description,
       price,
-      url,
+      photo_product_url,
       business_id,
     });
 
@@ -28,13 +29,17 @@ export default class BusinessProductController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
+    const business_id = request.business.id;
     const { business_product_id } = request.body;
 
     const deleteBusinessProductService = container.resolve(
       DeleteBusinessProductService,
     );
 
-    await deleteBusinessProductService.execute({ business_product_id });
+    await deleteBusinessProductService.execute({
+      business_id,
+      business_product_id,
+    });
 
     return response
       .status(200)
@@ -52,28 +57,43 @@ export default class BusinessProductController {
     return response.status(200).json(businessProduct);
   }
 
-  public async index(request: Request, response: Response): Promise<Response> {
+  public async indexByBusiness(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { business_id } = request.params;
+
     const indexBusinessProductService = container.resolve(
       IndexBusinessProductService,
     );
 
-    const businessProduct = await indexBusinessProductService.execute();
+    const businessProduct = await indexBusinessProductService.execute(
+      business_id,
+    );
 
     return response.status(200).json(businessProduct);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const { name, description, price, url, business_product_id } = request.body;
+    const business_id = request.business.id;
+    const {
+      name,
+      description,
+      price,
+      photo_product_url,
+      business_product_id,
+    } = request.body;
 
     const updateBusinessProductService = container.resolve(
       UpdateBusinessProductService,
     );
 
     const businessProduct = await updateBusinessProductService.execute({
+      business_id,
       name,
       description,
       price,
-      url,
+      photo_product_url,
       business_product_id,
     });
 

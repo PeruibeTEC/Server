@@ -22,6 +22,13 @@ export default class DeleteBusinessService {
       throw new AppError('Business not found.', 404);
     }
 
+    if (business.id !== business_id) {
+      throw new AppError(
+        'Business does not have permission to delete this business.',
+        403,
+      );
+    }
+
     await this.businessRepository.delete(business_id);
   }
 }

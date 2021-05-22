@@ -1,7 +1,5 @@
 import { injectable, inject } from 'tsyringe';
 
-import AppError from '@shared/infra/http/errors/AppError';
-
 import BusinessRating from '../../infra/typeorm/entities/BusinessRating';
 import IBusinessRatingRepository from '../../repositories/IBusinessRatingRepository';
 
@@ -25,10 +23,6 @@ export default class ShowBusinessRatingService {
       user_id,
       business_id,
     );
-
-    if (!businessRating) {
-      throw new AppError('User not found.', 404);
-    }
 
     return businessRating;
   }

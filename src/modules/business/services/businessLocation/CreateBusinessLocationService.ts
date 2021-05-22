@@ -39,7 +39,7 @@ export default class CreateBusinessLocationService {
       throw new AppError('This business already has a location.', 409);
     }
 
-    const businessLocation = this.businessLocationRepository.create({
+    const businessLocation = await this.businessLocationRepository.create({
       street,
       number,
       district,
@@ -48,6 +48,13 @@ export default class CreateBusinessLocationService {
       description,
       business_id,
     });
+
+    if (businessLocation.business_id !== business_id) {
+      throw new AppError(
+        'Business does not have permission to create this location.',
+        403,
+      );
+    }
 
     return businessLocation;
   }

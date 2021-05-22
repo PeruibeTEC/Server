@@ -40,7 +40,7 @@ export default class BusinessRatingController {
 
   public async show(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
-    const { business_id } = request.body;
+    const { business_id } = request.params;
 
     const showBusinessRating = container.resolve(
       ShowBusinessRatingByUserService,

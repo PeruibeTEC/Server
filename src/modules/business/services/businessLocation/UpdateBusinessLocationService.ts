@@ -41,6 +41,13 @@ export default class UpdateBusinessLocationService {
       throw new AppError('Business not found.', 404);
     }
 
+    if (businessLocation.business_id !== business_id) {
+      throw new AppError(
+        'Business does not have permission to update this location.',
+        403,
+      );
+    }
+
     Object.assign(businessLocation, {
       street,
       number,

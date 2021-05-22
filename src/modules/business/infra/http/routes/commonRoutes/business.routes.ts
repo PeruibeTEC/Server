@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import BusinessController from '../controllers/BusinessController';
+import BusinessController from '../../controllers/BusinessController';
 
 const businessRouter = Router();
 const businessController = new BusinessController();

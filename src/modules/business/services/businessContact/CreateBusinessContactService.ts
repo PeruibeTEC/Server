@@ -41,12 +41,19 @@ export default class CreateBusinessContactService {
       throw new AppError('This business already has a contact.', 409);
     }
 
-    const businessContact = this.businessContactRepository.create({
+    const businessContact = await this.businessContactRepository.create({
       contact_email,
       cellphone,
       tellphone,
       business_id,
     });
+
+    if (businessContact.business_id !== business_id) {
+      throw new AppError(
+        'Business does not have permission to create this contact.',
+        403,
+      );
+    }
 
     return businessContact;
   }

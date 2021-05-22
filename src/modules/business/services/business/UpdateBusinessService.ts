@@ -47,7 +47,13 @@ export default class UpdateBusinessService {
       throw new AppError('Business not found.', 404);
     }
 
-    // todo: put all missing IRequest placeholdes
+    if (business.id !== business_id) {
+      throw new AppError(
+        'Business does not have permission to update this business.',
+        403,
+      );
+    }
+
     Object.assign(business, {
       name,
       email_login,

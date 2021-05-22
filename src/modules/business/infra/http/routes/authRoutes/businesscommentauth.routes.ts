@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import ensureAuthenticated from '@modules/user/infra/http/middlewares/ensureAuthenticate';
 
-import BusinessCommentController from '../controllers/BusinessCommentController';
+import BusinessCommentController from '../../controllers/BusinessCommentController';
 
 const businessCommentRouter = Router();
 const businessCommentController = new BusinessCommentController();

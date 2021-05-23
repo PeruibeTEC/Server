@@ -12,6 +12,12 @@ export default class TouristSpotRatingRepository
     this.ormRepository = getRepository(TouristSpotRating);
   }
 
+  public async findById(id: string): Promise<TouristSpotRating | undefined> {
+    const touristSpotRating = await this.ormRepository.findOne(id);
+
+    return touristSpotRating;
+  }
+
   public async findByUserAndTouristSpot(
     user_id: string,
     tourist_spot_id: string,
@@ -31,5 +37,11 @@ export default class TouristSpotRatingRepository
     await this.ormRepository.save(touristSpotRating);
 
     return touristSpotRating;
+  }
+
+  public async delete(id: string): Promise<string> {
+    await this.ormRepository.delete(id);
+
+    return `TouristSpotRating_id: ${id} deleted`;
   }
 }

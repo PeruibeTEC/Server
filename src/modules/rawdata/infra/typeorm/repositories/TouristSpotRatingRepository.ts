@@ -44,4 +44,10 @@ export default class TouristSpotRatingRepository
 
     return `TouristSpotRating_id: ${id} deleted`;
   }
+
+  public async save(
+    tourist_spot_rating: TouristSpotRating,
+  ): Promise<TouristSpotRating> {
+    return this.ormRepository.save(tourist_spot_rating);
+  }
 }

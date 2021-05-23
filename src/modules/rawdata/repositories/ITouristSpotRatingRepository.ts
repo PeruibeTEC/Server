@@ -9,4 +9,5 @@ export default interface ITouristSpotRatingRepository {
   ): Promise<TouristSpotRating | undefined>;
   create(data: ITouristSpotRatingDTO): Promise<TouristSpotRating>;
   delete(id: string): Promise<string>;
+  save(tourist_spot_rating: TouristSpotRating): Promise<TouristSpotRating>;
 }

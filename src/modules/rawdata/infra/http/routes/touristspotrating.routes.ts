@@ -12,5 +12,6 @@ touristSpotRatingRouter.use(ensureAuthenticated);
 touristSpotRatingRouter.get('/', touristSpotRatingController.show);
 touristSpotRatingRouter.post('/', touristSpotRatingController.create);
 touristSpotRatingRouter.delete('/', touristSpotRatingController.delete);
+touristSpotRatingRouter.put('/', touristSpotRatingController.update);
 
 export default touristSpotRatingRouter;

@@ -1,12 +1,11 @@
 import { Request, Response } from 'express';
-
 import { container } from 'tsyringe';
 
-import CreateUserService from '@modules/user/services/CreateUserService';
-import DeleteUserService from '@modules/user/services/DeleteUserService';
-import ShowProfileService from '@modules/user/services/ShowProfileService';
-import UpdateProfileService from '@modules/user/services/UpdateProfileService';
-import ListUserService from '@modules/user/services/IndexUserService';
+import CreateUserService from '@modules/user/services/User/CreateUserService';
+import DeleteUserService from '@modules/user/services/User/DeleteUserService';
+import IndexUserService from '@modules/user/services/User/IndexUserService';
+import ShowLoggedUserService from '@modules/user/services/User/ShowLoggedUserService';
+import UpdateProfileService from '@modules/user/services/User/UpdateProfileService';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -17,6 +16,7 @@ export default class UsersController {
       is_tourist,
       small_biography,
       photo,
+      background_photo,
     } = request.body;
 
     const createUser = container.resolve(CreateUserService);
@@ -28,6 +28,7 @@ export default class UsersController {
       is_tourist,
       small_biography,
       photo,
+      background_photo,
     });
 
     // @ts-expect-error ⠀⠀⠀
@@ -49,7 +50,7 @@ export default class UsersController {
   public async show(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
 
-    const showUser = container.resolve(ShowProfileService);
+    const showUser = container.resolve(ShowLoggedUserService);
     const user = await showUser.execute({ user_id });
     // @ts-expect-error ⠀⠀⠀
     delete user.password;
@@ -58,13 +59,9 @@ export default class UsersController {
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
-    const user_id = request.user.id;
+    const listUser = container.resolve(IndexUserService);
 
-    const listUser = container.resolve(ListUserService);
-
-    const users = await listUser.execute({
-      user_id,
-    });
+    const users = await listUser.execute();
 
     return response.status(200).json(users);
   }

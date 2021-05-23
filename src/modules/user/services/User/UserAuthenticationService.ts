@@ -1,11 +1,11 @@
+import { inject, injectable } from 'tsyringe';
 import { compare } from 'bcryptjs';
-import { injectable, inject } from 'tsyringe';
 import { sign } from 'jsonwebtoken';
 
 import auth from '@shared/infra/http/config/auth';
 import AppError from '@shared/infra/http/errors/AppError';
-import User from '../infra/typeorm/entities/User';
-import IUserRepository from '../repositories/IUserRepository';
+import User from '../../infra/typeorm/entities/User';
+import IUserRepository from '../../repositories/IUserRepository';
 
 interface IRequest {
   email: string;
@@ -28,6 +28,10 @@ class AuthenticateUserService {
     const user = await this.usersRepository.findByEmail(email);
     if (!user) {
       throw new AppError('Incorrect email/password combination', 401);
+    }
+
+    if (user.is_tourist === true) {
+      throw new AppError('The user is not a citizen', 401);
     }
 
     const passwordMatched = await compare(password, user.password);

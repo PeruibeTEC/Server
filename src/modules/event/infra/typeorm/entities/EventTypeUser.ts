@@ -6,7 +6,7 @@ import {
   CreateDateColumn,
 } from 'typeorm';
 
-@Entity('tb_event_user')
+@Entity('tb_event_type_user')
 export default class EventTypeUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;

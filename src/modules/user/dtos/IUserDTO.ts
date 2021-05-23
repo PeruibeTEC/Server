@@ -4,5 +4,6 @@ export default interface ICreateUserDTO {
   password: string;
   small_biography?: string;
   photo?: string;
+  background_photo?: string;
   is_tourist: boolean;
 }

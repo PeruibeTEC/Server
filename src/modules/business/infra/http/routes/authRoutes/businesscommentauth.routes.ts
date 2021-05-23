@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import ensureAuthenticated from '@modules/user/infra/http/middlewares/ensureAuthenticate';
+import ensureAuthenticated from '@shared/infra/http/middlewares/ensureAuthenticate';
 
 import BusinessCommentController from '../../controllers/BusinessCommentController';
 

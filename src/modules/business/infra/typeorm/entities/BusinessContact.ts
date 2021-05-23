@@ -1,13 +1,12 @@
 import {
-  Entity,
   Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  CreateDateColumn,
-  ManyToOne,
-  JoinColumn,
 } from 'typeorm';
-
 import Business from './Business';
 
 @Entity('tb_business_contact')

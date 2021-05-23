@@ -1,5 +1,4 @@
 import { injectable, inject } from 'tsyringe';
-
 import AppError from '@shared/infra/http/errors/AppError';
 
 import IUsersRepository from '@modules/user/repositories/IUserRepository';
@@ -21,8 +20,8 @@ export default class UpdateProfileService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject('HashProvider')
-    private hashProvider: IHashProvider,
+    @inject('HashCitizenProvider')
+    private hashCitizenProvider: IHashProvider,
   ) {}
 
   public async execute({
@@ -55,7 +54,7 @@ export default class UpdateProfileService {
     }
 
     if (password && old_password) {
-      const checkOldPassword = await this.hashProvider.compareHash(
+      const checkOldPassword = await this.hashCitizenProvider.compareHash(
         old_password,
         user.password,
       );
@@ -64,7 +63,7 @@ export default class UpdateProfileService {
         throw new AppError('Old password does not match.', 409);
       }
 
-      user.password = await this.hashProvider.generateHash(password);
+      user.password = await this.hashCitizenProvider.generateHash(password);
     }
 
     return this.usersRepository.save(user);

@@ -10,5 +10,6 @@ const touristSpotRatingController = new TouristSpotRatingController();
 touristSpotRatingRouter.use(ensureAuthenticated);
 
 touristSpotRatingRouter.get('/', touristSpotRatingController.show);
+touristSpotRatingRouter.post('/', touristSpotRatingController.create);
 
 export default touristSpotRatingRouter;

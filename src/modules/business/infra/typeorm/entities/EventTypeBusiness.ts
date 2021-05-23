@@ -6,8 +6,8 @@ import {
   CreateDateColumn,
 } from 'typeorm';
 
-@Entity('tb_event_type')
-export default class EventType {
+@Entity('tb_event_type_business')
+export default class EventTypeBusiness {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

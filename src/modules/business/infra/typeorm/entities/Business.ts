@@ -58,9 +58,12 @@ export default class Business {
   })
   closing_day: string;
 
+  @Column({ nullable: true })
+  business_type_id: string;
+
   @ManyToOne(() => BusinessType)
   @JoinColumn({ name: 'business_type_id' })
-  business_type_id: BusinessType;
+  businessType: BusinessType;
 
   @CreateDateColumn()
   created_at: Date;

@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import { addHours, isAfter } from 'date-fns';
 import AppError from '@shared/infra/http/errors/AppError';
 
-import IHashProvider from '../../providers/HashProvider/models/IHashProvider';
+import IHashProvider from '@shared/providers/HashProvider/models/IHashProvider';
 import IUserRepository from '../../repositories/IUserRepository';
 import ITokenRepository from '../../repositories/ITokenRepository';
 

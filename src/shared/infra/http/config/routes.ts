@@ -24,8 +24,27 @@ import touristRouter from '@modules/user/infra/http/routes/tourist.routes';
 import touristsessionRouter from '@modules/user/infra/http/routes/touristsession.routes';
 import usersRouter from '@modules/user/infra/http/routes/user.routes';
 
+import businessTypeRouter from '@modules/business/infra/http/routes/commonRoutes/businesstype.routes';
+import businessRouter from '@modules/business/infra/http/routes/commonRoutes/business.routes';
+import businessAuthRouter from '@modules/business/infra/http/routes/authRoutes/businessauth.routes';
+import businessContactRouter from '@modules/business/infra/http/routes/commonRoutes/businesscontact.routes';
+import businessContactAuthRouter from '@modules/business/infra/http/routes/authRoutes/businesscontactauth.routes';
+import businessLocationRouter from '@modules/business/infra/http/routes/commonRoutes/businesslocation.routes';
+import businessLocationAuthRouter from '@modules/business/infra/http/routes/authRoutes/businesslocationauth.routes';
+import businessProductRouter from '@modules/business/infra/http/routes/commonRoutes/businessproduct.routes';
+import businessProductAuthRouter from '@modules/business/infra/http/routes/authRoutes/businessproductauth.routes';
+import eventBusinessRouter from '@modules/business/infra/http/routes/commonRoutes/eventbusiness.routes';
+import eventBusinessAuthRouter from '@modules/business/infra/http/routes/authRoutes/eventbusinessauth.routes';
+import businessRatingRouter from '@modules/business/infra/http/routes/authRoutes/businessratingauth.routes';
+import businessCommentRouter from '@modules/business/infra/http/routes/authRoutes/businesscommentauth.routes';
+import eventTypeBusinessRouter from '@modules/business/infra/http/routes/commonRoutes/eventtypebusiness.routes';
+import sessionRouter from '@modules/business/infra/http/routes/session.routes';
+
 export default (app: Express): void => {
   const router = Router();
+
+  // always put especific routes first, and generic routes later
+  // e.g: '/a/b' needs to come first and '/a' later
 
   router.use('/user/profile', profilesRouter);
   router.use('/user', usersRouter);
@@ -49,9 +68,29 @@ export default (app: Express): void => {
   router.use('/social/comment', commentRouter);
   router.use('/social/like', likeRouter);
 
-  router.use('/project', projectRouter);
   router.use('/project/comment', projectCommentRouter);
   router.use('/project/photo', projectPhotoRouter);
+  router.use('/project', projectRouter);
+
+  router.use('/business/type', businessTypeRouter);
+  router.use('/business/contact', [
+    businessContactRouter,
+    businessContactAuthRouter,
+  ]);
+  router.use('/business/location', [
+    businessLocationRouter,
+    businessLocationAuthRouter,
+  ]);
+  router.use('/business/product', [
+    businessProductRouter,
+    businessProductAuthRouter,
+  ]);
+  router.use('/business/event', [eventBusinessRouter, eventBusinessAuthRouter]);
+  router.use('/business/rating', businessRatingRouter);
+  router.use('/business/comment', businessCommentRouter);
+  router.use('/business/eventtype', eventTypeBusinessRouter);
+  router.use('/business/session', sessionRouter);
+  router.use('/business', [businessRouter, businessAuthRouter]);
 
   app.use('/api', router);
 };

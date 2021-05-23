@@ -15,11 +15,6 @@ export default class BusinessContact {
   id: string;
 
   @Column({
-    length: 150,
-  })
-  name: string;
-
-  @Column({
     length: 255,
     unique: true,
   })
@@ -33,12 +28,16 @@ export default class BusinessContact {
 
   @Column({
     length: 11,
+    nullable: true,
   })
   tellphone: string;
 
+  @Column({ nullable: true })
+  business_id: string;
+
   @ManyToOne(() => Business)
   @JoinColumn({ name: 'business_id' })
-  business_id: Business;
+  business: Business;
 
   @CreateDateColumn()
   created_at: Date;

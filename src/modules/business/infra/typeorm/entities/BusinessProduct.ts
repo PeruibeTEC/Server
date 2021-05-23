@@ -35,11 +35,14 @@ export default class BusinessProduct {
   @Column({
     length: 3000,
   })
-  url: string;
+  photo_product_url: string;
+
+  @Column({ nullable: true })
+  business_id: string;
 
   @ManyToOne(() => Business)
   @JoinColumn({ name: 'business_id' })
-  business_id: Business;
+  business: Business;
 
   @CreateDateColumn()
   created_at: Date;

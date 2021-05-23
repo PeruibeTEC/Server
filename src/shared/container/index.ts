@@ -1,7 +1,5 @@
 import { container } from 'tsyringe';
 
-import '@modules/user/providers';
-import './providers';
 import '@shared/providers';
 
 import UsersRepository from '@modules/user/infra/typeorm/repositories/UserRepository';
@@ -18,6 +16,7 @@ import InterestPointRepository from '@modules/rawdata/infra/typeorm/repositories
 import IInterestPointRepository from '@modules/rawdata/repositories/IInterestPointRepository';
 
 import TouristSpotPhotoRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotPhotoRepository';
+
 import ITouristSpotPhotoRepository from '@modules/rawdata/repositories/ITouristSpotPhotoRepository';
 import TouristSpotRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotRepository';
 import ITouristSpotRepository from '@modules/rawdata/repositories/ITouristSpotRepository';
@@ -31,17 +30,34 @@ import ILikeRepository from '@modules/social/repositories/ILikeRepository';
 import PhotoPostRepository from '@modules/social/infra/typeorm/repositories/PhotoPostRepository';
 import IPhotoPostRepository from '@modules/social/repositories/IPhotoPostRepository';
 
-import ProjectCommentRepository from '@modules/project/infra/typeorm/repositories/CommentProjectRepository';
-import ProjectPhotoRepository from '@modules/project/infra/typeorm/repositories/PhotoProjectRepository';
 import ProjectRepository from '@modules/project/infra/typeorm/repositories/ProjectRepository';
-import IProjectCommentRepository from '@modules/project/repositories/ICommentProjectRepository';
-import IProjectPhotoRepository from '@modules/project/repositories/IPhotoProjectRepository';
 import IProjectRepository from '@modules/project/repositories/IProjectRepository';
 
-import EventTypeUserRepository from '@modules/event/infra/typeorm/repositories/EventTypeUserRepository';
-import IEventTypeUserRepository from '@modules/event/repositories/IEventTypeUserRepository';
-import IEventUserRepository from '@modules/event/repositories/IEventUserRepository';
-import EventUserRepository from '@modules/event/infra/typeorm/repositories/EventUserRepository';
+import ProjectCommentRepository from '@modules/project/infra/typeorm/repositories/CommentProjectRepository';
+import IProjectCommentRepository from '@modules/project/repositories/ICommentProjectRepository';
+
+import ProjectPhotoRepository from '@modules/project/infra/typeorm/repositories/PhotoProjectRepository';
+import IProjectPhotoRepository from '@modules/project/repositories/IPhotoProjectRepository';
+
+import BusinessTypeRepository from '@modules/business/infra/typeorm/repositories/BusinessTypeRepository';
+import IBusinessTypeRepository from '@modules/business/repositories/IBusinessTypeRepository';
+import BusinessRepository from '@modules/business/infra/typeorm/repositories/BusinessRepository';
+import IBusinessRepository from '@modules/business/repositories/IBusinessRepository';
+import BusinessContactRepository from '@modules/business/infra/typeorm/repositories/BusinessContactRepository';
+import IBusinessContactRepository from '@modules/business/repositories/IBusinessContactRepository';
+import BusinessLocationRepository from '@modules/business/infra/typeorm/repositories/BusinessLocationRepository';
+import IBusinessLocationRepository from '@modules/business/repositories/IBusinessLocationRepository';
+import BusinessProductRepository from '@modules/business/infra/typeorm/repositories/BusinessProductRepository';
+import IBusinessProductRepository from '@modules/business/repositories/IBusinessProductRepository';
+import BusinessCommentRepository from '@modules/business/infra/typeorm/repositories/BusinessCommentRepository';
+import IBusinessCommentRepository from '@modules/business/repositories/IBusinessCommentRepository';
+import BusinessRatingRepository from '@modules/business/infra/typeorm/repositories/BusinessRatingRepository';
+import IBusinessRatingRepository from '@modules/business/repositories/IBusinessRatingRepository';
+
+import EventTypeBusinessRepository from '@modules/business/infra/typeorm/repositories/EventTypeBusinessRepository';
+import IEventTypeBusinessRepository from '@modules/business/repositories/IEventTypeBusinessRepository';
+import EventBusinessRepository from '@modules/business/infra/typeorm/repositories/EventBusinessRepository';
+import IEventBusinessRepository from '@modules/business/repositories/IEventBusinessRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -73,16 +89,6 @@ container.registerSingleton<ITouristSpotPhotoRepository>(
   TouristSpotPhotoRepository,
 );
 
-container.registerSingleton<IEventTypeUserRepository>(
-  'EventTypeUserRepository',
-  EventTypeUserRepository,
-);
-
-container.registerSingleton<IEventUserRepository>(
-  'EventUserRepository',
-  EventUserRepository,
-);
-
 container.registerSingleton<IPostRepository>('PostRepository', PostRepository);
 
 container.registerSingleton<ICommentRepository>(
@@ -110,6 +116,51 @@ container.registerSingleton<IProjectCommentRepository>(
 container.registerSingleton<IProjectPhotoRepository>(
   'ProjectPhotoRepository',
   ProjectPhotoRepository,
+);
+
+container.registerSingleton<IEventTypeBusinessRepository>(
+  'EventTypeBusinessRepository',
+  EventTypeBusinessRepository,
+);
+
+container.registerSingleton<IEventBusinessRepository>(
+  'EventBusinessRepository',
+  EventBusinessRepository,
+);
+
+container.registerSingleton<IBusinessTypeRepository>(
+  'BusinessTypeRepository',
+  BusinessTypeRepository,
+);
+
+container.registerSingleton<IBusinessRepository>(
+  'BusinessRepository',
+  BusinessRepository,
+);
+
+container.registerSingleton<IBusinessContactRepository>(
+  'BusinessContactRepository',
+  BusinessContactRepository,
+);
+
+container.registerSingleton<IBusinessLocationRepository>(
+  'BusinessLocationRepository',
+  BusinessLocationRepository,
+);
+
+container.registerSingleton<IBusinessProductRepository>(
+  'BusinessProductRepository',
+  BusinessProductRepository,
+);
+
+container.registerSingleton<IBusinessCommentRepository>(
+  'BusinessCommentRepository',
+  BusinessCommentRepository,
+);
+
+container.registerSingleton<IBusinessRatingRepository>(
+  'BusinessRatingRepository',
+  BusinessRatingRepository,
 );
 
 container.registerSingleton<ITouristRepository>(

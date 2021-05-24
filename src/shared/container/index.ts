@@ -23,6 +23,8 @@ import TouristSpotRepository from '@modules/rawdata/infra/typeorm/repositories/T
 import ITouristSpotRepository from '@modules/rawdata/repositories/ITouristSpotRepository';
 import TouristSpotRatingRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotRatingRepository';
 import ITouristSpotRatingRepository from '@modules/rawdata/repositories/ITouristSpotRatingRepository';
+import TouristSpotCommentRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotCommentRepository';
+import ITouristSpotCommentRepository from '@modules/rawdata/repositories/ITouristSpotCommentRepository';
 
 import PostRepository from '@modules/social/infra/typeorm/repositories/PostRepository';
 import IPostRepository from '@modules/social/repositories/IPostRepository';
@@ -73,6 +75,11 @@ container.registerSingleton<ITouristSpotRepository>(
 container.registerSingleton<ITouristSpotRatingRepository>(
   'TouristSpotRatingRepository',
   TouristSpotRatingRepository,
+);
+
+container.registerSingleton<ITouristSpotCommentRepository>(
+  'TouristSpotCommentRepository',
+  TouristSpotCommentRepository,
 );
 
 container.registerSingleton<ITouristSpotPhotoRepository>(

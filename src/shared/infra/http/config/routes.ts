@@ -8,6 +8,7 @@ import interestPointRouter from '@modules/rawdata/infra/http/routes/interestpoin
 import interestPointTypeRouter from '@modules/rawdata/infra/http/routes/interestpointtype.routes';
 import touristSpotRouter from '@modules/rawdata/infra/http/routes/touristspot.routes';
 import touristSpotRatingRouter from '@modules/rawdata/infra/http/routes/touristspotrating.routes';
+import touristSpotCommentRouter from '@modules/rawdata/infra/http/routes/touristspotcomment.routes';
 import touristSpotPhotoRouter from '@modules/rawdata/infra/http/routes/touristspotphoto.routes';
 
 import eventTypeUserRouter from '@modules/event/infra/http/routes/eventTypeUser.routes';
@@ -41,6 +42,7 @@ export default (app: Express): void => {
   router.use('/touristSession', touristsessionRouter);
   router.use('/touristSpot', touristSpotRouter);
   router.use('/touristSpotRating', touristSpotRatingRouter);
+  router.use('/touristSpotComment', touristSpotCommentRouter);
   router.use('/touristSpotPhoto', touristSpotPhotoRouter);
 
   router.use('/eventTypeUser', eventTypeUserRouter);

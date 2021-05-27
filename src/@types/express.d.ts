@@ -4,5 +4,8 @@ declare namespace Express {
     user: {
       id: string;
     };
+    business: {
+      id: string;
+    };
   }
 }

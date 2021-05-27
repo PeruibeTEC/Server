@@ -33,6 +33,7 @@ export class CreateBusinessContact1614866584828 implements MigrationInterface {
             name: 'telephone',
             type: 'varchar',
             length: '11',
+            isNullable: true,
           },
           {
             name: 'business_id',

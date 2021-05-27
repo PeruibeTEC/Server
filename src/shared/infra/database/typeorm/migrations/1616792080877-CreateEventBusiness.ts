@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export class CreateEvent1614869786281 implements MigrationInterface {
+export class CreateEventBusiness1614869786281 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'tb_event',
+        name: 'tb_event_business',
         columns: [
           {
             name: 'id',
@@ -51,7 +51,7 @@ export class CreateEvent1614869786281 implements MigrationInterface {
             type: 'uuid',
           },
           {
-            name: 'event_type_id',
+            name: 'event_type_business_id',
             type: 'uuid',
           },
           {
@@ -69,7 +69,7 @@ export class CreateEvent1614869786281 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'tb_event',
+      'tb_event_business',
       new TableForeignKey({
         name: 'BusinessId',
         columnNames: ['business_id'],
@@ -81,12 +81,12 @@ export class CreateEvent1614869786281 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'tb_event',
+      'tb_event_business',
       new TableForeignKey({
-        name: 'EventTypeId',
-        columnNames: ['event_type_id'],
+        name: 'EventTypeBusinessId',
+        columnNames: ['event_type_business_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'tb_event_type',
+        referencedTableName: 'tb_event_type_business',
         onDelete: 'SET NULL',
         onUpdate: 'CASCADE',
       }),
@@ -94,8 +94,11 @@ export class CreateEvent1614869786281 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('tb_event', 'BusinessId');
-    await queryRunner.dropForeignKey('tb_event', 'EventTypeId');
-    await queryRunner.dropTable('tb_event');
+    await queryRunner.dropForeignKey('tb_event_business', 'BusinessId');
+    await queryRunner.dropForeignKey(
+      'tb_event_business',
+      'EventTypeBusinessId',
+    );
+    await queryRunner.dropTable('tb_event_business');
   }
 }

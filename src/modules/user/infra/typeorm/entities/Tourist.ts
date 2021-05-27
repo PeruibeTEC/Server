@@ -1,13 +1,12 @@
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
   CreateDateColumn,
+  Entity,
   JoinColumn,
   ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
-
 import User from './User';
 
 @Entity('tb_tourist')
@@ -36,9 +35,12 @@ export default class Tourist {
   })
   country_foreigner: string;
 
+  @Column()
+  user_id: string;
+
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
-  user_id: User;
+  user: User;
 
   @CreateDateColumn()
   created_at: Date;

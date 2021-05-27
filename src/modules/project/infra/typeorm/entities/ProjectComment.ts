@@ -1,13 +1,12 @@
 import {
-  Entity,
   Column,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
   CreateDateColumn,
-  ManyToOne,
+  Entity,
   JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
 } from 'typeorm';
-
 import User from '../../../../user/infra/typeorm/entities/User';
 import PublicProject from './PublicProject';
 

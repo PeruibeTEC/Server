@@ -1,10 +1,10 @@
 import { getRepository, Repository } from 'typeorm';
 
-import IUserTokensRepository from '@modules/user/repositories/IUserTokenRepository';
+import ITokenRepository from '@modules/user/repositories/ITokenRepository';
 
 import UserToken from '@modules/user/infra/typeorm/entities/UserToken';
 
-class UserTokensRepository implements IUserTokensRepository {
+class UserTokensRepository implements ITokenRepository {
   // to do: apply dependency injection
   private ormRepository: Repository<UserToken>;
 

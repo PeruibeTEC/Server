@@ -2,7 +2,7 @@ import Theft from '../infra/typeorm/entities/Theft';
 import ITheftDTO from '../dtos/ITheftDTO';
 
 export default interface ITheftRepository {
-  findAllUserTheft(user_id: string): Promise<Theft[]>;
+  findAllTheftByUser(user_id: string): Promise<Theft[] | undefined>;
   findAllTheft(): Promise<Theft[]>;
   findById(id: string): Promise<Theft | undefined>;
   findByTitle(title: string): Promise<Theft | undefined>;

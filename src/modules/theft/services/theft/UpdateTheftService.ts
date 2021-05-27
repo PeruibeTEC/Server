@@ -29,7 +29,7 @@ export default class UpdateTheftService {
     title,
     description,
     theft_location_id,
-    user_id
+    user_id,
   }: IRequest): Promise<Theft> {
     const theft = await this.theftRepository.findById(theft_id);
 
@@ -38,7 +38,10 @@ export default class UpdateTheftService {
     }
 
     if (user_id !== theft?.user_id) {
-      throw new AppError('Only the user who created the crime can delete the crime', 409)
+      throw new AppError(
+        'Only the user who created the crime can delete the crime',
+        409,
+      );
     }
 
     Object.assign(theft, {

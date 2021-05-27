@@ -59,11 +59,13 @@ export default class TheftController {
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
+    const { user_id } = request.body;
+
     const indexTheft = container.resolve(IndexTheftService);
 
-    const thefts = await indexTheft.execute();
+    const theftsByUser = await indexTheft.execute({ user_id });
 
-    return response.status(200).json(thefts);
+    return response.status(200).json(theftsByUser);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {

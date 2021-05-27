@@ -20,7 +20,10 @@ export default class DeleteTheftService {
     const checkTheftExists = await this.theftRepository.findById(theft_id);
 
     if (user_id !== checkTheftExists?.user_id) {
-      throw new AppError('Only the user who created the crime can delete the crime', 409)
+      throw new AppError(
+        'Only the user who created the crime can delete the crime',
+        409,
+      );
     }
 
     if (!checkTheftExists) {

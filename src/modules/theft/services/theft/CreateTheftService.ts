@@ -34,6 +34,10 @@ export default class CreateTheftService {
       throw new AppError('Title already used.', 409);
     }
 
+    if (title.length > 50) {
+      throw new AppError('Title has exceeded the characters limit.', 413);
+    }
+
     const theft = this.theftRepository.create({
       date,
       time,

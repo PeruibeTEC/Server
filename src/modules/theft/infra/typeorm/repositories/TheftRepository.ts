@@ -11,7 +11,9 @@ export default class TheftRepository implements ITheftRepository {
     this.ormRepository = getRepository(Theft);
   }
 
-  public async findAllUserTheft(user_id: string): Promise<Theft[]> {
+  public async findAllTheftByUser(
+    user_id: string,
+  ): Promise<Theft[] | undefined> {
     const theft = await this.ormRepository.find({
       where: { user_id },
     });

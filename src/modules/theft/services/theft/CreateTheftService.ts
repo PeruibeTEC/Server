@@ -1,5 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
+import AppError from '@shared/infra/http/errors/AppError';
 import Theft from '../../infra/typeorm/entities/Theft';
 import ITheftRepository from '../../repositories/ITheftRepository';
 
@@ -27,6 +28,12 @@ export default class CreateTheftService {
     theft_location_id,
     user_id,
   }: IRequest): Promise<Theft> {
+    const checkTitleExists = await this.theftRepository.findByTitle(title);
+
+    if (checkTitleExists) {
+      throw new AppError('Title already used.', 409);
+    }
+
     const theft = this.theftRepository.create({
       date,
       time,

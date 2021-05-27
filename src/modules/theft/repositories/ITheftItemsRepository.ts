@@ -6,5 +6,5 @@ export default interface ITheftItemsRepository {
   findById(id: string): Promise<TheftItems | undefined>;
   create(data: ITheftItemsDTO): Promise<TheftItems>;
   delete(id: string): Promise<string>;
-  save(theft_items: ITheftItemsDTO): Promise<TheftItems>;
+  save(theft_items: TheftItems): Promise<TheftItems>;
 }

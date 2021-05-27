@@ -31,6 +31,12 @@ export default class TheftRepository implements ITheftRepository {
     return theft;
   }
 
+  public async findByTitle(title: string): Promise<Theft | undefined> {
+    const theft = await this.ormRepository.findOne({ title });
+
+    return theft;
+  }
+
   public async create(theftData: ITheftDTO): Promise<Theft> {
     const theft = this.ormRepository.create(theftData);
 

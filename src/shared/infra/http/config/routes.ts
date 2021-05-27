@@ -22,8 +22,9 @@ import projectRouter from '@modules/project/infra/http/routes/project.routes';
 import projectCommentRouter from '@modules/project/infra/http/routes/projectcomment.routes';
 import projectPhotoRouter from '@modules/project/infra/http/routes/projectphoto.routes';
 
-import theftLocationRouter from '@modules/theft/infra/http/routes/theftlocation.routes';
 import theftRouter from '@modules/theft/infra/http/routes/theft.routes';
+import theftLocationRouter from '@modules/theft/infra/http/routes/theftlocation.routes';
+import theftItemsRouter from '@modules/theft/infra/http/routes/theftitems.routes';
 
 export default (app: Express): void => {
   const router = Router();
@@ -52,7 +53,7 @@ export default (app: Express): void => {
 
   router.use('/theft', theftRouter);
   router.use('/theft/location', theftLocationRouter);
-
+  router.use('/theft/items', theftItemsRouter);
 
   app.use('/api', router);
 };

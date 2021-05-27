@@ -8,8 +8,8 @@ import {
   JoinColumn,
 } from 'typeorm';
 
-import TheftLocation from './TheftLocation';
 import User from '@modules/user/infra/typeorm/entities/User';
+import TheftLocation from './TheftLocation';
 
 @Entity('tb_theft')
 export default class Theft {
@@ -39,13 +39,16 @@ export default class Theft {
   @Column({ nullable: true })
   user_id: string;
 
+  @Column()
+  theft_location_id: string;
+
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
   user: User;
 
   @ManyToOne(() => TheftLocation)
   @JoinColumn({ name: 'theft_location_id' })
-  theft_location_id: TheftLocation;
+  theft_location: TheftLocation;
 
   @CreateDateColumn()
   created_at: Date;

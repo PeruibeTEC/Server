@@ -86,7 +86,7 @@ export default class TheftController {
       description,
       title,
       theft_location_id,
-      user_id
+      user_id,
     });
 
     return response.json(theft);

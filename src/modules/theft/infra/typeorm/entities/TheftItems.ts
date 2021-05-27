@@ -25,9 +25,12 @@ export default class TheftItems {
   })
   amount: number;
 
+  @Column()
+  theft_id: string;
+
   @ManyToOne(() => Theft)
   @JoinColumn({ name: 'theft_id' })
-  theft_id: Theft;
+  theft: Theft;
 
   @CreateDateColumn()
   created_at: Date;

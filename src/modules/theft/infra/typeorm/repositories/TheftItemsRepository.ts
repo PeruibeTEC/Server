@@ -37,7 +37,7 @@ export default class TheftItemsRepository implements ITheftItemsRepository {
     return `Theft_item_id: ${id} deleted`;
   }
 
-  public async save(theftData: ITheftItemsDTO): Promise<TheftItems> {
+  public async save(theftData: TheftItems): Promise<TheftItems> {
     return this.ormRepository.save(theftData);
   }
 }

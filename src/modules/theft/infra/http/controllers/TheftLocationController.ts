@@ -50,9 +50,11 @@ export default class TheftLocationController {
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
+    const { district } = request.body;
+
     const indexTheftLocation = container.resolve(IndexTheftLocationService);
 
-    const theftLocation = await indexTheftLocation.execute();
+    const theftLocation = await indexTheftLocation.execute({ district });
 
     return response.status(200).json(theftLocation);
   }

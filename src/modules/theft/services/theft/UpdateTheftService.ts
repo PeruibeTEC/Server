@@ -39,7 +39,7 @@ export default class UpdateTheftService {
 
     if (user_id !== theft?.user_id) {
       throw new AppError(
-        'Only the user who created the crime can delete the crime',
+        'Only the user who created the crime can update the crime',
         409,
       );
     }
@@ -49,7 +49,6 @@ export default class UpdateTheftService {
       time,
       description,
       title,
-      theft_location_id,
     });
 
     return this.theftRepository.save(theft);

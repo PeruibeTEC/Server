@@ -42,7 +42,7 @@ export default class TheftController {
     await deleteTheft.execute({ theft_id, user_id });
 
     return response.status(200).json({
-      message: `Theft id ${theft_id} deleted `,
+      message: `Theft id: ${theft_id} deleted `,
     });
   }
 

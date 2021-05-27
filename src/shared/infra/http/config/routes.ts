@@ -51,9 +51,9 @@ export default (app: Express): void => {
   router.use('/project/comment', projectCommentRouter);
   router.use('/project/photo', projectPhotoRouter);
 
-  router.use('/theft', theftRouter);
-  router.use('/theft/location', theftLocationRouter);
   router.use('/theft/items', theftItemsRouter);
+  router.use('/theft/location', theftLocationRouter);
+  router.use('/theft', theftRouter);
 
   app.use('/api', router);
 };

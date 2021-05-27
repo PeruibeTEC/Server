@@ -25,7 +25,6 @@ export default class IndexTheftLocationService {
     }
 
     const theftLocation = await this.theftLocationRepository.findAllTheftLocation();
-
     return theftLocation;
   }
 }

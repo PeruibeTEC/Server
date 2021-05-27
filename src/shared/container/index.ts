@@ -40,6 +40,8 @@ import ITheftLocationRepository from '@modules/theft/repositories/ITheftLocation
 import TheftLocationRepository from '@modules/theft/infra/typeorm/repositories/TheftLocationRepository';
 import ITheftRepository from '@modules/theft/repositories/ITheftRepository';
 import TheftRepository from '@modules/theft/infra/typeorm/repositories/TheftRepository';
+import ITheftItemsRepository from '@modules/theft/repositories/ITheftItemsRepository';
+import TheftItemsRepository from '@modules/theft/infra/typeorm/repositories/TheftItemsRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -118,4 +120,9 @@ container.registerSingleton<ITheftLocationRepository>(
 container.registerSingleton<ITheftRepository>(
   'TheftRepository',
   TheftRepository,
+);
+
+container.registerSingleton<ITheftItemsRepository>(
+  'TheftItemsRepository',
+  TheftItemsRepository,
 );

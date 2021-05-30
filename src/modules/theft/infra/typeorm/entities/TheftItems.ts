@@ -10,8 +10,8 @@ import {
 
 import Theft from './Theft';
 
-@Entity('tb_stolen_items')
-export default class StolenItems {
+@Entity('tb_theft_items')
+export default class TheftItems {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -25,9 +25,12 @@ export default class StolenItems {
   })
   amount: number;
 
+  @Column()
+  theft_id: string;
+
   @ManyToOne(() => Theft)
   @JoinColumn({ name: 'theft_id' })
-  theft_id: Theft;
+  theft: Theft;
 
   @CreateDateColumn()
   created_at: Date;

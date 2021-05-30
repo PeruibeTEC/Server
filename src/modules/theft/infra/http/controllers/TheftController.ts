@@ -47,7 +47,7 @@ export default class TheftController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const theft_id = request.body;
+    const { theft_id } = request.params;
 
     const showTheft = container.resolve(ShowTheftService);
 
@@ -55,11 +55,11 @@ export default class TheftController {
       theft_id,
     });
 
-    return response.status(200).json({ theft });
+    return response.status(200).json(theft);
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
-    const { user_id } = request.body;
+    const user_id = request.user.id;
 
     const indexTheft = container.resolve(IndexTheftService);
 

@@ -7,6 +7,11 @@ import IUsersRepository from '@modules/user/repositories/IUserRepository';
 import UserTokensRepository from '@modules/user/infra/typeorm/repositories/UserTokenRepository';
 import IUserTokenRepository from '@modules/user/repositories/ITokenRepository';
 
+import EventUserRepository from '@modules/event/infra/typeorm/repositories/EventUserRepository';
+import IEventUserRepository from '@modules/event/repositories/IEventUserRepository';
+import EventTypeUserRepository from '@modules/event/infra/typeorm/repositories/EventTypeUserRepository';
+import IEventTypeUserRepository from '@modules/event/repositories/IEventTypeUserRepository';
+
 import TouristRepository from '@modules/user/infra/typeorm/repositories/TouristRepository';
 import ITouristRepository from '@modules/user/repositories/ITouristRepository';
 
@@ -16,7 +21,6 @@ import InterestPointRepository from '@modules/rawdata/infra/typeorm/repositories
 import IInterestPointRepository from '@modules/rawdata/repositories/IInterestPointRepository';
 
 import TouristSpotPhotoRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotPhotoRepository';
-
 import ITouristSpotPhotoRepository from '@modules/rawdata/repositories/ITouristSpotPhotoRepository';
 import TouristSpotRepository from '@modules/rawdata/infra/typeorm/repositories/TouristSpotRepository';
 import ITouristSpotRepository from '@modules/rawdata/repositories/ITouristSpotRepository';
@@ -96,7 +100,6 @@ container.registerSingleton<ITouristSpotPhotoRepository>(
   TouristSpotPhotoRepository,
 );
 
-
 container.registerSingleton<IEventTypeUserRepository>(
   'EventTypeUserRepository',
   EventTypeUserRepository,
@@ -136,7 +139,6 @@ container.registerSingleton<IProjectPhotoRepository>(
   ProjectPhotoRepository,
 );
 
-
 container.registerSingleton<ITheftLocationRepository>(
   'TheftLocationRepository',
   TheftLocationRepository,
@@ -150,6 +152,7 @@ container.registerSingleton<ITheftRepository>(
 container.registerSingleton<ITheftItemsRepository>(
   'TheftItemsRepository',
   TheftItemsRepository,
+);
 
 container.registerSingleton<IEventTypeBusinessRepository>(
   'EventTypeBusinessRepository',

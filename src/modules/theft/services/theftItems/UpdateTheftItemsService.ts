@@ -28,7 +28,11 @@ export default class UpdateTheftItemsService {
     const theftItems = await this.theftItemsRepository.findById(theft_items_id);
 
     if (!theftItems) {
-      throw new AppError('Items not found.', 404);
+      throw new AppError('Theft Items not found.', 404);
+    }
+
+    if (amount <= 0) {
+      throw new AppError('Amount must be greater than 0.', 406);
     }
 
     Object.assign(theftItems, {

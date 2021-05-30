@@ -33,6 +33,10 @@ export default class CreateTheftItemsService {
       throw new AppError('Theft not found.', 404);
     }
 
+    if (amount <= 0) {
+      throw new AppError('Amount must be greater than 0.', 406);
+    }
+
     const theftItems = this.theftItemsRepository.create({
       items,
       amount,

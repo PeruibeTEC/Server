@@ -28,13 +28,21 @@ export default class UpdateTheftService {
     time,
     title,
     description,
-    theft_location_id,
     user_id,
   }: IRequest): Promise<Theft> {
     const theft = await this.theftRepository.findById(theft_id);
+    const checkTitleExists = await this.theftRepository.findByTitle(title);
 
     if (!theft) {
       throw new AppError('Theft not found.', 404);
+    }
+
+    if (checkTitleExists) {
+      throw new AppError('Title already used.', 409);
+    }
+
+    if (title.length > 50) {
+      throw new AppError('Title has exceeded the characters limit.', 413);
     }
 
     if (user_id !== theft?.user_id) {

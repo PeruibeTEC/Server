@@ -36,7 +36,7 @@ export default class TheftItemsController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const theft_items_id = request.body;
+    const { theft_items_id } = request.params;
 
     const showTheftItems = container.resolve(ShowTheftItemsService);
 
@@ -44,7 +44,7 @@ export default class TheftItemsController {
       theft_items_id,
     });
 
-    return response.status(200).json({ theftItems });
+    return response.status(200).json(theftItems);
   }
 
   public async index(request: Request, response: Response): Promise<Response> {

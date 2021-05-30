@@ -38,7 +38,7 @@ export default class TheftLocationController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const theft_location_id = request.body;
+    const { theft_location_id } = request.params;
 
     const showTheftLocation = container.resolve(ShowTheftLocationService);
 
@@ -46,7 +46,7 @@ export default class TheftLocationController {
       theft_location_id,
     });
 
-    return response.status(200).json({ theftLocation });
+    return response.status(200).json(theftLocation);
   }
 
   public async index(request: Request, response: Response): Promise<Response> {

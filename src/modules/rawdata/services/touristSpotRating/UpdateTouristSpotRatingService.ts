@@ -39,7 +39,7 @@ export default class UpdateTouristSpotRatingService {
 
     if (touristSpotRating.user_id !== user_id) {
       throw new AppError(
-        'User does not have permission to delete this rating.',
+        'User does not have permission to update this rating.',
         403,
       );
     }

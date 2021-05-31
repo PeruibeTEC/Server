@@ -22,6 +22,24 @@ export default class TouristSpotCommentRepository
     return touristSpotComment;
   }
 
+  public async findById(id: string): Promise<TouristSpotComment | undefined> {
+    const touristSpotComment = await this.ormRepository.findOne({
+      where: { id },
+    });
+
+    return touristSpotComment;
+  }
+
+  public async findByUser(
+    user_id: string,
+  ): Promise<TouristSpotComment | undefined> {
+    const touristSpotComment = await this.ormRepository.findOne({
+      where: { user_id },
+    });
+
+    return touristSpotComment;
+  }
+
   public async create(
     touristSpotCommentData: ITouristSpotCommentDTO,
   ): Promise<TouristSpotComment> {
@@ -32,5 +50,11 @@ export default class TouristSpotCommentRepository
     await this.ormRepository.save(touristSpotCommentData);
 
     return touristSpotComment;
+  }
+
+  public async delete(id: string): Promise<string> {
+    await this.ormRepository.delete(id);
+
+    return `TouristSpotComment_id: ${id} deleted`;
   }
 }

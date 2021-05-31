@@ -14,5 +14,6 @@ touristSpotCommentRouter.get(
   '/:tourist_spot_id',
   touristSpotCommentController.indexCommentByTouristSpot,
 );
+touristSpotCommentRouter.delete('/', touristSpotCommentController.delete);
 
 export default touristSpotCommentRouter;

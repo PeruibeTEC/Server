@@ -1,8 +1,10 @@
-import CreateTouristSpotCommentService from '@modules/rawdata/services/touristSpotComment/CreateTouristSpotCommentService';
-import IndexTouristSpotCommentService from '@modules/rawdata/services/touristSpotComment/IndexTouristSpotCommentService';
 import { Request, Response } from 'express';
 
 import { container } from 'tsyringe';
+
+import CreateTouristSpotCommentService from '@modules/rawdata/services/touristSpotComment/CreateTouristSpotCommentService';
+import DeleteTouristSpotCommentService from '@modules/rawdata/services/touristSpotComment/DeleteTouristSpotCommentService';
+import IndexTouristSpotCommentService from '@modules/rawdata/services/touristSpotComment/IndexTouristSpotCommentService';
 
 export default class TouristSpotCommentController {
   public async indexCommentByTouristSpot(
@@ -37,5 +39,23 @@ export default class TouristSpotCommentController {
     });
 
     return response.json(touristSpotComment);
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
+    const { tourist_spot_comment_id } = request.body;
+
+    const deleteTouristSpotCommentService = container.resolve(
+      DeleteTouristSpotCommentService,
+    );
+
+    await deleteTouristSpotCommentService.execute({
+      tourist_spot_comment_id,
+      user_id,
+    });
+
+    return response
+      .status(200)
+      .json({ message: `Comment ${tourist_spot_comment_id} deleted ` });
   }
 }

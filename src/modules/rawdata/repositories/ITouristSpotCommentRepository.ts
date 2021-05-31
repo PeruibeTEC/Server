@@ -9,4 +9,5 @@ export default interface ITouristSpotCommentRepository {
   findByUser(user_id: string): Promise<TouristSpotComment | undefined>;
   create(data: ITouristSpotCommentDTO): Promise<TouristSpotComment>;
   delete(id: string): Promise<string>;
+  save(tourist_spot_comment: TouristSpotComment): Promise<TouristSpotComment>;
 }

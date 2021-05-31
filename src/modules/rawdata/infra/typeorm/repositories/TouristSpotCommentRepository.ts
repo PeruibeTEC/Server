@@ -57,4 +57,10 @@ export default class TouristSpotCommentRepository
 
     return `TouristSpotComment_id: ${id} deleted`;
   }
+
+  public async save(
+    touristSpotComment: TouristSpotComment,
+  ): Promise<TouristSpotComment> {
+    return this.ormRepository.save(touristSpotComment);
+  }
 }

@@ -15,5 +15,6 @@ touristSpotCommentRouter.get(
   touristSpotCommentController.indexCommentByTouristSpot,
 );
 touristSpotCommentRouter.delete('/', touristSpotCommentController.delete);
+touristSpotCommentRouter.put('/', touristSpotCommentController.update);
 
 export default touristSpotCommentRouter;

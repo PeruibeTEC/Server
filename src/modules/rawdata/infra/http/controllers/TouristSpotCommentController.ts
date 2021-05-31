@@ -5,6 +5,7 @@ import { container } from 'tsyringe';
 import CreateTouristSpotCommentService from '@modules/rawdata/services/touristSpotComment/CreateTouristSpotCommentService';
 import DeleteTouristSpotCommentService from '@modules/rawdata/services/touristSpotComment/DeleteTouristSpotCommentService';
 import IndexTouristSpotCommentService from '@modules/rawdata/services/touristSpotComment/IndexTouristSpotCommentService';
+import UpdateTouristSpotCommentService from '@modules/rawdata/services/touristSpotComment/UpdateTouristSpotCommentService';
 
 export default class TouristSpotCommentController {
   public async indexCommentByTouristSpot(
@@ -57,5 +58,22 @@ export default class TouristSpotCommentController {
     return response
       .status(200)
       .json({ message: `Comment ${tourist_spot_comment_id} deleted ` });
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const user_id = request.user.id;
+    const { content, tourist_spot_comment_id } = request.body;
+
+    const updateTouristSpotCommentService = container.resolve(
+      UpdateTouristSpotCommentService,
+    );
+
+    const touristSpotComment = await updateTouristSpotCommentService.execute({
+      content,
+      tourist_spot_comment_id,
+      user_id,
+    });
+
+    return response.json(touristSpotComment);
   }
 }

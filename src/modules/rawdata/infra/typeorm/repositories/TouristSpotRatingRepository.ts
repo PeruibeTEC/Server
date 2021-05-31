@@ -23,7 +23,7 @@ export default class TouristSpotRatingRepository
     tourist_spot_id: string,
   ): Promise<TouristSpotRating | undefined> {
     const touristSpotRating = this.ormRepository.findOne({
-      where: [{ user_id }, { tourist_spot_id }],
+      where: [{ user_id, tourist_spot_id }],
     });
 
     return touristSpotRating;

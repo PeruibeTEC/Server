@@ -33,7 +33,7 @@ export default class UpdateTouristSpotCommentService {
 
     if (touristSpotComment.user_id !== user_id) {
       throw new AppError(
-        'User does not have permission to delete this comment.',
+        'User does not have permission to update this comment.',
         403,
       );
     }

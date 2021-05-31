@@ -12,6 +12,16 @@ export default class TouristSpotCommentRepository
     this.ormRepository = getRepository(TouristSpotComment);
   }
 
+  public async findAllByTouristSpot(
+    tourist_spot_id: string,
+  ): Promise<TouristSpotComment[] | undefined> {
+    const touristSpotComment = await this.ormRepository.find({
+      where: { tourist_spot_id },
+    });
+
+    return touristSpotComment;
+  }
+
   public async create(
     touristSpotCommentData: ITouristSpotCommentDTO,
   ): Promise<TouristSpotComment> {

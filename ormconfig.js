@@ -5,15 +5,19 @@ console.log('process.env.DATABASE_URL :>>', process.env.DATABASE_URL)
 if (process.env.DEV_ENVIRONMENT === 'true'){
   module.exports = {
     type: "postgres",
-    url: process.env.DATABASE_URL,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
   
     synchronize: true,
     logging: false,
-    entities: ['src/modules/**/infra/typeorm/entities/*.js'],
-    migrations: ['src/shared/infra/database/typeorm/migrations/**/*.js'],
-    subscribers: ['src/shared/infra/database/typeorm/subscribers/**/*.js'],
+    entities: ['src/modules/**/infra/typeorm/entities/*.ts'],
+    migrations: ['src/shared/infra/database/typeorm/migrations/**/*.ts'],
+    subscribers: ['src/shared/infra/database/typeorm/subscribers/**/*.ts'],
     cli: {
-      entitiesDir: './src/modules/**/infra/typeorm/entities/*.js',
+      entitiesDir: './src/modules/**/infra/typeorm/entities/*.ts',
       migrationsDir: 'src/shared/infra/database/typeorm/migrations',
       subscribersDir: 'src/shared/infra/database/typeorm/subscribers',
     },
@@ -21,7 +25,11 @@ if (process.env.DEV_ENVIRONMENT === 'true'){
 } else {
   module.exports = {
     type: "postgres",
-    url: process.env.DATABASE_URL,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
   
     synchronize: true,
     logging: false,

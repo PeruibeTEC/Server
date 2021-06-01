@@ -8,6 +8,8 @@
 
 .vscode
 
+yarn-lock.json
+
 # at your terminal use the following command
 # git rm -rf .vscode
 # it'll remove the folder from the git cache, but not from your project folder

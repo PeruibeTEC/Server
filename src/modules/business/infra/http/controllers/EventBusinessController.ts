@@ -106,9 +106,9 @@ export default class EventBusinessController {
       ShowEventBusinessService,
     );
 
-    const eventBusiness = await showEventBusinessService.execute(
+    const eventBusiness = await showEventBusinessService.execute({
       event_business_id,
-    );
+    });
 
     return response.json(eventBusiness);
   }

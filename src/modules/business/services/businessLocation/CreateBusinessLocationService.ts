@@ -35,7 +35,7 @@ export default class CreateBusinessLocationService {
       business_id,
     );
 
-    if (businessExists) {
+    if (await businessExists) {
       throw new AppError('This business already has a location.', 409);
     }
 

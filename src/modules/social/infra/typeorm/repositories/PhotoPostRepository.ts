@@ -32,7 +32,7 @@ export default class PhotoPostRepository implements IPhotoPostRepository {
     const photoPost = this.ormRepository.create(infoData);
 
     await this.ormRepository.save(photoPost);
-
+ 
     return photoPost;
   }
 

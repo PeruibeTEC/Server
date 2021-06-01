@@ -5,7 +5,7 @@ import AppError from '@shared/infra/http/errors/AppError';
 import EventBusiness from '../../infra/typeorm/entities/EventBusiness';
 import IEventBusinessRepository from '../../repositories/IEventBusinessRepository';
 
-interface IRequest {
+export interface IRequest {
   event_business_id: string;
 }
 

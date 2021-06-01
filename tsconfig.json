@@ -2,6 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "./dist",
+    "moduleResolution": "node",
     "rootDir": "./src",
     "strict": true,
     "noImplicitAny": true,
@@ -9,8 +10,7 @@
     "baseUrl": "./src",
     "paths": {
       "@modules/*": ["modules/*"],
-      "@shared/*": ["shared/*"],
-      "@tests/*": ["../__tests__/*"]
+      "@shared/*": ["shared/*"]
     },
     "rootDirs": [
       "./src",
@@ -22,6 +22,9 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src", "__tests__"],
-  "exclude": []
+  "include": ["src/**/*.ts"],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
 }

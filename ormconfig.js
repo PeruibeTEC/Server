@@ -1,20 +1,38 @@
 require('dotenv').config();
 
-module.exports = {
-  type: process.env.DB_CONNECTION,
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  username: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
-  synchronize: true,
-  logging: false,
-  entities: ['src/modules/**/infra/typeorm/entities/*.ts'],
-  migrations: ['src/shared/infra/database/typeorm/migrations/**/*.ts'],
-  subscribers: ['src/shared/infra/database/typeorm/subscribers/**/*.ts'],
-  cli: {
-    entitiesDir: './src/modules/**/infra/typeorm/entities/*.ts',
-    migrationsDir: 'src/shared/infra/database/typeorm/migrations',
-    subscribersDir: 'src/shared/infra/database/typeorm/subscribers',
-  },
-};
+console.log('process.env.DATABASE_URL :>>', process.env.DATABASE_URL)
+
+if (process.env.DEV_ENVIRONMENT === 'true'){
+  module.exports = {
+    type: 'postgres',
+    url: process.env.DATABASE_URL,
+  
+    synchronize: true,
+    logging: false,
+    entities: ['src/modules/**/infra/typeorm/entities/*.js'],
+    migrations: ['src/shared/infra/database/typeorm/migrations/**/*.js'],
+    subscribers: ['src/shared/infra/database/typeorm/subscribers/**/*.js'],
+    cli: {
+      entitiesDir: './src/modules/**/infra/typeorm/entities/*.js',
+      migrationsDir: 'src/shared/infra/database/typeorm/migrations',
+      subscribersDir: 'src/shared/infra/database/typeorm/subscribers',
+    },
+  };
+} else {
+  module.exporjs = {
+    type: 'postgres',
+    url: process.env.DATABASE_URL,
+  
+    synchronize: true,
+    logging: false,
+    entities: ['dist/modules/**/infra/typeorm/entities/*.js'],
+    migrations: ['dist/shared/infra/database/typeorm/migrations/**/*.js'],
+    subscribers: ['dist/shared/infra/database/typeorm/subscribers/**/*.js'],
+    cli: {
+      entitiesDir: './dist/modules/**/infra/typeorm/entities/*.js',
+      migrationsDir: 'dist/shared/infra/database/typeorm/migrations',
+      subscribersDir: 'dist/shared/infra/database/typeorm/subscribers',
+    },
+  };
+}
+

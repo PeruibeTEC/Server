@@ -4,7 +4,7 @@ console.log('process.env.DATABASE_URL :>>', process.env.DATABASE_URL)
 
 if (process.env.DEV_ENVIRONMENT === 'true'){
   module.exports = {
-    type: 'postgres',
+    type: "postgres",
     url: process.env.DATABASE_URL,
   
     synchronize: true,
@@ -19,8 +19,8 @@ if (process.env.DEV_ENVIRONMENT === 'true'){
     },
   };
 } else {
-  module.exporjs = {
-    type: 'postgres',
+  module.exports = {
+    type: "postgres",
     url: process.env.DATABASE_URL,
   
     synchronize: true,

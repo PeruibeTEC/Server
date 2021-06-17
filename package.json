@@ -7,10 +7,10 @@
   "author": "hmartiins <hmartins224@gmail.com>",
   "license": "GNU",
   "scripts": {
-    "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
+    "dev:server": "ts-node-dev -r tsconfig-paths/register  --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "test": "jest",
     "typeorm": "tsnd ./node_modules/typeorm/cli.js",
-    "start": "node dist/shared/infra/http/server.js"
+    "start": "node src/shared/infra/http/server.ts"
   },
   "husky": {
     "hooks": {
@@ -24,8 +24,8 @@
     }
   },
   "_moduleAliases": {
-    "@modules": "./dist/modules",
-    "@shared": "./dist/shared"
+    "@modules": "./src/modules",
+    "@shared": "./src/shared"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",

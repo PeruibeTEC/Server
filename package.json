@@ -8,7 +8,7 @@
   "license": "GNU",
   "scripts": {
     "dev:server": "ts-node-dev -r tsconfig-paths/register  --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
-    "test": "jest",
+    "test": "jest --watch",
     "typeorm": "tsnd ./node_modules/typeorm/cli.js",
     "start": "node src/shared/infra/http/server.ts"
   },

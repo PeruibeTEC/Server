@@ -9,6 +9,8 @@
 .vscode
 
 yarn-lock.json
+package-lock.json
+yarn.lock
 
 # at your terminal use the following command
 # git rm -rf .vscode

@@ -3,7 +3,6 @@
     "module": "commonjs",
     "outDir": "./dist",
     "moduleResolution": "node",
-    "rootDir": "./src",
     "strict": true,
     "noImplicitAny": true,
     "strictPropertyInitialization": false,
@@ -20,9 +19,9 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*", "__tests__/**/*"],
   "exclude": [
     "dist",
     "node_modules"

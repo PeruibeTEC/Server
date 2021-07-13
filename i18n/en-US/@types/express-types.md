@@ -1,6 +1,6 @@
-| title            | description                      |
-| :-------------:  |:-------------:                   |
-| Types of express | Ading types to express request   |
+|      title       |          description           |
+| :--------------: | :----------------------------: |
+| Types of express | Ading types to express request |
 
 The ./src/@types/express.d.ts file is responsible for adding the user and business attributes inside the express request type. The user and business attributes have a property called id, which is a string (to be more specific, it is a string of a uuid).
 
@@ -25,7 +25,6 @@ public async create(request: Request, response: Response): Promise<Response> {
   }
 ```
 
-As we can see, the code is much clearer, since we don't need to get the user id directly from request.body, to get the id just do a ```const user_id = request.user.id```, very simple and practical. If you want to understand how the process of storing and capturing the id through the JWT token passed in the request works, see the [ensureAuthenticate](https://github.com/PeruibeTEC/Server/blob/main/src/shared/infra/http/middlewares/ensureAuthenticate.ts) documentation, there we explain how this whole process works.
-
+As we can see, the code is much clearer, since we don't need to get the user id directly from request.body, to get the id just do a `const user_id = request.user.id`, very simple and practical. If you want to understand how the process of storing and capturing the id through the JWT token passed in the request works, see the [ensureAuthenticate](https://github.com/PeruibeTEC/Server/blob/main/i18n/en-US/shared/infra/http/middlewares/ensureAuthenticate.md) documentation, there we explain how this whole process works.
 
 _This code snippet was taken from [PostController.ts](https://github.com/PeruibeTEC/Server/blob/main/src/modules/social/infra/http/controllers/PostController.ts) on 06/22/2021._

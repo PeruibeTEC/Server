@@ -34,7 +34,7 @@ export default class UsersController {
     // @ts-expect-error ⠀⠀⠀
     delete user.password;
 
-    return response.json(user);
+    return response.status(201).json(user);
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {

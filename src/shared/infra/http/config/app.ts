@@ -4,8 +4,8 @@ import bodyParser from 'body-parser';
 import 'reflect-metadata';
 import 'express-async-errors';
 
-import '../../../../shared/container';
-import '../../../../shared/infra/database/typeorm';
+import '../../../container';
+import createConnection from '../../database/typeorm';
 
 import setupMiddlewares from './middlewares';
 import setupAppError from './config-app-error';
@@ -15,6 +15,9 @@ const app = express();
 setupMiddlewares(app);
 setupRoutes(app);
 setupAppError(app);
+
+// TODO: isolate this method in a separate file
+createConnection();
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(

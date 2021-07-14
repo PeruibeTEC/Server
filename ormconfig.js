@@ -1,3 +1,4 @@
+const path = require('path');
 require('dotenv').config();
 
 console.log('process.env.DATABASE_URL :>>', process.env.DATABASE_URL)
@@ -20,13 +21,13 @@ if (process.env.DEV_ENVIRONMENT === 'true'){
 
     synchronize: true,
     logging: false,
-    entities: ['src/modules/**/infra/typeorm/entities/*.ts'],
-    migrations: ['src/shared/infra/database/typeorm/migrations/**/*.ts'],
-    subscribers: ['src/shared/infra/database/typeorm/subscribers/**/*.ts'],
+    entities: ['./src/modules/**/infra/typeorm/entities/*.ts'],
+    migrations: ['./src/shared/infra/database/typeorm/migrations/**/*.ts'],
+    subscribers: ['./src/shared/infra/database/typeorm/subscribers/**/*.ts'],
     cli: {
       entitiesDir: './src/modules/**/infra/typeorm/entities/*.ts',
-      migrationsDir: 'src/shared/infra/database/typeorm/migrations',
-      subscribersDir: 'src/shared/infra/database/typeorm/subscribers',
+      migrationsDir: './src/shared/infra/database/typeorm/migrations',
+      subscribersDir: './src/shared/infra/database/typeorm/subscribers',
     },
   };
 } else {

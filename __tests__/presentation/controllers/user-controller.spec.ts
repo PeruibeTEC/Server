@@ -6,10 +6,12 @@ import request from 'supertest';
 import { Connection, getConnection } from 'typeorm';
 
 import User from '@modules/user/infra/typeorm/entities/User';
+import { uuid } from 'uuidv4';
 
 let connection: Connection;
 
 interface IUser {
+  id?: string;
   name: string;
   email: string;
   password: string;
@@ -68,9 +70,51 @@ describe('User Controller', () => {
     expect(response.body).toHaveProperty('updated_at');
   });
 
-  it('Should return http status code 201', async () => {
+  it('Should return http status code 201 on create user', async () => {
     const response = await request(app).post('/api/user').send(user);
 
-    expect(response.statusCode).toBeGreaterThanOrEqual(201);
+    expect(response.statusCode).toEqual(201);
+  });
+
+  it('Should return all users created', async () => {
+    const user2: IUser = {
+      name: 'John Doe',
+      email: 'johndoe@gmail.com',
+      password: 'password_very_strong',
+      is_tourist: true,
+      small_biography: 'i love peruibe',
+      background_photo: null,
+    };
+
+    await request(app).post('/api/user').send(user);
+    await request(app).post('/api/user').send(user2);
+    const response = await request(app).get('/api/user');
+
+    // @ts-expect-error ⠀⠀⠀
+    delete user.password;
+    // @ts-expect-error ⠀⠀⠀
+    delete user2.password;
+
+    expect(response.body).toMatchObject([user, user2]);
+  });
+
+  it('Should return the user who made a request', async () => {
+    const userCreated = await request(app).post('/api/user').send(user);
+    const response = await request(app).get(`/api/user/${userCreated.body.id}`);
+
+    // @ts-expect-error ⠀⠀⠀
+    delete user.password;
+
+    expect(response.body).toMatchObject({ user });
+  });
+
+  it(`Should return a message warning that this 
+      user does not exist if there is no such user`, async () => {
+    const response = await request(app).get(`/api/user/${uuid()}`);
+
+    // @ts-expect-error ⠀⠀⠀
+    delete user.password;
+
+    expect(response.body).toMatchObject({ message: 'User does not exists.' });
   });
 });

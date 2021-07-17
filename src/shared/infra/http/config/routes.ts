@@ -26,7 +26,6 @@ import touristRouter from '@modules/user/infra/http/routes/tourist.routes';
 import touristsessionRouter from '@modules/user/infra/http/routes/touristsession.routes';
 import usersRouter from '@modules/user/infra/http/routes/user.routes';
 
-
 import theftRouter from '@modules/theft/infra/http/routes/theft.routes';
 import theftLocationRouter from '@modules/theft/infra/http/routes/theftlocation.routes';
 import theftItemsRouter from '@modules/theft/infra/http/routes/theftitems.routes';
@@ -46,7 +45,6 @@ import businessRatingRouter from '@modules/business/infra/http/routes/authRoutes
 import businessCommentRouter from '@modules/business/infra/http/routes/authRoutes/businesscommentauth.routes';
 import eventTypeBusinessRouter from '@modules/business/infra/http/routes/commonRoutes/eventtypebusiness.routes';
 import sessionRouter from '@modules/business/infra/http/routes/session.routes';
-
 
 export default (app: Express): void => {
   const router = Router();
@@ -81,7 +79,6 @@ export default (app: Express): void => {
   router.use('/project/comment', projectCommentRouter);
   router.use('/project/photo', projectPhotoRouter);
   router.use('/project', projectRouter);
-
 
   router.use('/theft/items', theftItemsRouter);
   router.use('/theft/location', theftLocationRouter);

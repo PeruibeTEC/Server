@@ -3,10 +3,10 @@ import createConnection from '@shared/infra/database/typeorm/index';
 
 import request from 'supertest';
 
+import { uuid } from 'uuidv4';
 import { Connection, getConnection } from 'typeorm';
 
 import User from '@modules/user/infra/typeorm/entities/User';
-import { uuid } from 'uuidv4';
 
 let connection: Connection;
 
@@ -112,9 +112,13 @@ describe('User Controller', () => {
       user does not exist if there is no such user`, async () => {
     const response = await request(app).get(`/api/user/${uuid()}`);
 
-    // @ts-expect-error ⠀⠀⠀
-    delete user.password;
-
     expect(response.body).toMatchObject({ message: 'User does not exists.' });
+  });
+
+  it(`Should return http 404 status code 
+      if there is no user with this id`, async () => {
+    const response = await request(app).get(`/api/user/${uuid()}`);
+
+    expect(response.statusCode).toEqual(404);
   });
 });

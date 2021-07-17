@@ -121,4 +121,58 @@ describe('User Controller', () => {
 
     expect(response.statusCode).toEqual(404);
   });
+
+  it('Should return a message with the user id deleted', async () => {
+    const userCreated = await request(app).post('/api/user').send(user);
+    const sessionResponse = await request(app).post('/api/session').send({
+      email: user.email,
+      password: user.password,
+    });
+
+    const response = await request(app)
+      .delete('/api/user/profile')
+      .auth(sessionResponse.body.token, { type: 'bearer' });
+
+    expect(response.body).toMatchObject({
+      message: `User ${userCreated.body.id} deleted `,
+    });
+  });
+
+  it(`Should return a message warning that this user
+      does not exist if the token is not related to any user`, async () => {
+    await request(app).post('/api/user').send(user);
+    const sessionResponse = await request(app).post('/api/session').send({
+      email: user.email,
+      password: user.password,
+    });
+
+    await request(app)
+      .delete('/api/user/profile')
+      .auth(sessionResponse.body.token, { type: 'bearer' });
+
+    const response = await request(app)
+      .delete('/api/user/profile')
+      .auth(sessionResponse.body.token, { type: 'bearer' });
+
+    expect(response.body).toMatchObject({ message: 'User does not exists.' });
+  });
+
+  it(`Should return http 404 status code 
+      if there is no user with this token jwt`, async () => {
+    await request(app).post('/api/user').send(user);
+    const sessionResponse = await request(app).post('/api/session').send({
+      email: user.email,
+      password: user.password,
+    });
+
+    await request(app)
+      .delete('/api/user/profile')
+      .auth(sessionResponse.body.token, { type: 'bearer' });
+
+    const response = await request(app)
+      .delete('/api/user/profile')
+      .auth(sessionResponse.body.token, { type: 'bearer' });
+
+    expect(response.statusCode).toEqual(404);
+  });
 });

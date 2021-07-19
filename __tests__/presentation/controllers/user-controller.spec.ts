@@ -175,4 +175,64 @@ describe('User Controller', () => {
 
     expect(response.statusCode).toEqual(404);
   });
+
+  it('Should return updated user attributes', async () => {
+    const fieldsUpdated = {
+      name: 'John Does',
+      email: 'johndoe@gmail.com',
+    };
+
+    await request(app).post('/api/user').send(user);
+    const sessionResponse = await request(app).post('/api/session').send({
+      email: user.email,
+      password: user.password,
+    });
+
+    const response = await request(app)
+      .put('/api/user/profile')
+      .auth(sessionResponse.body.token, { type: 'bearer' })
+      .send({ name: fieldsUpdated.name, email: fieldsUpdated.email });
+
+    expect(response.body).toHaveProperty('name');
+    expect(response.body).toHaveProperty('email');
+    expect(response.body).toHaveProperty('is_tourist');
+    expect(response.body).toHaveProperty('small_biography');
+    expect(response.body).toHaveProperty('background_photo');
+    expect(response.body).toHaveProperty('created_at');
+    expect(response.body).toHaveProperty('updated_at');
+  });
+
+  // FIXME: I ended up doing some tests that would be better suited to testing the services, I'll leave them here for whatever developer develops the tests for the services
+
+  it(`Should return a warning when the
+      updated email is already in use`, async () => {
+    const user2: IUser = {
+      name: 'John Doe',
+      email: 'johndoe@gmail.com',
+      password: 'password_very_strong',
+      is_tourist: true,
+      small_biography: 'i love peruibe',
+      background_photo: null,
+    };
+
+    const newUser = {
+      name: 'John Does',
+      email: 'johndoe@gmail.com',
+    };
+
+    await request(app).post('/api/user').send(user);
+    await request(app).post('/api/user').send(user2);
+    const sessionResponse = await request(app).post('/api/session').send({
+      email: user.email,
+      password: user.password,
+    });
+
+    const response = await request(app)
+      .put('/api/user/profile')
+      .auth(sessionResponse.body.token, { type: 'bearer' })
+      .send({ name: newUser.name, email: user2.email });
+
+    expect(response.statusCode).toEqual(409);
+    expect(response.body).toMatchObject({ message: 'E-mail already in use.' });
+  });
 });

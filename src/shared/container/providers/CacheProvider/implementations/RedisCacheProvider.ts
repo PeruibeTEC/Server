@@ -6,7 +6,6 @@ export default class RedisCacheProvider implements ICacheProvider {
   private client: Redis;
 
   constructor() {
-    console.log('asd');
     this.client = new Redis(cacheConfig.config.redis);
   }
 

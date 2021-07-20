@@ -6,6 +6,8 @@ import HandlebarsMailTemplateProvider from './MailTemplateProvider/implementatio
 import IMailProvider from './AmazonSESProvider/models/IMailProvider';
 import AmazonSESMailProvider from './AmazonSESProvider/implementations/AmazonSESMailProvider';
 
+import './CacheProvider';
+
 container.registerSingleton<IMailTemplateProvider>(
   'MailTemplateProvider',
   HandlebarsMailTemplateProvider,

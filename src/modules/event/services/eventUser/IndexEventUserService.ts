@@ -20,7 +20,7 @@ export default class IndexEventUserService {
 
     if (!eventsUser) {
       eventsUser = await this.eventUserRepository.findAllEventUser();
-      console.log('Query feita!');
+      
       await this.cacheProvider.save('events-user', eventsUser);
     }
 

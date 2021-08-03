@@ -3,6 +3,7 @@ import AppError from '@shared/infra/http/errors/AppError';
 import EventUser from '@modules/event/infra/typeorm/entities/EventUser';
 import IDatefnsProvider from '@shared/providers/DatefnsProvider/models/IDatefnsProvider';
 import IEventUserRepository from '../../repositories/IEventUserRepository';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 interface IRequest {
   name: string;
@@ -22,6 +23,9 @@ export default class CreateEventUserService {
 
     @inject('DatefnsProvider')
     private dateFnsProvider: IDatefnsProvider,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({
@@ -50,6 +54,8 @@ export default class CreateEventUserService {
       event_type_id,
       user_id,
     });
+
+    await this.cacheProvider.invalidate('events-user');
 
     return eventUser;
   }

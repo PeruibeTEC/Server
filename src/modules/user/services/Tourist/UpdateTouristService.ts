@@ -4,6 +4,7 @@ import AppError from '@shared/infra/http/errors/AppError';
 import Tourist from '@modules/user/infra/typeorm/entities/Tourist';
 import ITouristRepository from '@modules/user/repositories/ITouristRepository';
 import IUserRepository from '../../repositories/IUserRepository';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 interface IRequest {
   tourist_id: string;
@@ -22,6 +23,9 @@ export default class UpdateTouristService {
 
     @inject('TouristRepository')
     private touristRepository: ITouristRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({
@@ -49,6 +53,8 @@ export default class UpdateTouristService {
       is_foreigner,
       country_foreigner,
     });
+
+    await this.cacheProvider.invalidate('tourist-list');
 
     return this.touristRepository.save(checkTourist);
   }

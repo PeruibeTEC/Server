@@ -3,6 +3,7 @@ import AppError from '@shared/infra/http/errors/AppError';
 
 import IUsersRepository from '@modules/user/repositories/IUserRepository';
 import IHashProvider from '@shared/providers/HashProvider/models/IHashProvider';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import User from '@modules/user/infra/typeorm/entities/User';
 
 interface IRequest {
@@ -22,6 +23,9 @@ export default class UpdateProfileService {
 
     @inject('HashCitizenProvider')
     private hashCitizenProvider: IHashProvider,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({
@@ -66,6 +70,8 @@ export default class UpdateProfileService {
       user.password = await this.hashCitizenProvider.generateHash(password);
     }
 
+    await this.cacheProvider.invalidate('users-list');
+    
     return this.usersRepository.save(user);
   }
 }

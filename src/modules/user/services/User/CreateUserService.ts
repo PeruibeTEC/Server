@@ -5,6 +5,7 @@ import AppError from '@shared/infra/http/errors/AppError';
 import IHashProvider from '@shared/providers/HashProvider/models/IHashProvider';
 import User from '../../infra/typeorm/entities/User';
 import IUserRepository from '../../repositories/IUserRepository';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 export interface IRequest {
   name: string;
@@ -24,6 +25,9 @@ export default class CreateUserService {
 
     @inject('HashCitizenProvider')
     private hashCitizenProvider: IHashProvider,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({
@@ -68,6 +72,8 @@ export default class CreateUserService {
       background_photo,
       small_biography,
     });
+
+    await this.cacheProvider.invalidate('users-list');
 
     return user;
   }

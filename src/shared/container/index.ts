@@ -74,6 +74,14 @@ import TheftRepository from '@modules/theft/infra/typeorm/repositories/TheftRepo
 import ITheftItemsRepository from '@modules/theft/repositories/ITheftItemsRepository';
 import TheftItemsRepository from '@modules/theft/infra/typeorm/repositories/TheftItemsRepository';
 
+import ICacheProvider from './providers/CacheProvider/models/ICacheProvider';
+import RedisCacheProvider from './providers/CacheProvider/implementations/RedisCacheProvider';
+
+container.registerSingleton<ICacheProvider>(
+  'CacheProvider',
+  RedisCacheProvider
+)
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,

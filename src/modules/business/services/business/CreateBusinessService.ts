@@ -7,6 +7,7 @@ import AppError from '@shared/infra/http/errors/AppError';
 import IHashProvider from '@shared/providers/HashProvider/models/IHashProvider';
 import Business from '../../infra/typeorm/entities/Business';
 import IBusinessRepository from '../../repositories/IBusinessRepository';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 export interface IRequest {
   name: string;
@@ -29,6 +30,9 @@ export default class CreateBusinessService {
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({
@@ -71,6 +75,8 @@ export default class CreateBusinessService {
       closing_day,
       business_type_id,
     });
+
+    await this.cacheProvider.invalidate('business-list');
 
     return business;
   }

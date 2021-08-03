@@ -4,6 +4,7 @@ import AppError from '@shared/infra/http/errors/AppError';
 
 import Business from '../../infra/typeorm/entities/Business';
 import IBusinessRepository from '../../repositories/IBusinessRepository';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 interface IRequest {
   name: string;
@@ -25,6 +26,9 @@ export default class UpdateBusinessService {
   constructor(
     @inject('BusinessRepository')
     private businessRepository: IBusinessRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({
@@ -68,6 +72,8 @@ export default class UpdateBusinessService {
       business_type_id,
       business_id,
     });
+
+    await this.cacheProvider.invalidate('business-list');
 
     return this.businessRepository.save(business);
   }

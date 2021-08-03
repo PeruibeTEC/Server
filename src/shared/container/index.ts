@@ -77,10 +77,8 @@ import TheftItemsRepository from '@modules/theft/infra/typeorm/repositories/Thef
 import ICacheProvider from './providers/CacheProvider/models/ICacheProvider';
 import RedisCacheProvider from './providers/CacheProvider/implementations/RedisCacheProvider';
 
-container.registerSingleton<ICacheProvider>(
-  'CacheProvider',
-  RedisCacheProvider
-)
+import IHashProvider from '@shared/providers/HashProvider/models/IHashProvider';
+import BCryptHashCitizenProvider from '@shared/providers/HashProvider/implementantions/BCryptHashProvider';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
@@ -224,4 +222,15 @@ container.registerSingleton<IBusinessRatingRepository>(
 container.registerSingleton<ITouristRepository>(
   'TouristRepository',
   TouristRepository,
+);
+
+
+container.registerSingleton<ICacheProvider>(
+  'CacheProvider',
+  RedisCacheProvider
+);
+
+container.registerSingleton<IHashProvider>(
+  'HashProvider',
+  BCryptHashCitizenProvider
 );

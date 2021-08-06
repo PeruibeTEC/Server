@@ -155,4 +155,4 @@ The update method works similarly to the create method, tanking info from reques
 
 As a general rule, all controllers have the imports at the top, importing from dependencies such as request, response and the container. After that we import the services. As we can see, all methods use the services that were imported at the top and are inside the `export default class BusinessController` form.
 
-_These codes snippets were taken from [BusinessController.ts](https://github.com/PeruibeTEC/Server/blob/main/src/modules/business/infra/http/controllers/BusinessController.ts) on 07/13/2021._
+_These codes snippets were taken from [BusinessController.ts](https://github.com/PeruibeTEC/Server/blob/main/src/modules/business/infra/http/controllers/BusinessController.ts) on 08/06/2021._

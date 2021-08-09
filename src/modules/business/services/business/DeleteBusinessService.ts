@@ -3,6 +3,7 @@ import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/infra/http/errors/AppError';
 
 import IBusinessRepository from '../../repositories/IBusinessRepository';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 interface IRequest {
   business_id: string;
@@ -13,6 +14,9 @@ export default class DeleteBusinessService {
   constructor(
     @inject('BusinessRepository')
     private businessRepository: IBusinessRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider,
   ) {}
 
   public async execute({ business_id }: IRequest): Promise<void> {
@@ -28,6 +32,8 @@ export default class DeleteBusinessService {
         403,
       );
     }
+
+    await this.cacheProvider.invalidate('business-list');
 
     await this.businessRepository.delete(business_id);
   }

@@ -55,6 +55,7 @@ class SendForgotPasswordEmailService {
         variables: {
           name: user.name,
           token,
+          // TODO: put environment variable to server path in production
           link: `http://localhost:3333/password/reset?token=${token}`,
         },
       },

@@ -10,7 +10,8 @@ export default class IndexEventTypeUserService {
   ) {}
 
   public async execute(): Promise<EventTypeUser[]> {
-    const eventTypeUser = await this.eventTypeUserRepository.findAllEventTypeUser();
+    const eventTypeUser =
+      await this.eventTypeUserRepository.findAllEventTypeUser();
 
     return eventTypeUser;
   }

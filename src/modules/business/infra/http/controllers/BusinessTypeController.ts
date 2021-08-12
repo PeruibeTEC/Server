@@ -20,7 +20,7 @@ export default class BusinessTypeController {
       name,
     });
 
-    return response.json(businessType);
+    return response.status(201).json(businessType);
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {

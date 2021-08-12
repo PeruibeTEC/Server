@@ -17,7 +17,7 @@ export default class EventTypeUserController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const { event_type_id } = request.body;
+    const { event_type_id } = request.params;
 
     const showEventTypeUser = container.resolve(ShowEventTypeUserService);
 
@@ -35,7 +35,7 @@ export default class EventTypeUserController {
 
     const eventTypeUser = await createEventTypeUser.execute({ name });
 
-    return response.json(eventTypeUser);
+    return response.status(201).json(eventTypeUser);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {

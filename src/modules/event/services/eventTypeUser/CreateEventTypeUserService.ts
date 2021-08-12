@@ -15,9 +15,8 @@ export default class CreateEventTypeUserService {
   ) {}
 
   public async execute({ name }: IRequest): Promise<EventTypeUser> {
-    const checkExistenceEventTypeUser = await this.eventTypeUserRepository.findByName(
-      name,
-    );
+    const checkExistenceEventTypeUser =
+      await this.eventTypeUserRepository.findByName(name);
 
     if (checkExistenceEventTypeUser) {
       throw new AppError('An Event Type with this name already exists.');

@@ -9,7 +9,7 @@ const eventTypeUserController = new EventTypeUserController();
 eventTypeUserRouter.use(ensureAuthenticate);
 
 eventTypeUserRouter.get('/', eventTypeUserController.index);
-eventTypeUserRouter.get('/', eventTypeUserController.show);
+eventTypeUserRouter.get('/:id', eventTypeUserController.show);
 eventTypeUserRouter.post('/', eventTypeUserController.create);
 eventTypeUserRouter.put('/', eventTypeUserController.update);
 eventTypeUserRouter.delete('/', eventTypeUserController.delete);

@@ -5,7 +5,7 @@ import ShowProfileUserService from '@modules/user/services/User/ShowProfileUserS
 
 export default class ProfileUserController {
   public async show(request: Request, response: Response): Promise<Response> {
-    const user_id: string = (request.params as unknown) as string;
+    const user_id: string = request.params as unknown as string;
 
     const showUser = container.resolve(ShowProfileUserService);
 

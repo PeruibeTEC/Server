@@ -4,8 +4,8 @@ import { container } from 'tsyringe';
 import CreateUserService from '@modules/user/services/User/CreateUserService';
 import DeleteUserService from '@modules/user/services/User/DeleteUserService';
 import IndexUserService from '@modules/user/services/User/IndexUserService';
+import UpdateUserService from '@modules/user/services/User/UpdateUserService';
 import ShowLoggedUserService from '@modules/user/services/User/ShowLoggedUserService';
-import UpdateProfileService from '@modules/user/services/User/UpdateProfileService';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -69,15 +69,10 @@ export default class UsersController {
   public async update(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
 
-    const {
-      name,
-      email,
-      password,
-      old_password,
-      small_biography,
-    } = request.body;
+    const { name, email, password, old_password, small_biography } =
+      request.body;
 
-    const updateUser = container.resolve(UpdateProfileService);
+    const updateUser = container.resolve(UpdateUserService);
 
     const user = await updateUser.execute({
       user_id,

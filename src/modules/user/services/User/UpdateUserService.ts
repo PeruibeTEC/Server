@@ -71,7 +71,7 @@ export default class UpdateProfileService {
     }
 
     await this.cacheProvider.invalidate('users-list');
-    
+
     return this.usersRepository.save(user);
   }
 }

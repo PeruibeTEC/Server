@@ -45,14 +45,8 @@ export default class EventUserController {
   public async create(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
 
-    const {
-      name,
-      date,
-      start_time,
-      end_time,
-      description,
-      event_type_id,
-    } = request.body;
+    const { name, date, start_time, end_time, description, event_type_id } =
+      request.body;
 
     const createEventUser = container.resolve(CreateEventUserService);
 
@@ -66,7 +60,7 @@ export default class EventUserController {
       user_id,
     });
 
-    return response.json(eventUser);
+    return response.status(201).json(eventUser);
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
@@ -108,6 +102,8 @@ export default class EventUserController {
       eventUser_id: event_id,
     });
 
-    return response.status(200).json(eventUser);
+    return response
+      .status(200)
+      .json({ eventUser, message: `Event ${request.body.id} deleted ` });
   }
 }

@@ -9,7 +9,6 @@ import Event from '@modules/event/infra/typeorm/entities/EventUser';
 import User from '@modules/user/infra/typeorm/entities/User';
 import EventType from '@modules/event/infra/typeorm/entities/EventTypeUser';
 import { uuid } from 'uuidv4';
-import { parseISO } from 'date-fns';
 
 let connection: Connection;
 

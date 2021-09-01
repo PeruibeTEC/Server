@@ -41,6 +41,8 @@ beforeEach(async () => {
     small_biography: 'my beaut bio',
     background_photo: null,
   };
+
+  await request(app).post('/api/user').send(user);
 });
 
 afterEach(async () => {

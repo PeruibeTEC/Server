@@ -32,11 +32,6 @@ class SendForgotPasswordEmailService {
 
     const { token } = await this.userTokenRepository.generate(user.id);
 
-    // here the email should be sent with token (waiting for SendEmailService)
-    // console.log(token) is a placeholder
-    // eslint-disable-next-line no-console
-    console.log(token);
-
     const forgotPasswordTemplate = path.resolve(
       __dirname,
       '..',

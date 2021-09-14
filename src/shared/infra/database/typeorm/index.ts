@@ -1,4 +1,5 @@
 import { Connection, createConnection } from 'typeorm';
+import logger from '@shared/utils/logger';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
@@ -15,5 +16,6 @@ const connection = async (): Promise<Connection> => {
     database: process.env.DB_DATABASE,
   });
 };
+logger.info('Connecting Database...');
 
 export default connection;

@@ -1,3 +1,5 @@
+import logger from '@shared/utils/logger';
+
 import { Express, NextFunction, Request, Response } from 'express';
 import AppError from '../errors/AppError';
 
@@ -11,8 +13,7 @@ export default (app: Express): void => {
         });
       }
 
-      // eslint-disable-next-line
-      console.error(err);
+      logger.error(err);
 
       return response.status(500).json({
         status: 'error',

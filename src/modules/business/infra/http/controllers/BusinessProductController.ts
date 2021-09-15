@@ -7,6 +7,7 @@ import DeleteBusinessProductService from '@modules/business/services/businessPro
 import ShowBusinessProductService from '@modules/business/services/businessProduct/ShowBusinessProductService';
 import UpdateBusinessProductService from '@modules/business/services/businessProduct/UpdateBusinessProductService';
 import IndexBusinessProductService from '@modules/business/services/businessProduct/IndexBusinessProductService';
+import logger from '@shared/utils/logger';
 
 export default class BusinessProductController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -41,9 +42,11 @@ export default class BusinessProductController {
       business_product_id,
     });
 
-    return response
-      .status(200)
-      .json({ message: `BusinessProduct ${business_product_id} deleted ` });
+    logger.info(`BusinessProduct for id: ${business_product_id} deleted`);
+
+    return response.status(200).json({
+      message: `BusinessProduct for id: ${business_product_id} deleted`,
+    });
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
@@ -76,13 +79,8 @@ export default class BusinessProductController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const business_id = request.business.id;
-    const {
-      name,
-      description,
-      price,
-      photo_product_url,
-      business_product_id,
-    } = request.body;
+    const { name, description, price, photo_product_url, business_product_id } =
+      request.body;
 
     const updateBusinessProductService = container.resolve(
       UpdateBusinessProductService,
@@ -96,6 +94,8 @@ export default class BusinessProductController {
       photo_product_url,
       business_product_id,
     });
+
+    logger.info(`BusinessProduct for id: ${business_product_id} has updated`);
 
     return response.json(businessProduct);
   }

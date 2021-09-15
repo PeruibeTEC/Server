@@ -7,6 +7,7 @@ import IndexInterestPointTypeService from '@modules/rawdata/services/interestPoi
 import ShowInterestPointTypeService from '@modules/rawdata/services/interestPointType/ShowInterestPointTypeService';
 import DeleteInterestPointTypeService from '@modules/rawdata/services/interestPointType/DeleteInterestPointTypeService';
 import UpdateInterestPointTypeService from '@modules/rawdata/services/interestPointType/UpdateInterestPointTypeService';
+import logger from '@shared/utils/logger';
 
 export default class InterestPointTypeController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -35,7 +36,7 @@ export default class InterestPointTypeController {
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const interest_point_type_id: string = (request.params as unknown) as string;
+    const interest_point_type_id: string = request.params as unknown as string;
 
     const showInterestPointType = container.resolve(
       ShowInterestPointTypeService,
@@ -57,6 +58,8 @@ export default class InterestPointTypeController {
 
     await deleteInterestPoint.execute({ interest_point_type_id });
 
+    logger.info(`Interest Point Type for id ${interest_point_type_id} deleted`);
+
     return response.status(200).json({
       message: `Interest Point Type for id ${interest_point_type_id} deleted `,
     });
@@ -74,6 +77,10 @@ export default class InterestPointTypeController {
       name,
       description,
     });
+
+    logger.info(
+      `Interest Point Type for id ${interest_point_type_id} has updated`,
+    );
 
     return response.json(interestPointType);
   }

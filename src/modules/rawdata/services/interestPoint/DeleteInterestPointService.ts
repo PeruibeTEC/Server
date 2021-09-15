@@ -16,9 +16,8 @@ export default class DeleteInterestPointService {
   ) {}
 
   public async execute({ interest_point_id }: IRequest): Promise<void> {
-    const checkInterestPointExists = await this.interestPointRepository.findById(
-      interest_point_id,
-    );
+    const checkInterestPointExists =
+      await this.interestPointRepository.findById(interest_point_id);
 
     if (!checkInterestPointExists) {
       throw new AppError('Interest point not found.', 404);

@@ -7,6 +7,7 @@ import UpdateEventUserService from '@modules/event/services/eventUser/UpdateEven
 
 import { container } from 'tsyringe';
 import FindAllUserEventsService from '@modules/event/services/eventUser/FindAllUserEventsService';
+import logger from '@shared/utils/logger';
 
 export default class EventUserController {
   public async index(request: Request, response: Response): Promise<Response> {
@@ -88,6 +89,8 @@ export default class EventUserController {
       event_type_id,
     });
 
+    logger.info(`Event for id: ${event_id} has updated`);
+
     return response.status(200).json(eventUser);
   }
 
@@ -102,8 +105,11 @@ export default class EventUserController {
       eventUser_id: event_id,
     });
 
-    return response
-      .status(200)
-      .json({ eventUser, message: `Event ${request.body.id} deleted ` });
+    logger.info(`Event for id: ${event_id} deleted`);
+
+    return response.status(200).json({
+      eventUser,
+      message: `Event for id: ${request.body.id} deleted `,
+    });
   }
 }

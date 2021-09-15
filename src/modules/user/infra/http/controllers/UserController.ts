@@ -6,6 +6,7 @@ import DeleteUserService from '@modules/user/services/User/DeleteUserService';
 import IndexUserService from '@modules/user/services/User/IndexUserService';
 import ShowLoggedUserService from '@modules/user/services/User/ShowLoggedUserService';
 import UpdateProfileService from '@modules/user/services/User/UpdateProfileService';
+import logger from '@shared/utils/logger';
 
 export default class UsersController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -44,7 +45,11 @@ export default class UsersController {
 
     await deleteUser.execute({ user_id });
 
-    return response.status(200).json({ message: `User ${user_id} deleted ` });
+    logger.info(`User for id: ${user_id} deleted`);
+
+    return response
+      .status(200)
+      .json({ message: `User for id: ${user_id} deleted` });
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
@@ -85,6 +90,8 @@ export default class UsersController {
 
     // @ts-expect-error ⠀⠀⠀
     delete user.password;
+
+    logger.info(`User for id: ${user_id} has updated`);
 
     return response.json(user);
   }

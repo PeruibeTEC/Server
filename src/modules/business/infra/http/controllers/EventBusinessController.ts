@@ -7,6 +7,7 @@ import DeleteEventBusinessService from '@modules/business/services/eventBusiness
 import IndexEventBusinessService from '@modules/business/services/eventBusiness/IndexEventBusinessService';
 import ShowEventBusinessService from '@modules/business/services/eventBusiness/ShowEventBusinessService';
 import UpdateEventBusinessService from '@modules/business/services/eventBusiness/UpdateEventBusinessService';
+import logger from '@shared/utils/logger';
 
 export default class EventBusinessController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -52,9 +53,11 @@ export default class EventBusinessController {
       event_business_id,
     });
 
+    logger.info(`Event for id: ${event_business_id} deleted `);
+
     return response
       .status(200)
-      .json({ message: `Event ${event_business_id} deleted ` });
+      .json({ message: `Event for id: ${event_business_id} deleted` });
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
@@ -95,6 +98,8 @@ export default class EventBusinessController {
       business_id,
       event_business_id,
     });
+
+    logger.info(`Event for id: ${event_business_id} has updated `);
 
     return response.json(eventTypeBusiness);
   }

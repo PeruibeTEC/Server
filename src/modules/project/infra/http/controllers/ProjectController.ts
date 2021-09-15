@@ -7,6 +7,7 @@ import DeleteProjectService from '@modules/project/services/project/DeleteProjec
 import ShowProjectService from '@modules/project/services/project/ShowProjectService';
 import IndexProjectService from '@modules/project/services/project/IndexProjectService';
 import UpdateProjectService from '@modules/project/services/project/UpdateProjectService';
+import logger from '@shared/utils/logger';
 
 export default class ProjectController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -46,13 +47,15 @@ export default class ProjectController {
 
     await deleteProject.execute({ project_id });
 
+    logger.info(`Project for id: ${project_id} deleted`);
+
     return response.status(200).json({
-      message: `Project for id: ${project_id} deleted `,
+      message: `Project for id: ${project_id} deleted`,
     });
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
-    const project_id: string = (request.params as unknown) as string;
+    const project_id: string = request.params as unknown as string;
 
     const showProject = container.resolve(ShowProjectService);
 
@@ -99,6 +102,8 @@ export default class ProjectController {
       description,
       price,
     });
+
+    logger.info(`Project for id: ${project_id} has updated`);
 
     return response.json(project);
   }

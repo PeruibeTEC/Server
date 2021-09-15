@@ -7,17 +7,12 @@ import DeleteTheftService from '@modules/theft/services/theft/DeleteTheftService
 import ShowTheftService from '@modules/theft/services/theft/ShowTheftService';
 import IndexTheftService from '@modules/theft/services/theft/IndexTheftService';
 import UpdateTheftService from '@modules/theft/services/theft/UpdateTheftService';
+import logger from '@shared/utils/logger';
 
 export default class TheftController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const {
-      date,
-      time,
-      description,
-      title,
-      theft_location_id,
-      user_id,
-    } = request.body;
+    const { date, time, description, title, theft_location_id, user_id } =
+      request.body;
 
     const createTheft = container.resolve(CreateTheftService);
 
@@ -41,8 +36,10 @@ export default class TheftController {
 
     await deleteTheft.execute({ theft_id, user_id });
 
+    logger.info(`Theft id: ${theft_id} deleted`);
+
     return response.status(200).json({
-      message: `Theft id: ${theft_id} deleted `,
+      message: `Theft id: ${theft_id} deleted`,
     });
   }
 
@@ -70,14 +67,8 @@ export default class TheftController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
-    const {
-      theft_id,
-      date,
-      time,
-      description,
-      title,
-      theft_location_id,
-    } = request.body;
+    const { theft_id, date, time, description, title, theft_location_id } =
+      request.body;
 
     const updateTheft = container.resolve(UpdateTheftService);
 
@@ -90,6 +81,8 @@ export default class TheftController {
       theft_location_id,
       user_id,
     });
+
+    logger.info(`Theft id: ${theft_id} has updated `);
 
     return response.json(theft);
   }

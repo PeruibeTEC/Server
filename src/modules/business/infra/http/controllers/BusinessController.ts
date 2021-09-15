@@ -7,6 +7,7 @@ import DeleteBusinessService from '@modules/business/services/business/DeleteBus
 import ShowBusinessService from '@modules/business/services/business/ShowBusinessService';
 import UpdateBusinessService from '@modules/business/services/business/UpdateBusinessService';
 import IndexBusinessService from '@modules/business/services/business/IndexBusinessService';
+import logger from '@shared/utils/logger';
 
 export default class BusinessController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -51,9 +52,11 @@ export default class BusinessController {
 
     await deleteBusinessService.execute({ business_id });
 
+    logger.info(`Business for id: ${business_id} deleted`);
+
     return response
       .status(200)
-      .json({ message: `Business ${business_id} deleted ` });
+      .json({ message: `Business ${business_id} deleted` });
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
@@ -110,6 +113,8 @@ export default class BusinessController {
 
     // @ts-expect-error ⠀⠀⠀
     delete business.password;
+
+    logger.info(`Business for id: ${business_id} has updated`);
 
     return response.json(business);
   }

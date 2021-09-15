@@ -6,6 +6,7 @@ import DeleteTouristService from '@modules/user/services/Tourist/DeleteTouristSe
 import IndexTouristService from '@modules/user/services/Tourist/IndexTouristService';
 import ShowTouristService from '@modules/user/services/Tourist/ShowTouristService';
 import UpdateTouristService from '@modules/user/services/Tourist/UpdateTouristService';
+import logger from '@shared/utils/logger';
 
 export default class TouristController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -32,9 +33,11 @@ export default class TouristController {
 
     await deleteTourist.execute({ tourist_id });
 
+    logger.info(`Tourist for id: ${tourist_id} deleted`);
+
     return response
       .status(200)
-      .json({ message: `Tourist ${tourist_id} deleted ` });
+      .json({ message: `Tourist for id: ${tourist_id} deleted` });
   }
 
   public async show(request: Request, response: Response): Promise<Response> {
@@ -55,13 +58,8 @@ export default class TouristController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const {
-      tourist_id,
-      state,
-      city,
-      is_foreigner,
-      country_foreigner,
-    } = request.body;
+    const { tourist_id, state, city, is_foreigner, country_foreigner } =
+      request.body;
     const user_id = request.user.id;
 
     const updateTourist = container.resolve(UpdateTouristService);
@@ -74,6 +72,8 @@ export default class TouristController {
       country_foreigner,
       user_id,
     });
+
+    logger.info(`Tourist for id: ${tourist_id} has updated`);
 
     return response.json(tourist);
   }

@@ -7,6 +7,7 @@ import DeleteBusinessTypeService from '@modules/business/services/businessType/D
 import IndexBusinessTypeService from '@modules/business/services/businessType/IndexBusinessTypeService';
 import ShowBusinessTypeService from '@modules/business/services/businessType/ShowBusinessTypeService';
 import UpdateBusinessTypeService from '@modules/business/services/businessType/UpdateBusinessTypeService';
+import logger from '@shared/utils/logger';
 
 export default class BusinessTypeController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -32,9 +33,11 @@ export default class BusinessTypeController {
 
     await deleteBusinessTypeService.execute({ business_type_id });
 
+    logger.info(`BusinessType for id: ${business_type_id} deleted`);
+
     return response
       .status(200)
-      .json({ message: `Post for id ${business_type_id} deleted ` });
+      .json({ message: `BusinessType for id: ${business_type_id} deleted` });
   }
 
   public async index(request: Request, response: Response): Promise<Response> {
@@ -58,6 +61,8 @@ export default class BusinessTypeController {
       business_type_id,
       name,
     });
+
+    logger.info(`BusinessType for id: ${business_type_id} has updated`);
 
     return response.json(businessType);
   }

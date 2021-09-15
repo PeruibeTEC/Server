@@ -7,6 +7,7 @@ import DeleteTheftItemsService from '@modules/theft/services/theftItems/DeleteTh
 import ShowTheftItemsService from '@modules/theft/services/theftItems/ShowTheftItemsService';
 import IndexTheftItemsService from '@modules/theft/services/theftItems/IndexTheftItemsService';
 import UpdateTheftItemsService from '@modules/theft/services/theftItems/UpdateTheftItemsService';
+import logger from '@shared/utils/logger';
 
 export default class TheftItemsController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -30,8 +31,10 @@ export default class TheftItemsController {
 
     await deleteTheftItems.execute({ theft_items_id });
 
+    logger.info(`Items id ${theft_items_id} deleted`);
+
     return response.status(200).json({
-      message: `Items id ${theft_items_id} deleted `,
+      message: `Items id ${theft_items_id} deleted`,
     });
   }
 
@@ -66,6 +69,8 @@ export default class TheftItemsController {
       amount,
       items,
     });
+
+    logger.info(`Items id ${theft_items_id} has updated`);
 
     return response.json(theft);
   }

@@ -6,6 +6,7 @@ import CreateEventTypeUserService from '@modules/event/services/eventTypeUser/Cr
 import ShowEventTypeUserService from '@modules/event/services/eventTypeUser/ShowEventTypeUserService';
 import DeleteEventTypeUserService from '@modules/event/services/eventTypeUser/DeleteEventTypeUserService';
 import UpdateEventTypeUserService from '@modules/event/services/eventTypeUser/UpdateEventTypeUserService';
+import logger from '@shared/utils/logger';
 
 export default class EventTypeUserController {
   public async index(_: Request, response: Response): Promise<Response> {
@@ -48,6 +49,8 @@ export default class EventTypeUserController {
       name,
     });
 
+    logger.info(`EventType for id: ${event_type_id} has updated`);
+
     return response.status(200).json(eventTypeUser);
   }
 
@@ -59,6 +62,8 @@ export default class EventTypeUserController {
     const eventTypeUser = await deleteEventTypeUser.execute({
       eventTypeUser_id: event_type_id,
     });
+
+    logger.info(`EventType for id: ${event_type_id} deleted`);
 
     return response.status(200).json(eventTypeUser);
   }

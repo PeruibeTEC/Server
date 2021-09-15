@@ -11,14 +11,8 @@ import IndexBusinessLocationService from '@modules/business/services/businessLoc
 export default class BusinessLocationController {
   public async create(request: Request, response: Response): Promise<Response> {
     const business_id = request.business.id;
-    const {
-      street,
-      number,
-      district,
-      latitude,
-      longitude,
-      description,
-    } = request.body;
+    const { street, number, district, latitude, longitude, description } =
+      request.body;
 
     const createBusinessLocation = container.resolve(
       CreateBusinessLocationService,

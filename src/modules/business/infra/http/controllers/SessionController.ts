@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import AuthenticateBusinessService from '@modules/business/services/business/BusinessAuthenticationService';
+import logger from '@shared/utils/logger';
 
 export default class SessionController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -17,6 +18,8 @@ export default class SessionController {
 
     // @ts-expect-error ⠀⠀⠀
     delete business.password;
+
+    logger.info(`The business of id: ${business.id} started a session`);
 
     return response.json({
       business,

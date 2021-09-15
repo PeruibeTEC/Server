@@ -7,6 +7,7 @@ import DeleteTheftLocationService from '@modules/theft/services/theftLocation/De
 import ShowTheftLocationService from '@modules/theft/services/theftLocation/ShowTheftLocationService';
 import IndexTheftLocationService from '@modules/theft/services/theftLocation/IndexTheftLocationService';
 import UpdateTheftLocationService from '@modules/theft/services/theftLocation/UpdateTheftLocationService';
+import logger from '@shared/utils/logger';
 
 export default class TheftLocationController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -32,8 +33,10 @@ export default class TheftLocationController {
 
     await deleteTheftLocation.execute({ theft_location_id });
 
+    logger.info(`Location for id: ${theft_location_id} deleted`);
+
     return response.status(200).json({
-      message: `Location ${theft_location_id} deleted `,
+      message: `Location for id: ${theft_location_id} deleted`,
     });
   }
 
@@ -60,14 +63,8 @@ export default class TheftLocationController {
   }
 
   public async update(request: Request, response: Response): Promise<Response> {
-    const {
-      number,
-      street,
-      district,
-      latitude,
-      longitude,
-      theft_location_id,
-    } = request.body;
+    const { number, street, district, latitude, longitude, theft_location_id } =
+      request.body;
 
     const updateTheftLocation = container.resolve(UpdateTheftLocationService);
 
@@ -79,6 +76,8 @@ export default class TheftLocationController {
       longitude,
       theft_location_id,
     });
+
+    logger.info(`Location for id: ${theft_location_id} has updated`);
 
     return response.json(theftLocation);
   }

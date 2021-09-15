@@ -5,6 +5,7 @@ import { container } from 'tsyringe';
 import CreatePhotoProjectService from '@modules/project/services/projectPhoto/CreateProjectPhotoService';
 import DeletePhotoProjectService from '@modules/project/services/projectPhoto/DeleteProjectPhotoService';
 import ShowPhotoProjectService from '@modules/project/services/projectPhoto/ShowProjectPhotoService';
+import logger from '@shared/utils/logger';
 
 export default class ProjectPhotoController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -29,8 +30,10 @@ export default class ProjectPhotoController {
       photo_project_id,
     });
 
+    logger.info(`Photo of the Project for id: ${photo_project_id} deleted`);
+
     return response.status(200).json({
-      message: `Photo of the Project for id: ${photo_project_id} deleted `,
+      message: `Photo of the Project for id: ${photo_project_id} deleted`,
     });
   }
 

@@ -20,7 +20,7 @@ export default class UpdateProfileService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject('HashCitizenProvider')
+    @inject('HashProvider')
     private hashCitizenProvider: IHashProvider,
   ) {}
 

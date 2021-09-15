@@ -22,7 +22,7 @@ export default class CreateUserService {
     @inject('UsersRepository')
     private usersRepository: IUserRepository,
 
-    @inject('HashCitizenProvider')
+    @inject('HashProvider')
     private hashCitizenProvider: IHashProvider,
   ) {}
 

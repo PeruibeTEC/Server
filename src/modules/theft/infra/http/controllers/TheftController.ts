@@ -10,14 +10,8 @@ import UpdateTheftService from '@modules/theft/services/theft/UpdateTheftService
 
 export default class TheftController {
   public async create(request: Request, response: Response): Promise<Response> {
-    const {
-      date,
-      time,
-      description,
-      title,
-      theft_location_id,
-      user_id,
-    } = request.body;
+    const { date, time, description, title, theft_location_id, user_id } =
+      request.body;
 
     const createTheft = container.resolve(CreateTheftService);
 
@@ -70,14 +64,8 @@ export default class TheftController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const user_id = request.user.id;
-    const {
-      theft_id,
-      date,
-      time,
-      description,
-      title,
-      theft_location_id,
-    } = request.body;
+    const { theft_id, date, time, description, title, theft_location_id } =
+      request.body;
 
     const updateTheft = container.resolve(UpdateTheftService);
 

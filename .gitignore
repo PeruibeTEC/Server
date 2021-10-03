@@ -10,6 +10,7 @@
 
 yarn-lock.json
 yarn.lock
+yarn-error.log
 
 # at your terminal use the following command
 # git rm -rf .vscode

@@ -21,20 +21,26 @@ export default class UpdateBusinessTypeService {
     business_type_id,
     name,
   }: IRequest): Promise<BusinessType> {
-    const businessType = await this.businessTypeRepository.findById(
+    const businessTypeId = await this.businessTypeRepository.findById(
       business_type_id,
     );
 
-    if (!businessType) {
+    const businessTypeName = await this.businessTypeRepository.findByName(name);
+
+    if (!businessTypeId) {
       throw new AppError('Business Type not found.', 404);
     }
 
     if (name.length > 200) {
-      throw new AppError('Content has exceeded the character limit', 413);
+      throw new AppError('Name has exceeded the character limit.', 413);
     }
 
-    Object.assign(businessType, { name });
+    if (businessTypeName) {
+      throw new AppError('Type name already used.');
+    }
 
-    return this.businessTypeRepository.save(businessType);
+    Object.assign(businessTypeId, { name });
+
+    return this.businessTypeRepository.save(businessTypeId);
   }
 }

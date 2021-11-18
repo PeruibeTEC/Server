@@ -27,8 +27,8 @@ export default class CreateBusinessService {
     @inject('BusinessRepository')
     private businessRepository: IBusinessRepository,
 
-    @inject('HashProvider')
-    private hashProvider: IHashProvider,
+    @inject('HashCitizenProvider')
+    private hashCitizenProvider: IHashProvider,
   ) {}
 
   public async execute({
@@ -49,7 +49,9 @@ export default class CreateBusinessService {
       throw new AppError('Business already exists.', 409);
     }
 
-    const hashedPassword = await this.hashProvider.generateHash(password);
+    const hashedPassword = await this.hashCitizenProvider.generateHash(
+      password,
+    );
 
     if (profile_photo === undefined) {
       profile_photo =

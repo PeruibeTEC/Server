@@ -30,7 +30,14 @@ export default class UpdateEventTypeBusinessService {
     }
 
     if (name.length > 150) {
-      throw new AppError('Content has exceeded the character limit', 413);
+      throw new AppError('Content has exceeded the character limit.', 413);
+    }
+
+    const eventTypeBusinessName =
+      await this.eventTypeBusinessRepository.findByName(name);
+
+    if (eventTypeBusinessName) {
+      throw new AppError('Event type name already used.');
     }
 
     Object.assign(eventTypeBusiness, { name });

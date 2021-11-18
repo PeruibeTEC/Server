@@ -5,7 +5,7 @@ import AppError from '@shared/infra/http/errors/AppError';
 import IBusinessTypeRepository from '../../repositories/IBusinessTypeRepository';
 
 interface IRequest {
-  business_type_id: string;
+  id: string;
 }
 
 @injectable()
@@ -15,15 +15,13 @@ export default class DeleteBusinessTypeService {
     private businessTypeRepository: IBusinessTypeRepository,
   ) {}
 
-  public async execute({ business_type_id }: IRequest): Promise<void> {
-    const businessType = await this.businessTypeRepository.findById(
-      business_type_id,
-    );
+  public async execute({ id }: IRequest): Promise<void> {
+    const businessType = await this.businessTypeRepository.findById(id);
 
     if (!businessType) {
       throw new AppError('Business Type not found.', 404);
     }
 
-    await this.businessTypeRepository.delete(business_type_id);
+    await this.businessTypeRepository.delete(id);
   }
 }

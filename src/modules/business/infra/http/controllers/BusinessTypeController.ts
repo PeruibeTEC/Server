@@ -24,17 +24,17 @@ export default class BusinessTypeController {
   }
 
   public async delete(request: Request, response: Response): Promise<Response> {
-    const { business_type_id } = request.body;
+    const { id } = request.body;
 
     const deleteBusinessTypeService = container.resolve(
       DeleteBusinessTypeService,
     );
 
-    await deleteBusinessTypeService.execute({ business_type_id });
+    await deleteBusinessTypeService.execute({ id });
 
     return response
       .status(200)
-      .json({ message: `Post for id ${business_type_id} deleted ` });
+      .json({ message: `Business type ${id} deleted ` });
   }
 
   public async index(request: Request, response: Response): Promise<Response> {

@@ -22,6 +22,6 @@ export default class DeleteEventTypeUserService {
       throw new AppError('Event Type does not exists.', 404);
     }
 
-    await this.eventTypeUserRepository.delete(eventTypeUser.id);
+    await this.eventTypeUserRepository.delete(eventTypeUser_id);
   }
 }

@@ -46,7 +46,15 @@ export default class CreateBusinessService {
     const checkBusinessExists = await this.businessRepository.findByName(name);
 
     if (checkBusinessExists) {
-      throw new AppError('Business already exists.', 409);
+      throw new AppError('Business name already exists.', 409);
+    }
+
+    const checkBusinessEmail = await this.businessRepository.findByEmail(
+      email_login,
+    );
+
+    if (checkBusinessEmail) {
+      throw new AppError('Business e-mail already exists.', 409);
     }
 
     const hashedPassword = await this.hashCitizenProvider.generateHash(

@@ -34,7 +34,7 @@ export default class UpdateEventTypeUserService {
       throw new AppError('An Event Type with this name already exists.', 409);
     }
 
-    eventTypeUser.name = name;
+    Object.assign(eventTypeUser, { name });
 
     return this.eventTypeUserRepository.save(eventTypeUser);
   }

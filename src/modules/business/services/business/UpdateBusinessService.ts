@@ -54,6 +54,20 @@ export default class UpdateBusinessService {
       );
     }
 
+    const verifyBusinessEmail = await this.businessRepository.findByEmail(
+      email_login,
+    );
+
+    if (verifyBusinessEmail) {
+      throw new AppError(`Business e-mail already used`, 409);
+    }
+
+    const verifyBusinessName = await this.businessRepository.findByName(name);
+
+    if (verifyBusinessName) {
+      throw new AppError(`Business name already used`, 409);
+    }
+
     Object.assign(business, {
       name,
       email_login,

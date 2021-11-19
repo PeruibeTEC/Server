@@ -56,10 +56,12 @@ export default class EventTypeUserController {
 
     const deleteEventTypeUser = container.resolve(DeleteEventTypeUserService);
 
-    const eventTypeUser = await deleteEventTypeUser.execute({
+    await deleteEventTypeUser.execute({
       eventTypeUser_id: event_type_id,
     });
 
-    return response.status(200).json(eventTypeUser);
+    return response
+      .status(200)
+      .json({ message: `Event Type User ${event_type_id} deleted ` });
   }
 }

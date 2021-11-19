@@ -50,6 +50,13 @@ export default class UpdateEventBusinessService {
       );
     }
 
+    const verifyEventBusinessName =
+      await this.eventBusinessRepository.findByName(name);
+
+    if (verifyEventBusinessName) {
+      throw new AppError(`Event name already exists.`, 409);
+    }
+
     Object.assign(eventBusiness, {
       name,
       date,

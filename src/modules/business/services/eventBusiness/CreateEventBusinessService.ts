@@ -33,6 +33,13 @@ export default class CreateEventBusinessService {
     event_type_business_id: string,
     business_id: string,
   ): Promise<EventBusiness> {
+    const verifyEventBusinessName =
+      await this.eventBusinessRepository.findByName(name);
+
+    if (verifyEventBusinessName) {
+      throw new AppError(`Event name already exists.`, 409);
+    }
+
     const eventBusiness = await this.eventBusinessRepository.create({
       name,
       date,

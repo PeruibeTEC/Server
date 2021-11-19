@@ -17,9 +17,8 @@ export default class CreateEventTypeBusinessService {
       throw new AppError('Content has exceeded the character limit', 413);
     }
 
-    const checkBusinessTypeExists = await this.eventTypeBusinessRepository.findByName(
-      name,
-    );
+    const checkBusinessTypeExists =
+      await this.eventTypeBusinessRepository.findByName(name);
     if (checkBusinessTypeExists) {
       throw new AppError('Type already exists', 409);
     }

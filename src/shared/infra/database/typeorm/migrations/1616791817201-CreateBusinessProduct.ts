@@ -35,7 +35,7 @@ export class CreateBusinessProduct1614867720200 implements MigrationInterface {
             scale: 2,
           },
           {
-            name: 'url',
+            name: 'photo_product_url',
             type: 'varchar',
             length: '3000',
           },

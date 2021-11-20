@@ -25,17 +25,15 @@ export default class CreateBusinessContactService {
     tellphone,
     business_id,
   }: IRequest): Promise<BusinessContact> {
-    const checkbusinessContactEmailExists = await this.businessContactRepository.findByContactEmail(
-      contact_email,
-    );
+    const checkbusinessContactEmailExists =
+      await this.businessContactRepository.findByContactEmail(contact_email);
 
     if (checkbusinessContactEmailExists) {
       throw new AppError('Email already in use.', 409);
     }
 
-    const businessExists = this.businessContactRepository.findByBusiness(
-      business_id,
-    );
+    const businessExists =
+      this.businessContactRepository.findByBusiness(business_id);
 
     if (await businessExists) {
       throw new AppError('This business already has a contact.', 409);

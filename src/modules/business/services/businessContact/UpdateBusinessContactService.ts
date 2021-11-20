@@ -35,9 +35,8 @@ export default class UpdateBusinessContactService {
       throw new AppError('Business  not found.', 404);
     }
 
-    const checkbusinessContactEmailExists = await this.businessContactRepository.findByContactEmail(
-      contact_email,
-    );
+    const checkbusinessContactEmailExists =
+      await this.businessContactRepository.findByContactEmail(contact_email);
 
     if (checkbusinessContactEmailExists) {
       throw new AppError('Email already in use.', 409);

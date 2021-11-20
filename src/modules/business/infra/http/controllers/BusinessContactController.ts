@@ -66,12 +66,8 @@ export default class BusinessContactController {
 
   public async update(request: Request, response: Response): Promise<Response> {
     const business_id = request.business.id;
-    const {
-      contact_email,
-      cellphone,
-      tellphone,
-      business_contact_id,
-    } = request.body;
+    const { contact_email, cellphone, tellphone, business_contact_id } =
+      request.body;
 
     const updateBusinessContactService = container.resolve(
       UpdateBusinessContactService,

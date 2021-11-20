@@ -31,9 +31,8 @@ export default class CreateBusinessLocationService {
     description,
     business_id,
   }: IRequest): Promise<BusinessLocation> {
-    const businessExists = this.businessLocationRepository.findByBusiness(
-      business_id,
-    );
+    const businessExists =
+      this.businessLocationRepository.findByBusiness(business_id);
 
     if (await businessExists) {
       throw new AppError('This business already has a location.', 409);

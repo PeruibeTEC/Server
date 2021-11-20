@@ -19,9 +19,8 @@ export default class ShowBusinessLocationService {
   public async execute({
     business_id,
   }: IRequest): Promise<BusinessLocation | undefined> {
-    const businessLocation = await this.businessLocationRepository.findByBusiness(
-      business_id,
-    );
+    const businessLocation =
+      await this.businessLocationRepository.findByBusiness(business_id);
 
     if (!businessLocation) {
       throw new AppError('Business Location not found.', 404);

@@ -6,7 +6,8 @@ import IBusinessContactDTO from '@modules/business/dtos/IBusinessContactDTO';
 import BusinessContact from '../entities/BusinessContact';
 
 export default class BusinessContactRepository
-  implements IBusinessContactRepository {
+  implements IBusinessContactRepository
+{
   private ormRepository: Repository<BusinessContact>;
 
   constructor() {

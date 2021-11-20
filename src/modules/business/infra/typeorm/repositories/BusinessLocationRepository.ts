@@ -6,7 +6,8 @@ import IBusinessLocationDTO from '@modules/business/dtos/IBusinessLocationDTO';
 import BusinessLocation from '../entities/BusinessLocation';
 
 export default class BusinessLocationRepository
-  implements IBusinessLocationRepository {
+  implements IBusinessLocationRepository
+{
   private ormRepository: Repository<BusinessLocation>;
 
   constructor() {
@@ -38,7 +39,9 @@ export default class BusinessLocationRepository
   public async findByBusiness(
     business_id: string,
   ): Promise<BusinessLocation | undefined> {
-    const businessLocation = await this.ormRepository.findOne(business_id);
+    const businessLocation = await this.ormRepository.findOne({
+      where: { business_id },
+    });
 
     return businessLocation;
   }

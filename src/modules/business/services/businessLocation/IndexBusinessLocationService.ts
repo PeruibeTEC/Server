@@ -11,7 +11,8 @@ export default class IndexBusinessLocationService {
   ) {}
 
   public async execute(): Promise<BusinessLocation[]> {
-    const businessLocation = await this.businessLocationRepository.findAllBusinessLocation();
+    const businessLocation =
+      await this.businessLocationRepository.findAllBusinessLocation();
 
     return businessLocation;
   }
